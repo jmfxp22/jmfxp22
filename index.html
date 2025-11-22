@@ -1360,4 +1360,761 @@ border-radius: 50px;
             <h1 class="glitch-text" data-text="MalkDev0 Bots">MalkDev0 Bots</h1>
             <p>Potencialize seu servidor com nossa tecnologia avançada. Moderação inteligente, música em alta definição e muito mais!</p>
             <div class="hero-buttons">
-                <a href="#plans" class="btn btn-primary">Exp
+                <a href="#plans" class="btn btn-primary">Explorar Planos</a>
+                <button class="btn btn-secondary" id="demoBtn">Ver Demonstração</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section class="section" id="features">
+        <div class="container">
+            <h2 class="section-title">Tecnologia Avançada</h2>
+            <div class="features-grid">
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-brain"></i>
+                    </div>
+                    <h3>IA Integrada</h3>
+                    <p>Inteligência artificial para moderação proativa e respostas contextuais avançadas.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-bolt"></i>
+                    </div>
+                    <h3>Performance Máxima</h3>
+                    <p>Arquitetura otimizada para resposta instantânea mesmo em servidores com milhares de usuários.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-shield-alt"></i>
+                    </div>
+                    <h3>Segurança Total</h3>
+                    <p>Sistema de proteção contra raids, spam e ataques com criptografia de ponta a ponta.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Plans Section -->
+    <section class="section" id="plans">
+        <div class="container">
+            <h2 class="section-title">Planos de Tecnologia</h2>
+            <div class="plans-grid">
+                <div class="plan-card">
+                    <div class="plan-icon">
+                        <i class="fas fa-microchip"></i>
+                    </div>
+                    <h3 class="plan-name">Básico</h3>
+                    <div class="plan-price">R$ 0<span>/mês</span></div>
+                    <ul class="plan-features">
+                        <li><i class="fas fa-check"></i> Moderação Básica</li>
+                        <li><i class="fas fa-check"></i> 5 Comandos de Música</li>
+                        <li><i class="fas fa-check"></i> 3 Jogos</li>
+                        <li><i class="fas fa-times"></i> IA Avançada</li>
+                        <li><i class="fas fa-times"></i> Suporte Prioritário</li>
+                    </ul>
+                    <button class="btn btn-primary select-plan" data-plan="Básico" data-price="0">Selecionar</button>
+                </div>
+                <div class="plan-card popular">
+                    <div class="popular-badge">Popular</div>
+                    <div class="plan-icon">
+                        <i class="fas fa-rocket"></i>
+                    </div>
+                    <h3 class="plan-name">Premium</h3>
+                    <div class="plan-price">R$ 15<span>/mês</span></div>
+                    <ul class="plan-features">
+                        <li><i class="fas fa-check"></i> Todos os recursos Básico</li>
+                        <li><i class="fas fa-check"></i> Música Ilimitada</li>
+                        <li><i class="fas fa-check"></i> Todos os Jogos</li>
+                        <li><i class="fas fa-check"></i> IA Básica</li>
+                        <li><i class="fas fa-check"></i> Suporte Prioritário</li>
+                    </ul>
+                    <button class="btn btn-primary select-plan" data-plan="Premium" data-price="15">Selecionar</button>
+                </div>
+                <div class="plan-card">
+                    <div class="plan-icon">
+                        <i class="fas fa-crown"></i>
+                    </div>
+                    <h3 class="plan-name">VIP</h3>
+                    <div class="plan-price">R$ 30<span>/mês</span></div>
+                    <ul class="plan-features">
+                        <li><i class="fas fa-check"></i> Todos os recursos Premium</li>
+                        <li><i class="fas fa-check"></i> IA Avançada</li>
+                        <li><i class="fas fa-check"></i> Bot Personalizado</li>
+                        <li><i class="fas fa-check"></i> Suporte 24/7</li>
+                        <li><i class="fas fa-check"></i> Acesso Antecipado</li>
+                    </ul>
+                    <button class="btn btn-primary select-plan" data-plan="VIP" data-price="30">Selecionar</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Info Section -->
+    <section class="section" id="info">
+        <div class="container">
+            <div class="info-content">
+                <h2 class="section-title">Sobre a Tecnologia</h2>
+                <p>Desenvolvemos nossos bots utilizando as mais avançadas tecnologias de machine learning e processamento de linguagem natural.</p>
+                <p>Nossa infraestrutura em cloud garante 99.9% de uptime e escalabilidade instantânea para qualquer tamanho de servidor.</p>
+                <p>Junte-se a mais de 50.000 servidores que já confiam em nossa tecnologia para automatização e crescimento.</p>
+                
+                <!-- Botão Admin Pequeno -->
+                <button class="small-admin-btn" id="smallAdminBtn">
+                    <i class="fas fa-shield-alt"></i>
+                    Painel Admin
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Discord Section -->
+    <section class="section" id="discord">
+        <div class="container">
+            <div class="discord-container">
+                <div class="discord-icon">
+                    <i class="fab fa-discord"></i>
+                </div>
+                <h2 class="section-title">Comunidade Tech</h2>
+                <p>Junte-se à nossa comunidade de desenvolvedores e entusiastas de tecnologia no Discord!</p>
+                <a href="#" class="discord-link">
+                    <i class="fab fa-discord"></i>
+                    Entrar na Comunidade
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-logo">
+                    <i class="fas fa-robot"></i>
+                    MalkDev0
+                </div>
+                <div class="footer-links">
+                    <a href="#home">Início</a>
+                    <a href="#features">Tecnologia</a>
+                    <a href="#plans">Planos</a>
+                    <a href="#info">Sobre</a>
+                    <a href="#discord">Comunidade</a>
+                </div>
+            </div>
+            <div class="copyright">
+                <p>by JMFXP22 = MalkDev0 | Tecnologia de Ponta em Bots</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Aba de Ativação de Key -->
+    <section class="key-section" id="keySection">
+        <div class="container">
+            <div class="key-container">
+                <div class="key-icon">
+                    <i class="fas fa-key"></i>
+                </div>
+                <h2>Ativar Key VIP</h2>
+                <p>Digite sua key abaixo para ativar os recursos premium</p>
+                <input type="text" class="key-input" id="keyInput" placeholder="Cole sua key aqui...">
+                <button class="btn btn-primary" id="activateKeyBtn">Ativar Key</button>
+                
+                <div class="key-result key-success" id="keySuccess">
+                    <i class="fas fa-check-circle"></i>
+                    <h3>Key Ativada com Sucesso!</h3>
+                    <p>Agora você tem acesso a todos os recursos premium!</p>
+                </div>
+                
+                <div class="key-result key-error" id="keyError">
+                    <i class="fas fa-times-circle"></i>
+                    <h3>Key Inválida</h3>
+                    <p>A key que você inseriu não é válida. Verifique e tente novamente.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Modal de Admin -->
+    <div class="admin-modal" id="adminModal">
+        <div class="admin-content">
+            <div class="admin-icon">
+                <i class="fas fa-shield-alt"></i>
+            </div>
+            <h2>Painel Administrativo</h2>
+            <p>Digite suas credenciais de administrador</p>
+            <input type="text" class="admin-input" id="adminUser" placeholder="Usuário Admin">
+            <input type="password" class="admin-input" id="adminPass" placeholder="Senha Admin">
+            <button class="btn btn-primary" id="adminLoginBtn" style="width: 100%; margin-top: 20px;">Acessar Painel</button>
+            <div class="email-notice" style="margin-top: 20px;">
+                <p><strong>Info:</strong> Sistema de coleta de emails ativo</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Painel Administrativo -->
+    <div class="admin-panel" id="adminPanel">
+        <div class="container">
+            <div class="admin-header">
+                <h1 class="admin-title">Painel Administrativo</h1>
+                <button class="close-admin" id="closeAdminBtn">Fechar Painel</button>
+            </div>
+            
+            <div class="admin-grid">
+                <!-- Estatísticas -->
+                <div class="admin-card">
+                    <h3>Dashboard Principal</h3>
+                    <div class="stats">
+                        <div class="stat-item">
+                            <div class="stat-value" id="totalSales">47</div>
+                            <div class="stat-label">Vendas Totais</div>
+                        </div>
+                        <div class="stat-item">
+                            <div class="stat-value" id="monthSales">12</div>
+                            <div class="stat-label">Vendas Este Mês</div>
+                        </div>
+                        <div class="stat-item">
+                            <div class="stat-value">R$ <span id="totalRevenue">1.245</span></div>
+                            <div class="stat-label">Receita Total</div>
+                        </div>
+                        <div class="stat-item">
+                            <div class="stat-value" id="activeUsers">3.8K</div>
+                            <div class="stat-label">Usuários Ativos</div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Configuração PIX -->
+                <div class="admin-card">
+                    <h3>Configuração PIX</h3>
+                    <input type="text" class="config-input" id="pixKey" placeholder="Chave PIX" value="jmsight1@gmail.com">
+                    <input type="text" class="config-input" id="pixName" placeholder="Nome do Recebedor" value="JMFXP22">
+                    <input type="text" class="config-input" id="pixCity" placeholder="Cidade" value="Rio de Janeiro">
+                    <button class="config-btn" id="savePixBtn">Salvar Configurações PIX</button>
+                </div>
+                
+                <!-- Configuração de Preços -->
+                <div class="admin-card">
+                    <h3>Configuração de Preços</h3>
+                    <input type="number" class="config-input" id="priceBasic" placeholder="Preço Plano Básico" value="0">
+                    <input type="number" class="config-input" id="pricePremium" placeholder="Preço Plano Premium" value="15">
+                    <input type="number" class="config-input" id="priceVIP" placeholder="Preço Plano VIP" value="30">
+                    <button class="config-btn" id="savePricesBtn">Salvar Preços</button>
+                </div>
+                
+                <!-- Gerador de Keys -->
+                <div class="admin-card">
+                    <h3>Gerador de Keys VIP</h3>
+                    <div class="key-generator">
+                        <input type="text" class="config-input" id="keyDays" placeholder="Duração em Dias" value="30">
+                        <input type="text" class="config-input" id="keyPlan" placeholder="Plano (Básico/Premium/VIP)" value="Premium">
+                        <button class="config-btn" id="generateKeyBtn">Gerar Key</button>
+                        
+                        <div class="generated-key" id="generatedKey" style="display: none;">
+                            <strong>Key Gerada:</strong> <span id="keyValue"></span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Gerenciar Emails -->
+                <div class="admin-card">
+                    <h3>Banco de Dados - Emails</h3>
+                    <div class="key-generator">
+                        <button class="config-btn" id="viewEmailsBtn">Ver Emails Coletados</button>
+                        <div id="emailsList" style="margin-top: 15px; max-height: 200px; overflow-y: auto; display: none;">
+                            <!-- Emails serão carregados aqui -->
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Configurações do Site -->
+                <div class="admin-card">
+                    <h3>Configurações do Site</h3>
+                    <input type="text" class="config-input" id="siteTitle" placeholder="Título do Site" value="MalkDev0 - Tecnologia em Bots">
+                    <input type="text" class="config-input" id="siteDescription" placeholder="Descrição do Site" value="Potencialize seu servidor com nossa tecnologia avançada">
+                    <button class="config-btn" id="saveSiteSettingsBtn">Salvar Configurações</button>
+                </div>
+            </div>
+            
+            <!-- Outras Configurações -->
+            <div class="admin-card">
+                <h3>Ferramentas do Sistema</h3>
+                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 15px;">
+                    <button class="config-btn">Backup de Dados</button>
+                    <button class="config-btn">Logs do Sistema</button>
+                    <button class="config-btn">Gerenciar Usuários</button>
+                    <button class="config-btn">Configurações de Email</button>
+                    <button class="config-btn">Análise de Tráfego</button>
+                    <button class="config-btn">Otimização SEO</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal de Pagamento -->
+    <div class="payment-modal" id="paymentModal">
+        <div class="payment-content">
+            <span class="close-modal" id="closePaymentModal">&times;</span>
+            <h2>Finalizar Compra</h2>
+            
+            <div class="product-info">
+                <div class="product-icon">
+                    <i class="fas fa-robot"></i>
+                </div>
+                <div class="product-details">
+                    <div class="product-name" id="productName">Plano Básico</div>
+                    <div class="product-price" id="productPrice">R$ 0/mês</div>
+                </div>
+            </div>
+            
+            <div class="quantity-controls">
+                <button class="quantity-btn" id="decreaseQty">-</button>
+                <div class="quantity" id="quantity">1</div>
+                <button class="quantity-btn" id="increaseQty">+</button>
+            </div>
+            
+            <div class="total-price" id="totalPrice">Total: R$ 0</div>
+            
+            <h3>Selecione a forma de pagamento:</h3>
+            <div class="payment-options">
+                <div class="payment-option" id="pixOption">
+                    <div class="payment-icon">
+                        <i class="fas fa-qrcode"></i>
+                    </div>
+                    <div>PIX</div>
+                </div>
+                <div class="payment-option" id="boletoOption">
+                    <div class="payment-icon">
+                        <i class="fas fa-barcode"></i>
+                    </div>
+                    <div>Boleto</div>
+                </div>
+            </div>
+            
+            <button class="btn btn-primary" id="processPayment" style="width: 100%; margin-top: 20px;">Processar Pagamento</button>
+            
+            <div class="payment-result payment-error" id="paymentResult">
+                <div class="error-icon">
+                    <i class="fas fa-times-circle"></i>
+                </div>
+                <h3 id="resultTitle">Opção Indisponível</h3>
+                <p id="resultMessage">Esta forma de pagamento não está disponível no momento.</p>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Elementos do DOM
+        const creatorBtn = document.getElementById('creatorBtn');
+        const adminAccessBtn = document.getElementById('adminAccessBtn');
+        const smallAdminBtn = document.getElementById('smallAdminBtn');
+        const adminModal = document.getElementById('adminModal');
+        const adminPanel = document.getElementById('adminPanel');
+        const adminLoginBtn = document.getElementById('adminLoginBtn');
+        const closeAdminBtn = document.getElementById('closeAdminBtn');
+        const keySection = document.getElementById('keySection');
+        const activateKeyBtn = document.getElementById('activateKeyBtn');
+        const keyInput = document.getElementById('keyInput');
+        const keySuccess = document.getElementById('keySuccess');
+        const keyError = document.getElementById('keyError');
+        const generateKeyBtn = document.getElementById('generateKeyBtn');
+        const generatedKey = document.getElementById('generatedKey');
+        const keyValue = document.getElementById('keyValue');
+        const selectPlanButtons = document.querySelectorAll('.select-plan');
+        const navLinks = document.querySelectorAll('.nav-links a');
+        const emailModal = document.getElementById('emailModal');
+        const emailForm = document.getElementById('emailForm');
+        const skipEmail = document.getElementById('skipEmail');
+        const userEmail = document.getElementById('userEmail');
+        const viewEmailsBtn = document.getElementById('viewEmailsBtn');
+        const emailsList = document.getElementById('emailsList');
+        const paymentModal = document.getElementById('paymentModal');
+        const closePaymentModal = document.getElementById('closePaymentModal');
+        const decreaseQty = document.getElementById('decreaseQty');
+        const increaseQty = document.getElementById('increaseQty');
+        const quantityElement = document.getElementById('quantity');
+        const totalPriceElement = document.getElementById('totalPrice');
+        const productName = document.getElementById('productName');
+        const productPrice = document.getElementById('productPrice');
+        const pixOption = document.getElementById('pixOption');
+        const boletoOption = document.getElementById('boletoOption');
+        const processPayment = document.getElementById('processPayment');
+        const paymentResult = document.getElementById('paymentResult');
+        const resultTitle = document.getElementById('resultTitle');
+        const resultMessage = document.getElementById('resultMessage');
+
+        // Credenciais de admin
+        const ADMIN_USER = "FCRJ";
+        const ADMIN_PASS = "JMFXP22";
+
+        // Banco de dados local
+        let generatedKeys = [];
+        let collectedEmails = JSON.parse(localStorage.getItem('collectedEmails')) || [];
+        let siteSettings = JSON.parse(localStorage.getItem('siteSettings')) || {
+            title: "MalkDev0 - Tecnologia em Bots",
+            description: "Potencialize seu servidor com nossa tecnologia avançada",
+            pixKey: "jmsight1@gmail.com",
+            pixName: "JMFXP22",
+            pixCity: "Rio de Janeiro",
+            prices: {
+                basic: 0,
+                premium: 15,
+                vip: 30
+            }
+        };
+
+        // Carregar configurações salvas
+        function loadSiteSettings() {function loadSiteSettings() {
+            document.getElementById('siteTitle').value = siteSettings.title;
+            document.getElementById('siteDescription').value = siteSettings.description;
+            document.getElementById('pixKey').value = siteSettings.pixKey;
+            document.getElementById('pixName').value = siteSettings.pixName;
+            document.getElementById('pixCity').value = siteSettings.pixCity;
+            document.getElementById('priceBasic').value = siteSettings.prices.basic;
+            document.getElementById('pricePremium').value = siteSettings.prices.premium;
+            document.getElementById('priceVIP').value = siteSettings.prices.vip;
+            
+            // Atualizar site com configurações
+            document.title = siteSettings.title;
+            document.querySelector('.hero h1').textContent = siteSettings.title.split(' - ')[0];
+            document.querySelector('.hero p').textContent = siteSettings.description;
+        }
+
+        // Efeito de partículas
+        function createParticles() {
+            const particlesContainer = document.getElementById('particles');
+            for (let i = 0; i < 50; i++) {
+                const particle = document.createElement('div');
+                particle.className = 'particle';
+                particle.style.width = Math.random() * 5 + 2 + 'px';
+                particle.style.height = particle.style.width;
+                particle.style.left = Math.random() * 100 + 'vw';
+                particle.style.top = Math.random() * 100 + 'vh';
+                particle.style.animationDuration = Math.random() * 20 + 10 + 's';
+                particle.style.animationDelay = Math.random() * 5 + 's';
+                particlesContainer.appendChild(particle);
+            }
+        }
+
+        // Sistema de coleta de email
+        function hasCollectedEmail() {
+            return localStorage.getItem('emailCollected') === 'true';
+        }
+
+        // Mostrar modal de email após 3 segundos
+        setTimeout(() => {
+            if (!hasCollectedEmail()) {
+                emailModal.style.display = 'flex';
+            }
+        }, 3000);
+
+        // Processar formulário de email
+        emailForm.addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const email = userEmail.value.trim();
+            
+            if (email && isValidEmail(email)) {
+                // Salvar email no banco de dados
+                collectedEmails.push({
+                    email: email,
+                    date: new Date().toLocaleDateString('pt-BR'),
+                    time: new Date().toLocaleTimeString('pt-BR')
+                });
+                localStorage.setItem('collectedEmails', JSON.stringify(collectedEmails));
+                
+                // Salvar no localStorage que já coletou o email
+                localStorage.setItem('emailCollected', 'true');
+                
+                // Fechar modal
+                emailModal.style.display = 'none';
+                alert('Obrigado! Você receberá nossas novidades em breve!');
+            } else {
+                alert('Por favor, insira um email válido.');
+            }
+        });
+
+        // Pular coleta de email
+        skipEmail.addEventListener('click', function() {
+            localStorage.setItem('emailCollected', 'true');
+            emailModal.style.display = 'none';
+        });
+
+        // Validar email
+        function isValidEmail(email) {
+            const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            return emailRegex.test(email);
+        }
+
+        // Navegação suave
+        navLinks.forEach(link => {
+            link.addEventListener('click', function(e) {
+                e.preventDefault();
+                const targetId = this.getAttribute('href');
+                const targetSection = document.querySelector(targetId);
+                
+                if (targetSection) {
+                    window.scrollTo({
+                        top: targetSection.offsetTop - 80,
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+
+        // Botões de seleção de planos - Abrir modal de pagamento
+        selectPlanButtons.forEach(button => {
+            button.addEventListener('click', function() {
+                const plan = this.getAttribute('data-plan');
+                const price = parseInt(this.getAttribute('data-price'));
+                
+                productName.textContent = `Plano ${plan}`;
+                productPrice.textContent = `R$ ${price}/mês`;
+                quantityElement.textContent = '1';
+                totalPriceElement.textContent = `Total: R$ ${price}`;
+                
+                paymentModal.style.display = 'flex';
+                paymentResult.style.display = 'none';
+                pixOption.classList.remove('selected');
+                boletoOption.classList.remove('selected');
+            });
+        });
+
+        // Botão do criador - Mostrar modal de admin
+        creatorBtn.addEventListener('click', function() {
+            adminModal.style.display = 'flex';
+        });
+
+        // Botão de acesso ao admin no header
+        adminAccessBtn.addEventListener('click', function() {
+            keySection.style.display = 'block';
+            window.scrollTo({
+                top: keySection.offsetTop - 80,
+                behavior: 'smooth'
+            });
+        });
+
+        // Botão admin pequeno
+        smallAdminBtn.addEventListener('click', function() {
+            adminModal.style.display = 'flex';
+        });
+
+        // Login no painel administrativo
+        adminLoginBtn.addEventListener('click', function() {
+            const user = document.getElementById('adminUser').value;
+            const pass = document.getElementById('adminPass').value;
+            
+            if (user === ADMIN_USER && pass === ADMIN_PASS) {
+                adminModal.style.display = 'none';
+                adminPanel.style.display = 'block';
+                loadSiteSettings();
+            } else {
+                alert('Credenciais inválidas!');
+            }
+        });
+
+        // Fechar painel administrativo
+        closeAdminBtn.addEventListener('click', function() {
+            adminPanel.style.display = 'none';
+        });
+
+        // Ativar key - Só funciona com keys geradas
+        activateKeyBtn.addEventListener('click', function() {
+            const key = keyInput.value.trim();
+            
+            if (key === '') {
+                alert('Por favor, digite uma key!');
+                return;
+            }
+            
+            // Verificar se a key foi gerada no sistema
+            if (generatedKeys.includes(key)) {
+                keySuccess.style.display = 'block';
+                keyError.style.display = 'none';
+            } else {
+                keyError.style.display = 'block';
+                keySuccess.style.display = 'none';
+            }
+        });
+
+        // Gerar key aleatória (4 letras + 1 número)
+        function generateRandomKey() {
+            const letters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
+            const numbers = '0123456789';
+            let key = '';
+            
+            // Gerar 4 letras aleatórias
+            for (let i = 0; i < 4; i++) {
+                key += letters.charAt(Math.floor(Math.random() * letters.length));
+            }
+            
+            // Adicionar 1 número aleatório
+            key += numbers.charAt(Math.floor(Math.random() * numbers.length));
+            
+            return key;
+        }
+
+        // Gerar key
+        generateKeyBtn.addEventListener('click', function() {
+            const days = document.getElementById('keyDays').value || '30';
+            const plan = document.getElementById('keyPlan').value || 'Premium';
+            
+            // Gerar key aleatória
+            const key = generateRandomKey();
+            generatedKeys.push(key);
+            
+            keyValue.textContent = key;
+            generatedKey.style.display = 'block';
+            
+            alert(`Key gerada com sucesso!\n\nKey: ${key}\nPlano: ${plan}\nDuração: ${days} dias`);
+        });
+
+        // Ver emails coletados
+        viewEmailsBtn.addEventListener('click', function() {
+            if (collectedEmails.length === 0) {
+                emailsList.innerHTML = '<p style="text-align: center; padding: 10px;">Nenhum email coletado ainda.</p>';
+            } else {
+                let emailsHTML = '<h4 style="margin-bottom: 10px;">Emails Coletados:</h4>';
+                collectedEmails.forEach((item, index) => {
+                    emailsHTML += `<div style="padding: 8px; border-bottom: 1px solid rgba(255,255,255,0.1);">
+                        <strong>${item.email}</strong><br>
+                        <small>${item.date} às ${item.time}</small>
+                    </div>`;
+                });
+                emailsList.innerHTML = emailsHTML;
+            }
+            emailsList.style.display = 'block';
+        });
+
+        // Salvar configurações PIX
+        document.getElementById('savePixBtn').addEventListener('click', function() {
+            siteSettings.pixKey = document.getElementById('pixKey').value;
+            siteSettings.pixName = document.getElementById('pixName').value;
+            siteSettings.pixCity = document.getElementById('pixCity').value;
+            localStorage.setItem('siteSettings', JSON.stringify(siteSettings));
+            alert('Configurações PIX salvas com sucesso!');
+        });
+
+        // Salvar preços
+        document.getElementById('savePricesBtn').addEventListener('click', function() {
+            siteSettings.prices.basic = parseInt(document.getElementById('priceBasic').value);
+            siteSettings.prices.premium = parseInt(document.getElementById('pricePremium').value);
+            siteSettings.prices.vip = parseInt(document.getElementById('priceVIP').value);
+            localStorage.setItem('siteSettings', JSON.stringify(siteSettings));
+            
+            // Atualizar preços no site
+            document.querySelectorAll('.plan-card')[0].querySelector('.plan-price').innerHTML = `R$ ${siteSettings.prices.basic}<span>/mês</span>`;
+            document.querySelectorAll('.plan-card')[1].querySelector('.plan-price').innerHTML = `R$ ${siteSettings.prices.premium}<span>/mês</span>`;
+            document.querySelectorAll('.plan-card')[2].querySelector('.plan-price').innerHTML = `R$ ${siteSettings.prices.vip}<span>/mês</span>`;
+            
+            alert(`Preços atualizados com sucesso!`);
+        });
+
+        // Salvar configurações do site
+        document.getElementById('saveSiteSettingsBtn').addEventListener('click', function() {
+            siteSettings.title = document.getElementById('siteTitle').value;
+            siteSettings.description = document.getElementById('siteDescription').value;
+            localStorage.setItem('siteSettings', JSON.stringify(siteSettings));
+            
+            // Atualizar site
+            document.title = siteSettings.title;
+            document.querySelector('.hero h1').textContent = siteSettings.title.split(' - ')[0];
+            document.querySelector('.hero p').textContent = siteSettings.description;
+            
+            alert('Configurações do site salvas com sucesso!');
+        });
+
+        // Sistema de pagamento - Controles de quantidade
+        let quantity = 1;
+        let currentPrice = 0;
+
+        decreaseQty.addEventListener('click', function() {
+            if (quantity > 1) {
+                quantity--;
+                quantityElement.textContent = quantity;
+                updateTotalPrice();
+            }
+        });
+
+        increaseQty.addEventListener('click', function() {
+            quantity++;
+            quantityElement.textContent = quantity;
+            updateTotalPrice();
+        });
+
+        function updateTotalPrice() {
+            const priceText = productPrice.textContent;
+            const price = parseInt(priceText.replace('R$ ', '').replace('/mês', ''));
+            currentPrice = price;
+            const total = price * quantity;
+            totalPriceElement.textContent = `Total: R$ ${total}`;
+        }
+
+        // Seleção de método de pagamento
+        pixOption.addEventListener('click', function() {
+            pixOption.classList.add('selected');
+            boletoOption.classList.remove('selected');
+        });
+
+        boletoOption.addEventListener('click', function() {
+            boletoOption.classList.add('selected');
+            pixOption.classList.remove('selected');
+        });
+
+        // Processar pagamento
+        processPayment.addEventListener('click', function() {
+            if (!pixOption.classList.contains('selected') && !boletoOption.classList.contains('selected')) {
+                alert('Por favor, selecione uma forma de pagamento.');
+                return;
+            }
+            
+            paymentResult.style.display = 'block';
+            
+            if (boletoOption.classList.contains('selected')) {
+                resultTitle.textContent = 'Boleto Indisponível';
+                resultMessage.textContent = 'A opção de pagamento por boleto não está disponível no momento.';
+            } else if (pixOption.classList.contains('selected')) {
+                if (siteSettings.pixKey && siteSettings.pixKey !== 'jmsight1@gmail.com') {
+                    resultTitle.textContent = 'PIX Configurado';
+                    resultMessage.textContent = `Chave PIX: ${siteSettings.pixKey}\nEnvie o valor de R$ ${currentPrice * quantity} para esta chave.`;
+                } else {
+                    resultTitle.textContent = 'PIX Não Configurado';
+                    resultMessage.textContent = 'O pagamento por PIX ainda não foi configurado. Entre em contato com o administrador.';
+                }
+            }
+        });
+
+        // Fechar modais ao clicar fora
+        window.addEventListener('click', function(e) {
+            if (e.target === adminModal) {
+                adminModal.style.display = 'none';
+            }
+            if (e.target === paymentModal) {
+                paymentModal.style.display = 'none';
+            }
+            if (e.target === emailModal) {
+                emailModal.style.display = 'none';
+            }
+        });
+
+        // Fechar modal de pagamento
+        closePaymentModal.addEventListener('click', function() {
+            paymentModal.style.display = 'none';
+        });
+
+        // Botão de login
+        document.getElementById('loginBtn').addEventListener('click', function() {
+            alert('Sistema de login em desenvolvimento...');
+        });
+
+        // Botão de demonstração
+        document.getElementById('demoBtn').addEventListener('click', function() {
+            alert('Demonstração dos recursos avançados em breve...');
+        });
+
+        // Inicializar
+        createParticles();
+        loadSiteSettings();
+    </script>
+</body>
+</html>

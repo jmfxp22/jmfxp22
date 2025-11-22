@@ -159,6 +159,30 @@
             box-shadow: 0 8px 20px rgba(0, 0, 0, 0.4);
         }
         
+        /* Seções do Site */
+        .section {
+            padding: 80px 0;
+        }
+        
+        .section-title {
+            text-align: center;
+            font-size: 2.5rem;
+            margin-bottom: 50px;
+            position: relative;
+        }
+        
+        .section-title::after {
+            content: '';
+            position: absolute;
+            width: 100px;
+            height: 4px;
+            background: linear-gradient(to right, var(--accent), #ff5252);
+            bottom: -15px;
+            left: 50%;
+            transform: translateX(-50%);
+            border-radius: 2px;
+        }
+        
         /* Hero Section */
         .hero {
             padding: 100px 0;
@@ -215,6 +239,8 @@
             text-decoration: none;
             transition: all 0.3s;
             display: inline-block;
+            cursor: pointer;
+            border: none;
         }
         
         .btn-primary {
@@ -237,6 +263,240 @@
         .btn-secondary:hover {
             background: white;
             color: var(--dark);
+        }
+        
+        /* Features Section */
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+        
+        .feature-card {
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 15px;
+            padding: 30px;
+            text-align: center;
+            transition: transform 0.3s, box-shadow 0.3s;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        
+        .feature-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2);
+        }
+        
+        .feature-icon {
+            font-size: 3rem;
+            margin-bottom: 20px;
+            color: var(--accent);
+        }
+        
+        .feature-card h3 {
+            font-size: 1.5rem;
+            margin-bottom: 15px;
+        }
+        
+        /* Plans Section */
+        .plans-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-top: 50px;
+        }
+        
+        .plan-card {
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 15px;
+            padding: 40px 30px;
+            text-align: center;
+            transition: transform 0.3s, box-shadow 0.3s;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .plan-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2);
+        }
+        
+        .plan-card.popular {
+            border: 2px solid var(--accent);
+            transform: scale(1.05);
+        }
+        
+        .plan-card.popular:hover {
+            transform: scale(1.05) translateY(-10px);
+        }
+        
+        .popular-badge {
+            position: absolute;
+            top: 20px;
+            right: -30px;
+            background: var(--accent);
+            color: white;
+            padding: 5px 40px;
+            transform: rotate(45deg);
+            font-weight: bold;
+            font-size: 0.8rem;
+        }
+        
+        .plan-icon {
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+            color: var(--accent);
+        }
+        
+        .plan-name {
+            font-size: 1.8rem;
+            margin-bottom: 10px;
+        }
+        
+        .plan-price {
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+            font-weight: bold;
+        }
+        
+        .plan-price span {
+            font-size: 1rem;
+            opacity: 0.8;
+        }
+        
+        .plan-features {
+            list-style: none;
+            margin-bottom: 30px;
+        }
+        
+        .plan-features li {
+            padding: 10px 0;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        
+        .plan-features li:last-child {
+            border-bottom: none;
+        }
+        
+        .plan-features li i {
+            color: var(--success);
+            margin-right: 10px;
+        }
+        
+        /* Info Section */
+        .info-content {
+            max-width: 800px;
+            margin: 0 auto;
+            text-align: center;
+            position: relative;
+        }
+        
+        .info-content p {
+            font-size: 1.2rem;
+            margin-bottom: 25px;
+            opacity: 0.9;
+        }
+        
+        /* Botão Admin Pequeno */
+        .small-admin-btn {
+            position: absolute;
+            bottom: 10px;
+            right: 10px;
+            background: transparent;
+            color: var(--admin);
+            border: 1px solid var(--admin);
+            padding: 5px 10px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            cursor: pointer;
+            transition: all 0.3s;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+        
+        .small-admin-btn:hover {
+            background: var(--admin);
+            color: white;
+        }
+        
+        /* Discord Section */
+        .discord-container {
+            max-width: 600px;
+            margin: 0 auto;
+            text-align: center;
+        }
+        
+        .discord-icon {
+            font-size: 4rem;
+            color: #5865F2;
+            margin-bottom: 20px;
+        }
+        
+        .discord-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            background: #5865F2;
+            color: white;
+            padding: 15px 30px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: bold;
+            margin-top: 20px;
+            transition: all 0.3s;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+        }
+        
+        .discord-link:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+            background: #4752c4;
+        }
+        
+        /* Footer */
+        footer {
+            background-color: var(--dark);
+            padding: 40px 0 20px;
+            text-align: center;
+        }
+        
+        .footer-content {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 20px;
+            margin-bottom: 20px;
+        }
+        
+        .footer-logo {
+            font-size: 1.5rem;
+            font-weight: bold;
+        }
+        
+        .footer-links {
+            display: flex;
+            gap: 20px;
+        }
+        
+        .footer-links a {
+            color: var(--light);
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+        
+        .footer-links a:hover {
+            color: var(--accent);
+        }
+        
+        .copyright {
+            font-size: 0.9rem;
+            opacity: 0.7;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            padding-top: 20px;
+            width: 100%;
         }
         
         /* Aba de Ativação de Key */
@@ -466,6 +726,10 @@
             margin: 15px 0;
             word-break: break-all;
             font-family: monospace;
+            text-align: center;
+            font-size: 1.2rem;
+            font-weight: bold;
+            color: var(--accent);
         }
         
         .email-notice {
@@ -517,6 +781,13 @@
             .stats {
                 grid-template-columns: 1fr;
             }
+            
+            .small-admin-btn {
+                position: relative;
+                bottom: auto;
+                right: auto;
+                margin-top: 20px;
+            }
         }
     </style>
 </head>
@@ -541,7 +812,7 @@
                     <a href="#info">Saiba Mais</a>
                     <a href="#discord">Discord</a>
                     <button class="admin-btn" id="adminAccessBtn">
-                        <i class="fas fa-code"></i>
+                        <i class="fas fa-key"></i>
                         Ativar Key
                     </button>
                     <button class="cta-button" id="loginBtn">Entrar</button>
@@ -564,6 +835,148 @@
             </div>
         </div>
     </section>
+
+    <!-- Features Section -->
+    <section class="section" id="features">
+        <div class="container">
+            <h2 class="section-title">Nossos Recursos</h2>
+            <div class="features-grid">
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-shield-alt"></i>
+                    </div>
+                    <h3>Moderação Avançada</h3>
+                    <p>Sistema completo de moderação com logs, auto-moderação e proteção contra spam.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-music"></i>
+                    </div>
+                    <h3>Música de Qualidade</h3>
+                    <p>Reproduza músicas do YouTube, Spotify e SoundCloud com qualidade de áudio premium.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-gamepad"></i>
+                    </div>
+                    <h3>Jogos e Diversão</h3>
+                    <p>Diversos jogos e comandos de entretenimento para manter sua comunidade ativa.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Plans Section -->
+    <section class="section" id="plans">
+        <div class="container">
+            <h2 class="section-title">Nossos Planos VIP</h2>
+            <div class="plans-grid">
+                <div class="plan-card">
+                    <div class="plan-icon">
+                        <i class="fas fa-user"></i>
+                    </div>
+                    <h3 class="plan-name">Básico</h3>
+                    <div class="plan-price">R$ 0<span>/mês</span></div>
+                    <ul class="plan-features">
+                        <li><i class="fas fa-check"></i> Comandos de moderação básica</li>
+                        <li><i class="fas fa-check"></i> 5 comandos de música</li>
+                        <li><i class="fas fa-check"></i> 3 jogos disponíveis</li>
+                        <li><i class="fas fa-times"></i> Suporte prioritário</li>
+                        <li><i class="fas fa-times"></i> Personalização avançada</li>
+                    </ul>
+                    <button class="btn btn-primary select-plan" data-plan="Básico" data-price="0">Selecionar</button>
+                </div>
+                <div class="plan-card popular">
+                    <div class="popular-badge">Popular</div>
+                    <div class="plan-icon">
+                        <i class="fas fa-star"></i>
+                    </div>
+                    <h3 class="plan-name">Premium</h3>
+                    <div class="plan-price">R$ 15<span>/mês</span></div>
+                    <ul class="plan-features">
+                        <li><i class="fas fa-check"></i> Todos os recursos do Básico</li>
+                        <li><i class="fas fa-check"></i> Comandos de música ilimitados</li>
+                        <li><i class="fas fa-check"></i> Todos os jogos disponíveis</li>
+                        <li><i class="fas fa-check"></i> Suporte prioritário</li>
+                        <li><i class="fas fa-check"></i> Personalização de comandos</li>
+                    </ul>
+                    <button class="btn btn-primary select-plan" data-plan="Premium" data-price="15">Selecionar</button>
+                </div>
+                <div class="plan-card">
+                    <div class="plan-icon">
+                        <i class="fas fa-crown"></i>
+                    </div>
+                    <h3 class="plan-name">VIP</h3>
+                    <div class="plan-price">R$ 30<span>/mês</span></div>
+                    <ul class="plan-features">
+                        <li><i class="fas fa-check"></i> Todos os recursos do Premium</li>
+                        <li><i class="fas fa-check"></i> Bot personalizado exclusivo</li>
+                        <li><i class="fas fa-check"></i> Acesso antecipado a novos recursos</li>
+                        <li><i class="fas fa-check"></i> Suporte 24/7</li>
+                        <li><i class="fas fa-check"></i> Integrações personalizadas</li>
+                    </ul>
+                    <button class="btn btn-primary select-plan" data-plan="VIP" data-price="30">Selecionar</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Info Section -->
+    <section class="section" id="info">
+        <div class="container">
+            <div class="info-content">
+                <h2 class="section-title">Saiba Mais</h2>
+                <p>Nossos bots são desenvolvidos com as mais modernas tecnologias para oferecer a melhor experiência para você e sua comunidade.</p>
+                <p>Com atualizações constantes e suporte especializado, garantimos que seu servidor tenha sempre os melhores recursos disponíveis.</p>
+                <p>Junte-se a milhares de servidores que já utilizam nossos bots e transforme sua comunidade no Discord!</p>
+                
+                <!-- Botão Admin Pequeno -->
+                <button class="small-admin-btn" id="smallAdminBtn">
+                    <i class="fas fa-shield-alt"></i>
+                    Painel Admin
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Discord Section -->
+    <section class="section" id="discord">
+        <div class="container">
+            <div class="discord-container">
+                <div class="discord-icon">
+                    <i class="fab fa-discord"></i>
+                </div>
+                <h2 class="section-title">Entre em Nosso Discord</h2>
+                <p>Junte-se à nossa comunidade no Discord para suporte, atualizações e muito mais!</p>
+                <a href="#" class="discord-link">
+                    <i class="fab fa-discord"></i>
+                    Entrar no Discord
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-logo">
+                    <i class="fas fa-robot"></i>
+                    MalkDev0
+                </div>
+                <div class="footer-links">
+                    <a href="#home">Início</a>
+                    <a href="#features">Recursos</a>
+                    <a href="#plans">Planos</a>
+                    <a href="#info">Saiba Mais</a>
+                    <a href="#discord">Discord</a>
+                </div>
+            </div>
+            <div class="copyright">
+                <p>by JMFXP22 = MalkDev0</p>
+            </div>
+        </div>
+    </footer>
 
     <!-- Aba de Ativação de Key -->
     <section class="key-section" id="keySection">
@@ -596,7 +1009,7 @@
     <div class="admin-modal" id="adminModal">
         <div class="admin-content">
             <div class="admin-icon">
-                <i class="fas fa-lock"></i>
+                <i class="fas fa-shield-alt"></i>
             </div>
             <h2>Painel Administrativo</h2>
             <p>Digite suas credenciais de administrador</p>
@@ -604,7 +1017,7 @@
             <input type="password" class="admin-input" id="adminPass" placeholder="Senha Admin">
             <button class="btn btn-primary" id="adminLoginBtn" style="width: 100%; margin-top: 20px;">Acessar Painel</button>
             <div class="email-notice" style="margin-top: 20px;">
-                <p><strong>Info:</strong> As keys geradas serão enviadas para: jmsight1@gmail.com</p>
+                <p><strong>Info:</strong> As keys geradas aparecerão abaixo do gerador</p>
             </div>
         </div>
     </div>
@@ -653,8 +1066,7 @@
                 <!-- Configuração de Preços -->
                 <div class="admin-card">
                     <h3>Configuração de Preços</h3>
-                    <input type="number" class="config-input" id="priceBasic"
-                        placeholder="Preço Plano Básico" value="0">
+                    <input type="number" class="config-input" id="priceBasic" placeholder="Preço Plano Básico" value="0">
                     <input type="number" class="config-input" id="pricePremium" placeholder="Preço Plano Premium" value="15">
                     <input type="number" class="config-input" id="priceVIP" placeholder="Preço Plano VIP" value="30">
                     <button class="config-btn" id="savePricesBtn">Salvar Preços</button>
@@ -670,10 +1082,6 @@
                         
                         <div class="generated-key" id="generatedKey" style="display: none;">
                             <strong>Key Gerada:</strong> <span id="keyValue"></span>
-                        </div>
-                        
-                        <div class="email-notice">
-                            <p><strong>Key enviada para:</strong> jmsight1@gmail.com</p>
                         </div>
                     </div>
                 </div>
@@ -696,6 +1104,7 @@
         // Elementos do DOM
         const creatorBtn = document.getElementById('creatorBtn');
         const adminAccessBtn = document.getElementById('adminAccessBtn');
+        const smallAdminBtn = document.getElementById('smallAdminBtn');
         const adminModal = document.getElementById('adminModal');
         const adminPanel = document.getElementById('adminPanel');
         const adminLoginBtn = document.getElementById('adminLoginBtn');
@@ -708,10 +1117,39 @@
         const generateKeyBtn = document.getElementById('generateKeyBtn');
         const generatedKey = document.getElementById('generatedKey');
         const keyValue = document.getElementById('keyValue');
+        const selectPlanButtons = document.querySelectorAll('.select-plan');
+        const navLinks = document.querySelectorAll('.nav-links a');
 
         // Credenciais de admin
         const ADMIN_USER = "admin";
         const ADMIN_PASS = "4321";
+
+        // Navegação suave
+        navLinks.forEach(link => {
+            link.addEventListener('click', function(e) {
+                e.preventDefault();
+                const targetId = this.getAttribute('href');
+                const targetSection = document.querySelector(targetId);
+                
+                if (targetSection) {
+                    window.scrollTo({
+                        top: targetSection.offsetTop - 80,
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+
+        // Botões de seleção de planos
+        selectPlanButtons.forEach(button => {
+            button.addEventListener('click', function() {
+                const plan = this.getAttribute('data-plan');
+                const price = this.getAttribute('data-price');
+                
+                // Abrir modal de pagamento (simulação)
+                alert(`Você selecionou o plano ${plan} por R$ ${price}/mês\n\nRedirecionando para página de pagamento...`);
+            });
+        });
 
         // Botão do criador - Mostrar modal de admin
         creatorBtn.addEventListener('click', function() {
@@ -725,6 +1163,11 @@
                 top: keySection.offsetTop - 80,
                 behavior: 'smooth'
             });
+        });
+
+        // Botão admin pequeno
+        smallAdminBtn.addEventListener('click', function() {
+            adminModal.style.display = 'flex';
         });
 
         // Login no painel administrativo
@@ -755,7 +1198,7 @@
             }
             
             // Simulação de verificação de key
-            if (key.length >= 10 && key.includes('VIP')) {
+            if (key.length === 5 && /^[A-Za-z]{4}\d{1}$/.test(key)) {
                 keySuccess.style.display = 'block';
                 keyError.style.display = 'none';
             } else {
@@ -764,19 +1207,35 @@
             }
         });
 
+        // Gerar key aleatória (4 letras + 1 número)
+        function generateRandomKey() {
+            const letters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
+            const numbers = '0123456789';
+            let key = '';
+            
+            // Gerar 4 letras aleatórias
+            for (let i = 0; i < 4; i++) {
+                key += letters.charAt(Math.floor(Math.random() * letters.length));
+            }
+            
+            // Adicionar 1 número aleatório
+            key += numbers.charAt(Math.floor(Math.random() * numbers.length));
+            
+            return key;
+        }
+
         // Gerar key
         generateKeyBtn.addEventListener('click', function() {
             const days = document.getElementById('keyDays').value || '30';
             const plan = document.getElementById('keyPlan').value || 'Premium';
             
             // Gerar key aleatória
-            const key = 'MALK-' + plan.toUpperCase() + '-' + days + 'D-' + Math.random().toString(36).substring(2, 10).toUpperCase();
+            const key = generateRandomKey();
             
             keyValue.textContent = key;
             generatedKey.style.display = 'block';
             
-            // Simular envio por email
-            alert(`Key gerada com sucesso! Enviada para: jmsight1@gmail.com\n\nKey: ${key}`);
+            alert(`Key gerada com sucesso!\n\nKey: ${key}\nPlano: ${plan}\nDuração: ${days} dias`);
         });
 
         // Salvar configurações PIX
@@ -787,7 +1246,6 @@
             
             if (pixKey && pixName && pixCity) {
                 alert('Configurações PIX salvas com sucesso!');
-                // Aqui você salvaria no backend
             } else {
                 alert('Preencha todos os campos do PIX!');
             }
@@ -800,7 +1258,6 @@
             const priceVIP = document.getElementById('priceVIP').value;
             
             alert(`Preços atualizados:\nBásico: R$ ${priceBasic}\nPremium: R$ ${pricePremium}\nVIP: R$ ${priceVIP}`);
-            // Aqui você atualizaria os preços no site
         });
 
         // Fechar modais ao clicar fora
@@ -809,6 +1266,12 @@
                 adminModal.style.display = 'none';
             }
         });
+
+        // Botão de login
+        document.getElementById('loginBtn').addEventListener('click', function() {
+            alert('Sistema de login em desenvolvimento...');
+        });
     </script>
 </body>
 </html>
+```

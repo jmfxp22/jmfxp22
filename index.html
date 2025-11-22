@@ -285,12 +285,8 @@
     const body = document.getElementById('modal-body');
     body.innerHTML = `<h2>Checkout - Pagamento por PIX</h2>
       <div style="display:grid;gap:8px;margin-top:8px">
-        <input id="c-name" placeholder="Nome completo *" />
+        <input id="c-name" placeholder="Nome *" />
         <input id="c-phone" placeholder="Telefone (Ex: 21999998888) *" />
-        <input id="c-street" placeholder="Rua *" />
-        <input id="c-number" placeholder="Número *" />
-        <input id="c-city" placeholder="Cidade *" />
-        <textarea id="c-ref" placeholder="Ponto de referência (opcional)" rows="2"></textarea>
         <div style="margin-top:6px" class="small">Pagamento: <b>PIX (somente)</b></div>
         <div style="margin-top:6px">
           <button class="btn" onclick="createOrder()">Gerar PIX e finalizar</button>

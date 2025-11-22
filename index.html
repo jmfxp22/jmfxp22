@@ -1,2120 +1,451 @@
-
-<!DOCTYPE html>
-<html lang="pt-br">
+<!doctype html>
+<html lang="pt-BR">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>MalkDev0 - Tecnologia em Bots</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-        }
-        
-        :root {
-            --primary: #0f0f23;
-            --secondary: #1a1a2e;
-            --accent: #00ff9d;
-            --accent-glow: rgba(0, 255, 157, 0.3);
-            --dark: #0a0a0a;
-            --light: #e0e0e0;
-            --success: #00ff9d;
-            --warning: #ffcc00;
-            --danger: #ff3366;
-            --admin: #8a2be2;
-            --neon-blue: #0066ff;
-            --neon-purple: #9d00ff;
-        }
-        
-        body {
-            background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
-            color: var(--light);
-            min-height: 100vh;
-            line-height: 1.6;
-            overflow-x: hidden;
-        }
-        
-        /* Efeitos de partículas */
-        .particles {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            z-index: -1;
-            pointer-events: none;
-        }
-        
-        .particle {
-            position: absolute;
-            background: var(--accent);
-            border-radius: 50%;
-            opacity: 0.3;
-            animation: float 15s infinite linear;
-        }
-        
-        @keyframes float {
-            0% { transform: translateY(0) translateX(0); }
-            50% { transform: translateY(-20px) translateX(10px); }
-            100% { transform: translateY(0) translateX(0); }
-        }
-        
-        /* Efeitos de glitch */
-        .glitch-text {
-            position: relative;
-            display: inline-block;
-        }
-        
-        .glitch-text::before,
-        .glitch-text::after {
-            content: attr(data-text);
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-        }
-        
-        .glitch-text::before {
-            left: 2px;
-            text-shadow: -2px 0 var(--neon-blue);
-            clip: rect(44px, 450px, 56px, 0);
-            animation: glitch-anim 5s infinite linear alternate-reverse;
-        }
-        
-        .glitch-text::after {
-            left: -2px;
-            text-shadow: -2px 0 var(--neon-purple);
-            clip: rect(44px, 450px, 56px, 0);
-            animation: glitch-anim2 5s infinite linear alternate-reverse;
-        }
-        
-        @keyframes glitch-anim {
-            0% { clip: rect(42px, 9999px, 44px, 0); }
-            5% { clip: rect(12px, 9999px, 59px, 0); }
-            10% { clip: rect(48px, 9999px, 29px, 0); }
-            15% { clip: rect(42px, 9999px, 73px, 0); }
-            20% { clip: rect(63px, 9999px, 27px, 0); }
-            25% { clip: rect(34px, 9999px, 55px, 0); }
-            30% { clip: rect(86px, 9999px, 73px, 0); }
-            35% { clip: rect(20px, 9999px, 20px, 0); }
-            40% { clip: rect(26px, 9999px, 60px, 0); }
-            45% { clip: rect(25px, 9999px, 66px, 0); }
-            50% { clip: rect(57px, 9999px, 98px, 0); }
-            55% { clip: rect(5px, 9999px, 46px, 0); }
-            60% { clip: rect(82px, 9999px, 31px, 0); }
-            65% { clip: rect(54px, 9999px, 27px, 0); }
-            70% { clip: rect(28px, 9999px, 99px, 0); }
-            75% { clip: rect(45px, 9999px, 69px, 0); }
-            80% { clip: rect(23px, 9999px, 85px, 0); }
-            85% { clip: rect(54px, 9999px, 84px, 0); }
-            90% { clip: rect(45px, 9999px, 47px, 0); }
-            95% { clip: rect(37px, 9999px, 20px, 0); }
-            100% { clip: rect(4px, 9999px, 91px, 0); }
-        }
-        
-        @keyframes glitch-anim2 {
-            0% { clip: rect(65px, 9999px, 100px, 0); }
-            5% { clip: rect(52px, 9999px, 74px, 0); }
-            10% { clip: rect(79px, 9999px, 85px, 0); }
-            15% { clip: rect(75px, 9999px, 5px, 0); }
-            20% { clip: rect(67px, 9999px, 61px, 0); }
-            25% { clip: rect(14px, 9999px, 79px, 0); }
-            30% { clip: rect(1px, 9999px, 66px, 0); }
-            35% { clip: rect(86px, 9999px, 30px, 0); }
-            40% { clip: rect(23px, 9999px, 98px, 0); }
-            45% { clip: rect(85px, 9999px, 72px, 0); }
-            50% { clip: rect(71px, 9999px, 75px, 0); }
-            55% { clip: rect(2px, 9999px, 48px, 0); }
-            60% { clip: rect(30px, 9999px, 16px, 0); }
-            65% { clip: rect(59px, 9999px, 50px, 0); }
-            70% { clip: rect(41px, 9999px, 62px, 0); }
-            75% { clip: rect(2px, 9999px, 82px, 0); }
-            80% { clip: rect(47px, 9999px, 73px, 0); }
-            85% { clip: rect(3px, 9999px, 27px, 0); }
-            90% { clip: rect(26px, 9999px, 55px, 0); }
-            95% { clip: rect(42px, 9999px, 97px, 0); }
-            100% { clip: rect(38px, 9999px, 49px, 0); }
-        }
-        
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 20px;
-        }
-        
-        /* Header Tecnológico */
-        header {
-            background: rgba(10, 10, 10, 0.8);
-            padding: 20px 0;
-            position: sticky;
-            top: 0;
-            z-index: 1000;
-            box-shadow: 0 0 20px rgba(0, 255, 157, 0.2);
-            backdrop-filter: blur(10px);
-            border-bottom: 1px solid var(--accent);
-        }
-        
-        .navbar {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-        
-        .logo {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            font-size: 1.8rem;
-            font-weight: bold;
-            color: var(--light);
-            text-shadow: 0 0 10px var(--accent);
-        }
-        
-        .logo i {
-            color: var(--accent);
-            text-shadow: 0 0 15px var(--accent);
-        }
-        
-        .nav-links {
-            display: flex;
-            gap: 30px;
-            align-items: center;
-        }
-        
-        .nav-links a {
-            color: var(--light);
-            text-decoration: none;
-            font-weight: 500;
-            transition: all 0.3s;
-            position: relative;
-            padding: 8px 0;
-        }
-        
-        .nav-links a:hover {
-            color: var(--accent);
-            text-shadow: 0 0 10px var(--accent);
-        }
-        
-        .nav-links a::after {
-            content: '';
-            position: absolute;
-            width: 0;
-            height: 2px;
-            bottom: 0;
-            left: 0;
-            background: var(--accent);
-            box-shadow: 0 0 10px var(--accent);
-            transition: width 0.3s;
-        }
-        
-        .nav-links a:hover::after {
-            width: 100%;
-        }
-        
-        .admin-btn {
-            background: transparent;
-            color: var(--light);
-            border: 1px solid var(--admin);
-            padding: 8px 15px;
-            border-radius: 50px;
-            font-weight: bold;
-            cursor: pointer;
-            transition: all 0.3s;
-            display: flex;
-            align-items: center;
-            gap: 8px;
-            box-shadow: 0 0 10px rgba(138, 43, 226, 0.3);
-        }
-        
-        .admin-btn:hover {
-            background: var(--admin);
-            transform: translateY(-2px);
-            box-shadow: 0 0 20px rgba(138, 43, 226, 0.5);
-        }
-        
-        .cta-button {
-            background: linear-gradient(45deg, var(--accent), var(--neon-blue));
-            color: var(--dark);
-            border: none;
-            padding: 12px 25px;
-            border-radius: 50px;
-            font-weight: bold;
-            cursor: pointer;
-            transition: all 0.3s;
-            box-shadow: 0 0 15px var(--accent-glow);
-            position: relative;
-            overflow: hidden;
-        }
-        
-        .cta-button::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: -100%;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
-            transition: 0.5s;
-        }
-        
-        .cta-button:hover::before {
-            left: 100%;
-        }
-        
-        .cta-button:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 0 25px var(--accent-glow);
-        }
-        
-        /* Botão By Jmfxp22/MalkDev0 */
-        .creator-btn {
-            position: fixed;
-            bottom: 20px;
-            right: 20px;
-            background: var(--admin);
-            color: white;
-            border: none;
-            padding: 10px 20px;
-            border-radius: 50px;
-            font-weight: bold;
-            cursor: pointer;
-            transition: all 0.3s;
-            box-shadow: 0 0 15px rgba(138, 43, 226, 0.5);
-            z-index: 1000;
-            display: flex;
-            align-items: center;
-            gap: 8px;
-        }
-        
-        .creator-btn:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 0 25px rgba(138, 43, 226, 0.7);
-        }
-        
-        /* Seções do Site */
-        .section {
-            padding: 100px 0;
-            position: relative;
-        }
-        
-        .section::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 1px;
-            background: linear-gradient(90deg, transparent, var(--accent), transparent);
-        }
-        
-        .section-title {
-            text-align: center;
-            font-size: 3rem;
-            margin-bottom: 50px;
-            position: relative;
-            text-shadow: 0 0 10px var(--accent);
-        }
-        
-        .section-title::after {
-            content: '';
-            position: absolute;
-            width: 100px;
-            height: 4px;
-            background: linear-gradient(to right, var(--accent), var(--neon-blue));
-            bottom: -15px;
-            left: 50%;
-            transform: translateX(-50%);
-            border-radius: 2px;
-            box-shadow: 0 0 10px var(--accent);
-        }
-        
-        /* Hero Section */
-        .hero {
-            padding: 150px 0;
-            text-align: center;
-            position: relative;
-        }
-        
-        .hero::before {
-            content: '';
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            width: 300px;
-            height: 300px;
-            background: radial-gradient(circle, var(--accent-glow) 0%, transparent 70%);
-            z-index: -1;
-        }
-        
-        .welcome-message {
-            background: rgba(255, 255, 255, 0.05);
-            border-radius: 20px;
-            padding: 40px;
-            margin-bottom: 40px;
-            backdrop-filter: blur(10px);
-            border: 1px solid rgba(0, 255, 157, 0.2);
-            max-width: 800px;
-            margin-left: auto;
-            margin-right: auto;
-            box-shadow: 0 0 30px rgba(0, 255, 157, 0.1);
-        }
-        
-        .welcome-message h2 {
-            font-size: 2.5rem;
-            margin-bottom: 15px;
-            color: var(--accent);
-            text-shadow: 0 0 10px var(--accent);
-        }
-        
-        .welcome-message p {
-            font-size: 1.3rem;
-            opacity: 0.9;
-        }
-        
-        .hero h1 {
-            font-size: 4rem;
-            margin-bottom: 20px;
-            text-shadow: 0 0 15px var(--accent);
-            background: linear-gradient(45deg, var(--accent), var(--neon-blue));
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-        }
-        
-        .hero p {
-            font-size: 1.4rem;
-            max-width: 700px;
-            margin: 0 auto 30px;
-            opacity: 0.9;
-        }
-        
-        .hero-buttons {
-            display: flex;
-            justify-content: center;
-            gap: 20px;
-            margin-top: 30px;
-        }
-        
-        .btn {
-            padding: 15px 30px;
-            border-radius: 50px;
-            font-weight: bold;
-            text-decoration: none;
-            transition: all 0.3s;
-            display: inline-block;
-            cursor: pointer;
-            border: none;
-            position: relative;
-            overflow: hidden;
-        }
-        
-        .btn-primary {
-            background: linear-gradient(45deg, var(--accent), var(--neon-blue));
-            color: var(--dark);
-            box-shadow: 0 0 15px var(--accent-glow);
-        }
-        
-        .btn-primary:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 0 25px var(--accent-glow);
-        }
-        
-        .btn-secondary {
-            background: transparent;
-            color: white;
-            border: 2px solid var(--accent);
-            box-shadow: 0 0 10px var(--accent-glow);
-        }
-        
-        .btn-secondary:hover {
-            background: var(--accent);
-            color: var(--dark);
-            box-shadow: 0 0 20px var(--accent-glow);
-        }
-        
-        /* Features Section */
-        .features-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 30px;
-        }
-        
-        .feature-card {
-            background: rgba(255, 255, 255, 0.05);
-            border-radius: 15px;
-            padding: 30px;
-            text-align: center;
-            transition: all 0.3s;
-            backdrop-filter: blur(10px);
-            border: 1px solid rgba(0, 255, 157, 0.1);
-            box-shadow: 0 0 20px rgba(0, 255, 157, 0.05);
-            position: relative;
-            overflow: hidden;
-        }
-        
-        .feature-card::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: -100%;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(0, 255, 157, 0.1), transparent);
-            transition: 0.5s;
-        }
-        
-        .feature-card:hover::before {
-            left: 100%;
-        }
-        
-        .feature-card:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 0 30px rgba(0, 255, 157, 0.2);
-            border-color: rgba(0, 255, 157, 0.3);
-        }
-        
-        .feature-icon {
-            font-size: 3rem;
-            margin-bottom: 20px;
-            color: var(--accent);
-            text-shadow: 0 0 10px var(--accent);
-        }
-        
-        .feature-card h3 {
-            font-size: 1.5rem;
-            margin-bottom: 15px;
-            color: var(--accent);
-        }
-        
-        /* Plans Section */
-        .plans-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 30px;
-            margin-top: 50px;
-        }
-        
-        .plan-card {
-            background: rgba(255, 255, 255, 0.05);
-            border-radius: 15px;
-            padding: 40px 30px;
-            text-align: center;
-            transition: all 0.3s;
-            backdrop-filter: blur(10px);
-            border: 1px solid rgba(0, 255, 157, 0.1);
-            box-shadow: 0 0 20px rgba(0, 255, 157, 0.05);
-            position: relative;
-            overflow: hidden;
-        }
-        
-        .plan-card::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: -100%;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(0, 255, 157, 0.1), transparent);
-            transition: 0.5s;
-        }
-        
-        .plan-card:hover::before {
-            left: 100%;
-        }
-        
-        .plan-card:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 0 30px rgba(0, 255, 157, 0.2);
-            border-color: rgba(0, 255, 157, 0.3);
-        }
-        
-        .plan-card.popular {
-            border: 2px solid var(--accent);
-            transform: scale(1.05);
-            box-shadow: 0 0 30px var(--accent-glow);
-        }
-        
-        .plan-card.popular:hover {
-            transform: scale(1.05) translateY(-10px);
-            box-shadow: 0 0 40px var(--accent-glow);
-        }
-        
-        .popular-badge {
-            position: absolute;
-            top: 20px;
-            right: -30px;
-            background: var(--accent);
-            color: var(--dark);
-            padding: 5px 40px;
-            transform: rotate(45deg);
-            font-weight: bold;
-            font-size: 0.8rem;
-            box-shadow: 0 0 10px var(--accent);
-        }
-        
-        .plan-icon {
-            font-size: 2.5rem;
-            margin-bottom: 20px;
-            color: var(--accent);
-            text-shadow: 0 0 10px var(--accent);
-        }
-        
-        .plan-name {
-            font-size: 1.8rem;
-            margin-bottom: 10px;
-            color: var(--accent);
-        }
-        
-        .plan-price {
-            font-size: 2.5rem;
-            margin-bottom: 20px;
-            font-weight: bold;
-            color: var(--accent);
-            text-shadow: 0 0 10px var(--accent);
-        }
-        
-        .plan-price span {
-            font-size: 1rem;
-            opacity: 0.8;
-        }
-        
-        .plan-features {
-            list-style: none;
-            margin-bottom: 30px;
-        }
-        
-        .plan-features li {
-            padding: 10px 0;
-            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-        }
-        
-        .plan-features li:last-child {
-            border-bottom: none;
-        }
-        
-        .plan-features li i {
-            color: var(--success);
-            margin-right: 10px;
-            text-shadow: 0 0 5px var(--success);
-        }
-        
-        /* Info Section */
-        .info-content {
-            max-width: 800px;
-            margin: 0 auto;
-            text-align: center;
-            position: relative;
-        }
-        
-        .info-content p {
-            font-size: 1.2rem;
-            margin-bottom: 25px;
-            opacity: 0.9;
-        }
-        
-        /* Botão Admin Pequeno */
-        .small-admin-btn {
-            position: absolute;
-            bottom: 10px;
-            right: 10px;
-            background: transparent;
-            color: var(--admin);
-            border: 1px solid var(--admin);
-            padding: 5px 10px;
-            border-radius: 20px;
-            font-size: 0.8rem;
-            cursor: pointer;
-            transition: all 0.3s;
-            display: flex;
-            align-items: center;
-            gap: 5px;
-            box-shadow: 0 0 10px rgba(138, 43, 226, 0.3);
-        }
-        
-        .small-admin-btn:hover {
-            background: var(--admin);
-            color: white;
-            box-shadow: 0 0 15px rgba(138, 43, 226, 0.5);
-        }
-        
-        /* Discord Section */
-        .discord-container {
-            max-width: 600px;
-            margin: 0 auto;
-            text-align: center;
-        }
-        
-        .discord-icon {
-            font-size: 4rem;
-            color: #5865F2;
-            margin-bottom: 20px;
-            text-shadow: 0 0 15px #5865F2;
-        }
-        
-        .discord-link {
-            display: inline-flex;
-            align-items: center;
-            gap: 10px;
-            background: #5865F2;
-            color: white;
-            padding: 15px 30px;
-border-radius: 50px;
-            text-decoration: none;
-            font-weight: bold;
-            margin-top: 20px;
-            transition: all 0.3s;
-            box-shadow: 0 0 15px rgba(88, 101, 242, 0.5);
-        }
-        
-        .discord-link:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 0 25px rgba(88, 101, 242, 0.7);
-            background: #4752c4;
-        }
-        
-        /* Footer */
-        footer {
-            background-color: var(--dark);
-            padding: 40px 0 20px;
-            text-align: center;
-            border-top: 1px solid var(--accent);
-            box-shadow: 0 0 20px var(--accent-glow);
-        }
-        
-        .footer-content {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            gap: 20px;
-            margin-bottom: 20px;
-        }
-        
-        .footer-logo {
-            font-size: 1.5rem;
-            font-weight: bold;
-            color: var(--accent);
-            text-shadow: 0 0 10px var(--accent);
-        }
-        
-        .footer-links {
-            display: flex;
-            gap: 20px;
-        }
-        
-        .footer-links a {
-            color: var(--light);
-            text-decoration: none;
-            transition: color 0.3s;
-        }
-        
-        .footer-links a:hover {
-            color: var(--accent);
-            text-shadow: 0 0 10px var(--accent);
-        }
-        
-        .copyright {
-            font-size: 0.9rem;
-            opacity: 0.7;
-            border-top: 1px solid rgba(255, 255, 255, 0.1);
-            padding-top: 20px;
-            width: 100%;
-        }
-        
-        /* Modal de Coleta de Email */
-        .email-modal {
-            display: none;
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(0, 0, 0, 0.9);
-            z-index: 3000;
-            justify-content: center;
-            align-items: center;
-        }
-        
-        .email-content {
-            background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
-            padding: 40px;
-            border-radius: 20px;
-            width: 90%;
-            max-width: 500px;
-            text-align: center;
-            box-shadow: 0 0 40px var(--accent-glow);
-            position: relative;
-            border: 1px solid var(--accent);
-        }
-        
-        .email-icon {
-            font-size: 4rem;
-            color: var(--accent);
-            margin-bottom: 20px;
-            text-shadow: 0 0 15px var(--accent);
-        }
-        
-        .email-content h2 {
-            font-size: 2rem;
-            margin-bottom: 15px;
-            color: var(--accent);
-        }
-        
-        .email-content p {
-            font-size: 1.1rem;
-            margin-bottom: 25px;
-            opacity: 0.9;
-        }
-        
-        .email-form {
-            display: flex;
-            flex-direction: column;
-            gap: 20px;
-        }
-        
-        .email-input {
-            width: 100%;
-            padding: 15px 20px;
-            border-radius: 50px;
-            border: 2px solid var(--accent);
-            background: rgba(255, 255, 255, 0.1);
-            color: var(--light);
-            font-size: 1rem;
-            text-align: center;
-            box-shadow: 0 0 10px var(--accent-glow);
-        }
-        
-        .email-input::placeholder {
-            color: rgba(255, 255, 255, 0.6);
-        }
-        
-        .email-submit {
-            background: linear-gradient(45deg, var(--accent), var(--neon-blue));
-            color: var(--dark);
-            border: none;
-            padding: 15px 30px;
-            border-radius: 50px;
-            font-weight: bold;
-            cursor: pointer;
-            transition: all 0.3s;
-            box-shadow: 0 0 15px var(--accent-glow);
-        }
-        
-        .email-submit:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 0 25px var(--accent-glow);
-        }
-        
-        .skip-email {
-            background: transparent;
-            color: var(--light);
-            border: none;
-            margin-top: 15px;
-            cursor: pointer;
-            text-decoration: underline;
-            opacity: 0.7;
-            transition: opacity 0.3s;
-        }
-        
-        .skip-email:hover {
-            opacity: 1;
-        }
-        
-        /* Aba de Ativação de Key */
-        .key-section {
-            display: none;
-            padding: 80px 0;
-            text-align: center;
-        }
-        
-        .key-container {
-            max-width: 600px;
-            margin: 0 auto;
-            background: rgba(255, 255, 255, 0.05);
-            border-radius: 20px;
-            padding: 40px;
-            backdrop-filter: blur(10px);
-            border: 1px solid var(--accent);
-            box-shadow: 0 0 30px var(--accent-glow);
-        }
-        
-        .key-icon {
-            font-size: 4rem;
-            color: var(--accent);
-            margin-bottom: 20px;
-            text-shadow: 0 0 15px var(--accent);
-        }
-        
-        .key-input {
-            width: 100%;
-            padding: 15px 20px;
-            border-radius: 50px;
-            border: 2px solid var(--accent);
-            background: rgba(255, 255, 255, 0.1);
-            color: var(--light);
-            font-size: 1rem;
-            margin: 20px 0;
-            text-align: center;
-            box-shadow: 0 0 10px var(--accent-glow);
-        }
-        
-        .key-input::placeholder {
-            color: rgba(255, 255, 255, 0.6);
-        }
-        
-        .key-result {
-            margin-top: 20px;
-            padding: 15px;
-            border-radius: 10px;
-            display: none;
-        }
-        
-        .key-success {
-            background: rgba(0, 255, 157, 0.2);
-            border: 1px solid var(--success);
-        }
-        
-        .key-error {
-            background: rgba(255, 51, 102, 0.2);
-            border: 1px solid var(--danger);
-        }
-        
-        /* Modal de Admin */
-        .admin-modal {
-            display: none;
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(0, 0, 0, 0.9);
-            z-index: 3000;
-            justify-content: center;
-            align-items: center;
-        }
-        
-        .admin-content {
-            background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
-            padding: 40px;
-            border-radius: 20px;
-            width: 90%;
-            max-width: 500px;
-            text-align: center;
-            box-shadow: 0 0 40px var(--accent-glow);
-            position: relative;
-            border: 1px solid var(--accent);
-        }
-        
-        .admin-icon {
-            font-size: 3rem;
-            color: var(--admin);
-            margin-bottom: 20px;
-            text-shadow: 0 0 15px var(--admin);
-        }
-        
-        .admin-input {
-            width: 100%;
-            padding: 15px 20px;
-            border-radius: 50px;
-            border: 2px solid var(--accent);
-            background: rgba(255, 255, 255, 0.1);
-            color: var(--light);
-            font-size: 1rem;
-            margin: 10px 0;
-            text-align: center;
-            box-shadow: 0 0 10px var(--accent-glow);
-        }
-        
-        .admin-input::placeholder {
-            color: rgba(255, 255, 255, 0.6);
-        }
-        
-        /* Painel Administrativo */
-        .admin-panel {
-            display: none;
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: var(--dark);
-            z-index: 4000;
-            overflow-y: auto;
-            padding: 20px;
-        }
-        
-        .admin-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 30px;
-            padding-bottom: 20px;
-            border-bottom: 1px solid var(--accent);
-        }
-        
-        .admin-title {
-            font-size: 2rem;
-            color: var(--admin);
-            text-shadow: 0 0 10px var(--admin);
-        }
-        
-        .close-admin {
-            background: var(--danger);
-            color: white;
-            border: none;
-            padding: 10px 20px;
-            border-radius: 50px;
-            cursor: pointer;
-            font-weight: bold;
-            box-shadow: 0 0 10px rgba(255, 51, 102, 0.5);
-        }
-        
-        .admin-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 20px;
-            margin-bottom: 30px;
-        }
-        
-        .admin-card {
-            background: rgba(255, 255, 255, 0.05);
-            border-radius: 15px;
-            padding: 25px;
-            border: 1px solid var(--accent);
-            box-shadow: 0 0 20px var(--accent-glow);
-        }
-        
-        .admin-card h3 {
-            font-size: 1.5rem;
-            margin-bottom: 15px;
-            color: var(--accent);
-            text-shadow: 0 0 10px var(--accent);
-        }
-        
-        .stats {
-            display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 15px;
-        }
-        
-        .stat-item {
-            background: rgba(255, 255, 255, 0.1);
-            padding: 15px;
-            border-radius: 10px;
-            text-align: center;
-            border: 1px solid var(--accent);
-        }
-        
-        .stat-value {
-            font-size: 2rem;
-            font-weight: bold;
-            color: var(--accent);
-            text-shadow: 0 0 10px var(--accent);
-        }
-        
-        .stat-label {
-            font-size: 0.9rem;
-            opacity: 0.8;
-        }
-        
-        .config-input {
-            width: 100%;
-            padding: 12px 15px;
-            border-radius: 10px;
-            border: 1px solid var(--accent);
-            background: rgba(255, 255, 255, 0.1);
-            color: var(--light);
-            margin: 8px 0;
-            box-shadow: 0 0 10px var(--accent-glow);
-        }
-        
-        .config-btn {
-            background: var(--admin);
-            color: white;
-            border: none;
-            padding: 12px 20px;
-            border-radius: 10px;
-            cursor: pointer;
-            font-weight: bold;
-            margin-top: 10px;
-            width: 100%;
-            transition: all 0.3s;
-            box-shadow: 0 0 10px rgba(138, 43, 226, 0.5);
-        }
-        
-        .config-btn:hover {
-            background: #7a1fd2;
-            transform: translateY(-2px);
-            box-shadow: 0 0 15px rgba(138, 43, 226, 0.7);
-        }
-        
-        .key-generator {
-            background: rgba(255, 255, 255, 0.05);
-            padding: 20px;
-            border-radius: 10px;
-            margin-top: 15px;
-            border: 1px solid var(--accent);
-        }
-        
-        .generated-key {
-            background: rgba(255, 255, 255, 0.1);
-            padding: 15px;
-            border-radius: 10px;
-            margin: 15px 0;
-            word-break: break-all;
-            font-family: monospace;
-            text-align: center;
-            font-size: 1.2rem;
-            font-weight: bold;
-            color: var(--accent);
-            border: 1px solid var(--accent);
-            text-shadow: 0 0 10px var(--accent);
-        }
-        
-        .email-notice {
-            background: rgba(255, 193, 7, 0.2);
-            padding: 10px;
-            border-radius: 10px;
-            margin-top: 15px;
-            font-size: 0.9rem;
-            border: 1px solid var(--warning);
-        }
-        
-        /* Modal de Pagamento */
-        .payment-modal {
-            display: none;
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(0, 0, 0, 0.9);
-            z-index: 3000;
-            justify-content: center;
-            align-items: center;
-        }
-        
-        .payment-content {
-            background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
-            padding: 30px;
-            border-radius: 20px;
-            width: 90%;
-            max-width: 500px;
-            text-align: center;
-            box-shadow: 0 0 40px var(--accent-glow);
-            position: relative;
-            border: 1px solid var(--accent);
-        }
-        
-        .product-info {
-            display: flex;
-            align-items: center;
-            gap: 15px;
-            margin-bottom: 25px;
-            background: rgba(255, 255, 255, 0.1);
-            padding: 15px;
-            border-radius: 15px;
-            border: 1px solid var(--accent);
-        }
-        
-        .product-icon {
-            font-size: 2.5rem;
-            color: var(--accent);
-            text-shadow: 0 0 10px var(--accent);
-        }
-        
-        .product-details {
-            text-align: left;
-            flex: 1;
-        }
-        
-        .product-name {
-            font-size: 1.4rem;
-            font-weight: bold;
-            margin-bottom: 5px;
-            color: var(--accent);
-        }
-        
-        .product-price {
-            font-size: 1.2rem;
-            opacity: 0.9;
-        }
-        
-        .quantity-controls {
-            display: flex;
-            align-items: center;
-            gap: 15px;
-            margin: 20px 0;
-            justify-content: center;
-        }
-        
-        .quantity-btn {
-            background: var(--accent);
-            color: var(--dark);
-            border: none;
-            width: 40px;
-            height: 40px;
-            border-radius: 50%;
-            font-size: 1.2rem;
-            cursor: pointer;
-            transition: all 0.3s;
-            box-shadow: 0 0 10px var(--accent);
-        }
-        
-        .quantity-btn:hover {
-            transform: scale(1.1);
-            box-shadow: 0 0 15px var(--accent);
-        }
-        
-        .quantity {
-            font-size: 1.5rem;
-            font-weight: bold;
-            min-width: 50px;
-            color: var(--accent);
-        }
-        
-        .total-price {
-            font-size: 1.5rem;
-            font-weight: bold;
-            margin: 20px 0;
-            color: var(--accent);
-            text-shadow: 0 0 10px var(--accent);
-        }
-        
-        .payment-options {
-            display: flex;
-            gap: 15px;
-            margin: 25px 0;
-            justify-content: center;
-        }
-        
-        .payment-option {
-            background: rgba(255, 255, 255, 0.1);
-            border: 2px solid transparent;
-            padding: 15px;
-            border-radius: 15px;
-            cursor: pointer;
-            transition: all 0.3s;
-            flex: 1;
-            min-width: 120px;
-            border: 1px solid var(--accent);
-        }
-        
-        .payment-option:hover {
-            border-color: var(--accent);
-            transform: translateY(-5px);
-            box-shadow: 0 0 15px var(--accent-glow);
-        }
-        
-        .payment-option.selected {
-            border-color: var(--accent);
-            background: rgba(0, 255, 157, 0.2);
-            box-shadow: 0 0 20px var(--accent-glow);
-        }
-        
-        .payment-icon {
-            font-size: 2rem;
-            margin-bottom: 10px;
-        }
-        
-        .payment-result {
-            margin-top: 20px;
-            padding: 15px;
-            border-radius: 10px;
-            display: none;
-        }
-        
-        .payment-error {
-            background: rgba(255, 51, 102, 0.2);
-            border: 1px solid var(--danger);
-        }
-        
-        .error-icon {
-            color: var(--danger);
-            font-size: 3rem;
-            margin-bottom: 15px;
-            animation: shake 0.5s ease-in-out;
-        }
-        
-        /* Animações */
-        @keyframes fadeIn {
-            from { opacity: 0; }
-            to { opacity: 1; }
-        }
-        
-        @keyframes slideUp {
-            from { 
-                opacity: 0;
-                transform: translateY(50px);
-            }
-            to { 
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-        
-        @keyframes shake {
-            0%, 100% { transform: translateX(0); }
-            25% { transform: translateX(-10px); }
-            75% { transform: translateX(10px); }
-        }
-        
-        /* Responsive */
-        @media (max-width: 768px) {
-            .navbar {
-                flex-direction: column;
-                gap: 20px;
-            }
-            
-            .nav-links {
-                gap: 15px;
-                flex-wrap: wrap;
-                justify-content: center;
-            }
-            
-            .hero h1 {
-                font-size: 2.5rem;
-            }
-            
-            .admin-grid {
-                grid-template-columns: 1fr;
-            }
-            
-            .stats {
-                grid-template-columns: 1fr;
-            }
-            
-            .small-admin-btn {
-                position: relative;
-                bottom: auto;
-                right: auto;
-                margin-top: 20px;
-            }
-            
-            .payment-options {
-                flex-direction: column;
-            }
-        }
-    </style>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Anotai — Clone (Protótipo)</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
+  <style>
+    :root{
+      --bg:#ffffff;
+      --text:#0f1724;
+      --muted:#6b7280;
+      --accent:#075985; /* azul forte */
+      --accent-2:#0ea5e9; /* azul claro */
+      --card:#f8fafc;
+      --glass: rgba(14,165,233,0.08);
+      --success:#10b981;
+      font-family: 'Inter', system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial;
+    }
+    *{box-sizing:border-box}
+    html,body{height:100%}
+    body{
+      margin:0;background:var(--bg);color:var(--text);
+      -webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale;
+      line-height:1.4;
+    }
+    .container{max-width:1120px;margin:28px auto;padding:22px;}
+    header{display:flex;align-items:center;justify-content:space-between;gap:12px}
+    .brand{display:flex;align-items:center;gap:12px}
+    .logo{
+      display:flex;align-items:center;justify-content:center;
+      width:56px;height:56px;border-radius:12px;background:linear-gradient(180deg,var(--accent),var(--accent-2));color:white;font-weight:800;
+      box-shadow: 0 6px 20px rgba(3,105,161,0.12);
+    }
+    h1{font-size:20px;margin:0}
+    nav{display:flex;gap:8px}
+    button, .btn {
+      font-weight:600;border:1px solid rgba(7,89,133,0.12);
+      background:white;color:var(--accent);padding:8px 12px;border-radius:10px;cursor:pointer;
+    }
+    .btn-primary{background:var(--accent);color:white;border:none;box-shadow:0 8px 24px rgba(14,165,233,0.12)}
+    .hero{margin-top:18px;padding:22px;border-radius:16px;border:1px solid rgba(14,165,233,0.08);background:linear-gradient(180deg, rgba(14,165,233,0.03), transparent);}
+    .grid{display:grid;gap:16px}
+    .cols-3{grid-template-columns:repeat(3,1fr)}
+    .card{background:var(--card);border-radius:12px;padding:14px;border:1px solid rgba(2,6,23,0.04)}
+    .plan-title{font-weight:700}
+    .price{font-weight:800;font-size:20px;color:var(--accent)}
+    .features{font-size:13px;color:var(--muted);margin-top:8px}
+    .card-row{display:flex;gap:12px;align-items:center}
+    .product{display:flex;justify-content:space-between;align-items:center;padding:12px;border-bottom:1px solid rgba(2,6,23,0.03)}
+    .cart{min-height:80px;padding:12px;border-radius:8px;border:1px dashed rgba(6,78,117,0.06);background:white}
+    .muted{color:var(--muted)}
+    .badge{display:inline-block;padding:6px 8px;border-radius:999px;background:var(--glass);color:var(--accent);font-weight:700}
+    input, select, textarea{padding:10px;border-radius:8px;border:1px solid rgba(2,6,23,0.06);width:100%;font-family:inherit}
+    .row{display:flex;gap:12px}
+    .col-2{flex:1}
+    .small{font-size:13px}
+    footer{margin-top:22px;color:var(--muted);font-size:13px}
+    .manager-grid{display:grid;grid-template-columns:2fr 1fr;gap:16px}
+    table{width:100%;border-collapse:collapse}
+    table td, table th{padding:8px;border-bottom:1px solid rgba(2,6,23,0.04);font-size:14px}
+    .text-right{text-align:right}
+    .text-center{text-align:center}
+    .success-screen{padding:18px;border-radius:12px;border:1px solid rgba(16,185,129,0.08);background:linear-gradient(180deg, rgba(16,185,129,0.03), transparent);text-align:center}
+    .pill{padding:6px 10px;border-radius:999px;border:1px solid rgba(7,89,133,0.08);background:white}
+    .link{color:var(--accent);text-decoration:none;font-weight:600}
+    @media (max-width:900px){
+      .cols-3{grid-template-columns:1fr}
+      .manager-grid{grid-template-columns:1fr}
+      header{flex-direction:column;align-items:flex-start;gap:10px}
+    }
+  </style>
 </head>
 <body>
-    <!-- Efeito de Partículas -->
-    <div class="particles" id="particles"></div>
-
-    <!-- Modal de Coleta de Email -->
-    <div class="email-modal" id="emailModal">
-        <div class="email-content">
-            <div class="email-icon">
-                <i class="fas fa-envelope"></i>
-            </div>
-            <h2>Fique Por Dentro!</h2>
-            <p>Receba atualizações exclusivas, novidades sobre nossos bots e ofertas especiais diretamente no seu email.</p>
-            <form class="email-form" id="emailForm">
-                <input type="email" class="email-input" placeholder="Seu melhor email" required id="userEmail">
-                <button type="submit" class="email-submit">Quero Receber Novidades</button>
-            </form>
-            <button class="skip-email" id="skipEmail">Agora não</button>
-        </div>
-    </div>
-
-    <!-- Botão do Criador -->
-    <button class="creator-btn" id="creatorBtn">
-        <i class="fas fa-code"></i>
-        By: Jmfxp22/MalkDev0
-    </button>
-
-    <!-- Header -->
+  <div class="container">
     <header>
-        <div class="container">
-            <nav class="navbar">
-                <div class="logo">
-                    <i class="fas fa-robot"></i>
-                    <span class="glitch-text" data-text="MalkDev0">MalkDev0</span>
-                </div>
-                <div class="nav-links">
-                    <a href="#home">Início</a>
-                    <a href="#features">Recursos</a>
-                    <a href="#plans">Planos</a>
-                    <a href="#info">Saiba Mais</a>
-                    <a href="#discord">Discord</a>
-                    <button class="admin-btn" id="adminAccessBtn">
-                        <i class="fas fa-key"></i>
-                        Ativar Key
-                    </button>
-                    <button class="cta-button" id="loginBtn">Entrar</button>
-                </div>
-            </nav>
+      <div class="brand">
+        <div class="logo">A</div>
+        <div>
+          <h1>Anotai — Painel</h1>
+          <div class="small muted">Protótipo público — white & blue design</div>
         </div>
+      </div>
+      <nav>
+        <button id="nav-home" class="btn">Home</button>
+        <button id="nav-manager" class="btn">Gerente</button>
+        <button id="nav-create" class="btn">Criar Site</button>
+      </nav>
     </header>
 
-    <!-- Hero Section -->
-    <section class="hero" id="home">
-        <div class="container">
-            <div class="welcome-message">
-                <h2>Bem-vindo ao Futuro dos Bots</h2>
-                <p>Experimente a próxima geração de automação para Discord com tecnologia de ponta e inteligência artificial.</p>
-            </div>
-            <h1 class="glitch-text" data-text="MalkDev0 Bots">MalkDev0 Bots</h1>
-            <p>Potencialize seu servidor com nossa tecnologia avançada. Moderação inteligente, música em alta definição e muito mais!</p>
-            <div class="hero-buttons">
-                <a href="#plans" class="btn btn-primary">Explorar Planos</a>
-                <button class="btn btn-secondary" id="demoBtn">Ver Demonstração</button>
-            </div>
+    <main id="app">
+      <!-- HERO / Landing -->
+      <section id="view-landing" class="hero">
+        <div class="row" style="align-items:center;justify-content:space-between">
+          <div>
+            <div class="badge">Novo</div>
+            <h2 style="margin:6px 0 4px">Automatize pedidos e entregue mais</h2>
+            <div class="muted">Cardápio digital, WhatsApp bot, painel de gerente e emissão inicial de nota (mock).</div>
+          </div>
+          <div class="pill small">Suporte: <a class="link" href="https://wa.me/5521971021368" target="_blank">+55 21 97102-1368</a></div>
         </div>
-    </section>
 
-    <!-- Features Section -->
-    <section class="section" id="features">
-        <div class="container">
-            <h2 class="section-title">Tecnologia Avançada</h2>
-            <div class="features-grid">
-                <div class="feature-card">
-                    <div class="feature-icon">
-                        <i class="fas fa-brain"></i>
-                    </div>
-                    <h3>IA Integrada</h3>
-                    <p>Inteligência artificial para moderação proativa e respostas contextuais avançadas.</p>
-                </div>
-                <div class="feature-card">
-                    <div class="feature-icon">
-                        <i class="fas fa-bolt"></i>
-                    </div>
-                    <h3>Performance Máxima</h3>
-                    <p>Arquitetura otimizada para resposta instantânea mesmo em servidores com milhares de usuários.</p>
-                </div>
-                <div class="feature-card">
-                    <div class="feature-icon">
-                        <i class="fas fa-shield-alt"></i>
-                    </div>
-                    <h3>Segurança Total</h3>
-                    <p>Sistema de proteção contra raids, spam e ataques com criptografia de ponta a ponta.</p>
-                </div>
+        <div style="margin-top:18px" class="grid cols-3">
+          <!-- Plans -->
+          <div class="card">
+            <div class="plan-title">Starter</div>
+            <div class="price">R$ 29,90 / mês</div>
+            <div class="features">Cardápio digital • WhatsApp • Suporte</div>
+            <div style="margin-top:12px">
+              <button class="btn btn-primary" data-plan='{"name":"Starter","price":29.90}'>Assinar</button>
             </div>
+          </div>
+
+          <div class="card">
+            <div class="plan-title">Pro</div>
+            <div class="price">R$ 59,90 / mês</div>
+            <div class="features">Starter + Painel de pedidos • Relatórios</div>
+            <div style="margin-top:12px">
+              <button class="btn btn-primary" data-plan='{"name":"Pro","price":59.90}'>Assinar</button>
+            </div>
+          </div>
+
+          <div class="card">
+            <div class="plan-title">Enterprise</div>
+            <div class="price">R$ 129,90 / mês</div>
+            <div class="features">Marca própria • Suporte prioritário</div>
+            <div style="margin-top:12px">
+              <button class="btn btn-primary" data-plan='{"name":"Enterprise","price":129.90}'>Assinar</button>
+            </div>
+          </div>
         </div>
-    </section>
 
-    <!-- Plans Section -->
-    <section class="section" id="plans">
-        <div class="container">
-            <h2 class="section-title">Planos de Tecnologia</h2>
-            <div class="plans-grid">
-                <div class="plan-card">
-                    <div class="plan-icon">
-                        <i class="fas fa-microchip"></i>
-                    </div>
-                    <h3 class="plan-name">Básico</h3>
-                    <div class="plan-price">R$ 0<span>/mês</span></div>
-                    <ul class="plan-features">
-                        <li><i class="fas fa-check"></i> Moderação Básica</li>
-                        <li><i class="fas fa-check"></i> 5 Comandos de Música</li>
-                        <li><i class="fas fa-check"></i> 3 Jogos</li>
-                        <li><i class="fas fa-times"></i> IA Avançada</li>
-                        <li><i class="fas fa-times"></i> Suporte Prioritário</li>
-                    </ul>
-                    <button class="btn btn-primary select-plan" data-plan="Básico" data-price="0">Selecionar</button>
-                </div>
-                <div class="plan-card popular">
-                    <div class="popular-badge">Popular</div>
-                    <div class="plan-icon">
-                        <i class="fas fa-rocket"></i>
-                    </div>
-                    <h3 class="plan-name">Premium</h3>
-                    <div class="plan-price">R$ 15<span>/mês</span></div>
-                    <ul class="plan-features">
-                        <li><i class="fas fa-check"></i> Todos os recursos Básico</li>
-                        <li><i class="fas fa-check"></i> Música Ilimitada</li>
-                        <li><i class="fas fa-check"></i> Todos os Jogos</li>
-                        <li><i class="fas fa-check"></i> IA Básica</li>
-                        <li><i class="fas fa-check"></i> Suporte Prioritário</li>
-                    </ul>
-                    <button class="btn btn-primary select-plan" data-plan="Premium" data-price="15">Selecionar</button>
-                </div>
-                <div class="plan-card">
-                    <div class="plan-icon">
-                        <i class="fas fa-crown"></i>
-                    </div>
-                    <h3 class="plan-name">VIP</h3>
-                    <div class="plan-price">R$ 30<span>/mês</span></div>
-                    <ul class="plan-features">
-                        <li><i class="fas fa-check"></i> Todos os recursos Premium</li>
-                        <li><i class="fas fa-check"></i> IA Avançada</li>
-                        <li><i class="fas fa-check"></i> Bot Personalizado</li>
-                        <li><i class="fas fa-check"></i> Suporte 24/7</li>
-                        <li><i class="fas fa-check"></i> Acesso Antecipado</li>
-                    </ul>
-                    <button class="btn btn-primary select-plan" data-plan="VIP" data-price="30">Selecionar</button>
-                </div>
+        <!-- Menu & Cart -->
+        <div style="margin-top:18px" class="grid" >
+          <div class="card-row">
+            <div style="flex:2" class="card">
+              <h3 style="margin:0 0 8px">Cardápio</h3>
+              <div id="products"></div>
             </div>
+
+            <div style="flex:1" class="card">
+              <h3 style="margin:0 0 8px">Carrinho</h3>
+              <div id="cart" class="cart"></div>
+              <div style="margin-top:12px;display:flex;gap:8px">
+                <button id="btn-checkout" class="btn btn-primary">Finalizar pedido</button>
+                <button id="btn-clear-cart" class="btn">Limpar</button>
+              </div>
+            </div>
+          </div>
         </div>
-    </section>
+      </section>
 
-    <!-- Info Section -->
-    <section class="section" id="info">
-        <div class="container">
-            <div class="info-content">
-                <h2 class="section-title">Sobre a Tecnologia</h2>
-                <p>Desenvolvemos nossos bots utilizando as mais avançadas tecnologias de machine learning e processamento de linguagem natural.</p>
-                <p>Nossa infraestrutura em cloud garante 99.9% de uptime e escalabilidade instantânea para qualquer tamanho de servidor.</p>
-                <p>Junte-se a mais de 50.000 servidores que já confiam em nossa tecnologia para automatização e crescimento.</p>
-                
-                <!-- Botão Admin Pequeno -->
-                <button class="small-admin-btn" id="smallAdminBtn">
-                    <i class="fas fa-shield-alt"></i>
-                    Painel Admin
-                </button>
+      <!-- CHECKOUT -->
+      <section id="view-checkout" style="display:none;margin-top:18px">
+        <div class="card">
+          <h2 style="margin-top:0">Checkout</h2>
+          <div class="grid" style="grid-template-columns:1fr 320px; gap:16px">
+            <div>
+              <div style="display:grid;gap:8px">
+                <label>Nome completo*</label>
+                <input id="c-name" placeholder="Nome do cliente">
+
+                <div class="row">
+                  <div class="col-2">
+                    <label>Rua*</label>
+                    <input id="c-street" placeholder="Rua">
+                  </div>
+                  <div style="width:120px">
+                    <label>Número*</label>
+                    <input id="c-number" placeholder="Nº">
+                  </div>
+                </div>
+
+                <label>Ponto de referência</label>
+                <input id="c-ref" placeholder="Ponto de referência (opcional)">
+
+                <div class="row">
+                  <div class="col-2">
+                    <label>Cidade*</label>
+                    <input id="c-city" placeholder="Cidade">
+                  </div>
+                  <div style="width:160px">
+                    <label>Telefone*</label>
+                    <input id="c-phone" placeholder="(DD) 9xxxx-xxxx">
+                  </div>
+                </div>
+
+                <label>Forma de pagamento</label>
+                <select id="c-payment">
+                  <option value="pix">PIX (na hora)</option>
+                  <option value="card">Cartão (simulado)</option>
+                  <option value="cash">Dinheiro</option>
+                </select>
+
+                <div style="margin-top:12px;display:flex;gap:8px">
+                  <button id="confirm-pay" class="btn btn-primary">Pagar</button>
+                  <button id="back-to-home" class="btn">Voltar</button>
+                </div>
+              </div>
             </div>
+
+            <div class="card">
+              <h4 style="margin:0 0 8px">Resumo do pedido</h4>
+              <div id="checkout-items" style="max-height:260px;overflow:auto"></div>
+              <div style="margin-top:12px;font-weight:800">Total: R$ <span id="checkout-total">0.00</span></div>
+            </div>
+          </div>
         </div>
-    </section>
+      </section>
 
-    <!-- Discord Section -->
-    <section class="section" id="discord">
-        <div class="container">
-            <div class="discord-container">
-                <div class="discord-icon">
-                    <i class="fab fa-discord"></i>
-                </div>
-                <h2 class="section-title">Comunidade Tech</h2>
-                <p>Junte-se à nossa comunidade de desenvolvedores e entusiastas de tecnologia no Discord!</p>
-                <a href="#" class="discord-link">
-                    <i class="fab fa-discord"></i>
-                    Entrar na Comunidade
-                </a>
-            </div>
+      <!-- PAYMENT SUCCESS -->
+      <section id="view-success" style="display:none;margin-top:18px">
+        <div class="success-screen">
+          <h2>Compra efetuada com sucesso!</h2>
+          <p style="margin:8px 0" class="muted">Para ativar sua loja/plano envie o comprovante para o número de suporte abaixo.</p>
+          <div style="margin-top:10px">
+            <a id="wa-proof" class="btn btn-primary" target="_blank" rel="noreferrer">Enviar comprovante (WhatsApp)</a>
+          </div>
+          <div style="margin-top:8px" class="small muted">Ou envie manualmente para: <a class="link" href="https://wa.me/5521971021368" target="_blank">+55 21 97102-1368</a></div>
+          <div style="margin-top:14px">
+            <button id="go-manager" class="btn">Ir para o painel do gerente</button>
+            <button id="back-home-2" class="btn">Voltar à home</button>
+          </div>
         </div>
-    </section>
+      </section>
 
-    <!-- Footer -->
-    <footer>
-        <div class="container">
-            <div class="footer-content">
-                <div class="footer-logo">
-                    <i class="fas fa-robot"></i>
-                    MalkDev0
-                </div>
-                <div class="footer-links">
-                    <a href="#home">Início</a>
-                    <a href="#features">Tecnologia</a>
-                    <a href="#plans">Planos</a>
-                    <a href="#info">Sobre</a>
-                    <a href="#discord">Comunidade</a>
-                </div>
-            </div>
-            <div class="copyright">
-                <p>by JMFXP22 = MalkDev0 | Tecnologia de Ponta em Bots</p>
-            </div>
+      <!-- CREATE SITE -->
+      <section id="view-create" style="display:none;margin-top:18px">
+        <div class="card">
+          <h2 style="margin-top:0">Criar site para sua loja</h2>
+          <p class="muted">Escolha um slug. Em um sistema com backend esse slug geraria uma página pública com seu cardápio.</p>
+          <div style="display:flex;gap:8px;margin-top:8px">
+            <input id="store-slug" placeholder="meu-mercado">
+            <button id="create-store" class="btn btn-primary">Criar</button>
+          </div>
+          <div id="store-created" style="margin-top:12px;display:none"></div>
+          <div class="small muted" style="margin-top:12px">Observação: deploy automático requer backend + host (Vercel/Netlify/S3).</div>
         </div>
-    </footer>
+      </section>
 
-    <!-- Aba de Ativação de Key -->
-    <section class="key-section" id="keySection">
-        <div class="container">
-            <div class="key-container">
-                <div class="key-icon">
-                    <i class="fas fa-key"></i>
-                </div>
-                <h2>Ativar Key VIP</h2>
-                <p>Digite sua key abaixo para ativar os recursos premium</p>
-                <input type="text" class="key-input" id="keyInput" placeholder="Cole sua key aqui...">
-                <button class="btn btn-primary" id="activateKeyBtn">Ativar Key</button>
-                
-                <div class="key-result key-success" id="keySuccess">
-                    <i class="fas fa-check-circle"></i>
-                    <h3>Key Ativada com Sucesso!</h3>
-                    <p>Agora você tem acesso a todos os recursos premium!</p>
-                </div>
-                
-                <div class="key-result key-error" id="keyError">
-                    <i class="fas fa-times-circle"></i>
-                    <h3>Key Inválida</h3>
-                    <p>A key que você inseriu não é válida. Verifique e tente novamente.</p>
-                </div>
+      <!-- MANAGER -->
+      <section id="view-manager" style="display:none;margin-top:18px">
+        <div class="card">
+          <h2 style="margin-top:0">Painel do Gerente</h2>
+          <div style="display:flex;gap:8px;margin-bottom:10px;align-items:center">
+            <input id="search-id" placeholder="Pesquisar por ID" style="width:320px">
+            <button id="btn-search" class="btn">Buscar</button>
+            <button id="btn-export" class="btn">Exportar DB (JSON)</button>
+            <div style="margin-left:auto" class="muted">Pedidos: <span id="total-orders">0</span> • Vendas: R$ <span id="total-sales">0.00</span></div>
+          </div>
+
+          <div class="manager-grid">
+            <div class="card" style="max-height:420px;overflow:auto">
+              <h4 style="margin:0 0 8px">Pedidos recentes</h4>
+              <table id="orders-table">
+                <thead><tr><th>ID</th><th>Cliente</th><th>Cidade</th><th class="text-right">Total</th><th></th></tr></thead>
+                <tbody></tbody>
+              </table>
             </div>
+
+            <div class="card">
+              <h4 style="margin:0 0 8px">Detalhes / Fiscal</h4>
+              <div class="small muted">Cole o ID e gere uma nota fiscal mock (para produção, integrar com Bling, NFe.io, etc.).</div>
+              <div style="margin-top:8px">
+                <input id="detail-id" placeholder="ORD-...">
+                <div style="margin-top:8px;display:flex;gap:8px">
+                  <button id="btn-open" class="btn">Abrir</button>
+                  <button id="btn-nf" class="btn">Gerar NF (mock)</button>
+                </div>
+              </div>
+
+              <div style="margin-top:18px">
+                <h5 style="margin:0 0 8px">Relatórios rápidos</h5>
+                <div class="small muted">Vendas totais: R$ <span id="report-sales">0.00</span></div>
+                <div class="small muted">Pedidos totais: <span id="report-count">0</span></div>
+              </div>
+            </div>
+          </div>
+
         </div>
-    </section>
+      </section>
 
-    <!-- Modal de Admin -->
-    <div class="admin-modal" id="adminModal">
-        <div class="admin-content">
-            <div class="admin-icon">
-                <i class="fas fa-shield-alt"></i>
-            </div>
-            <h2>Painel Administrativo</h2>
-            <p>Digite suas credenciais de administrador</p>
-            <input type="text" class="admin-input" id="adminUser" placeholder="Usuário Admin">
-            <input type="password" class="admin-input" id="adminPass" placeholder="Senha Admin">
-            <button class="btn btn-primary" id="adminLoginBtn" style="width: 100%; margin-top: 20px;">Acessar Painel</button>
-            <div class="email-notice" style="margin-top: 20px;">
-                <p><strong>Info:</strong> Sistema de coleta de emails ativo</p>
-            </div>
-        </div>
-    </div>
+      <footer>
+        Protótipo — para transformar em serviço real você precisa de: backend (Node/Express), banco (Postgres/SQLite), gateway de pagamentos (Stripe/MercadoPago) e integração de NF-e.
+      </footer>
+    </main>
+  </div>
 
-    <!-- Painel Administrativo -->
-    <div class="admin-panel" id="adminPanel">
-        <div class="container">
-            <div class="admin-header">
-                <h1 class="admin-title">Painel Administrativo</h1>
-                <button class="close-admin" id="closeAdminBtn">Fechar Painel</button>
-            </div>
-            
-            <div class="admin-grid">
-                <!-- Estatísticas -->
-                <div class="admin-card">
-                    <h3>Dashboard Principal</h3>
-                    <div class="stats">
-                        <div class="stat-item">
-                            <div class="stat-value" id="totalSales">47</div>
-                            <div class="stat-label">Vendas Totais</div>
-                        </div>
-                        <div class="stat-item">
-                            <div class="stat-value" id="monthSales">12</div>
-                            <div class="stat-label">Vendas Este Mês</div>
-                        </div>
-                        <div class="stat-item">
-                            <div class="stat-value">R$ <span id="totalRevenue">1.245</span></div>
-                            <div class="stat-label">Receita Total</div>
-                        </div>
-                        <div class="stat-item">
-                            <div class="stat-value" id="activeUsers">3.8K</div>
-                            <div class="stat-label">Usuários Ativos</div>
-                        </div>
-                    </div>
-                </div>
-                
-                <!-- Configuração PIX -->
-                <div class="admin-card">
-                    <h3>Configuração PIX</h3>
-                    <input type="text" class="config-input" id="pixKey" placeholder="Chave PIX" value="jmsight1@gmail.com">
-                    <input type="text" class="config-input" id="pixName" placeholder="Nome do Recebedor" value="JMFXP22">
-                    <input type="text" class="config-input" id="pixCity" placeholder="Cidade" value="Rio de Janeiro">
-                    <button class="config-btn" id="savePixBtn">Salvar Configurações PIX</button>
-                </div>
-                
-                <!-- Configuração de Preços -->
-                <div class="admin-card">
-                    <h3>Configuração de Preços</h3>
-                    <input type="number" class="config-input" id="priceBasic" placeholder="Preço Plano Básico" value="0">
-                    <input type="number" class="config-input" id="pricePremium" placeholder="Preço Plano Premium" value="15">
-                    <input type="number" class="config-input" id="priceVIP" placeholder="Preço Plano VIP" value="30">
-                    <button class="config-btn" id="savePricesBtn">Salvar Preços</button>
-                </div>
-                
-                <!-- Gerador de Keys -->
-                <div class="admin-card">
-                    <h3>Gerador de Keys VIP</h3>
-                    <div class="key-generator">
-                        <input type="text" class="config-input" id="keyDays" placeholder="Duração em Dias" value="30">
-                        <input type="text" class="config-input" id="keyPlan" placeholder="Plano (Básico/Premium/VIP)" value="Premium">
-                        <button class="config-btn" id="generateKeyBtn">Gerar Key</button>
-                        
-                        <div class="generated-key" id="generatedKey" style="display: none;">
-                            <strong>Key Gerada:</strong> <span id="keyValue"></span>
-                        </div>
-                    </div>
-                </div>
+<script>
+/* ---------- Data & util ---------- */
+const SUPPORT_PHONE = '5521971021368'; // +55 21 97102-1368 (no wa.me format)
+const STORAGE_KEY = 'anotai_orders_v2';
 
-                <!-- Gerenciar Emails -->
-                <div class="admin-card">
-                    <h3>Banco de Dados - Emails</h3>
-                    <div class="key-generator">
-                        <button class="config-btn" id="viewEmailsBtn">Ver Emails Coletados</button>
-                        <div id="emailsList" style="margin-top: 15px; max-height: 200px; overflow-y: auto; display: none;">
-                            <!-- Emails serão carregados aqui -->
-                        </div>
-                    </div>
-                </div>
+function genId(){
+  const now = Date.now().toString(36);
+  const rnd = Math.floor(Math.random()*1e6).toString(36);
+  return ('ORD-' + now + '-' + rnd).toUpperCase();
+}
 
-                <!-- Configurações do Site -->
-                <div class="admin-card">
-                    <h3>Configurações do Site</h3>
-                    <input type="text" class="config-input" id="siteTitle" placeholder="Título do Site" value="MalkDev0 - Tecnologia em Bots">
-                    <input type="text" class="config-input" id="siteDescription" placeholder="Descrição do Site" value="Potencialize seu servidor com nossa tecnologia avançada">
-                    <button class="config-btn" id="saveSiteSettingsBtn">Salvar Configurações</button>
-                </div>
-            </div>
-            
-            <!-- Outras Configurações -->
-            <div class="admin-card">
-                <h3>Ferramentas do Sistema</h3>
-                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 15px;">
-                    <button class="config-btn">Backup de Dados</button>
-                    <button class="config-btn">Logs do Sistema</button>
-                    <button class="config-btn">Gerenciar Usuários</button>
-                    <button class="config-btn">Configurações de Email</button>
-                    <button class="config-btn">Análise de Tráfego</button>
-                    <button class="config-btn">Otimização SEO</button>
-                </div>
-            </div>
-        </div>
-    </div>
+function loadOrders(){ try{ return JSON.parse(localStorage.getItem(STORAGE_KEY) || '[]') }catch(e){return []}}
+function saveOrders(arr){ localStorage.setItem(STORAGE_KEY, JSON.stringify(arr)) }
 
-    <!-- Modal de Pagamento -->
-    <div class="payment-modal" id="paymentModal">
-        <div class="payment-content">
-            <span class="close-modal" id="closePaymentModal">&times;</span>
-            <h2>Finalizar Compra</h2>
-            
-            <div class="product-info">
-                <div class="product-icon">
-                    <i class="fas fa-robot"></i>
-                </div>
-                <div class="product-details">
-                    <div class="product-name" id="productName">Plano Básico</div>
-                    <div class="product-price" id="productPrice">R$ 0/mês</div>
-                </div>
-            </div>
-            
-            <div class="quantity-controls">
-                <button class="quantity-btn" id="decreaseQty">-</button>
-                <div class="quantity" id="quantity">1</div>
-                <button class="quantity-btn" id="increaseQty">+</button>
-            </div>
-            
-            <div class="total-price" id="totalPrice">Total: R$ 0</div>
-            
-            <h3>Selecione a forma de pagamento:</h3>
-            <div class="payment-options">
-                <div class="payment-option" id="pixOption">
-                    <div class="payment-icon">
-                        <i class="fas fa-qrcode"></i>
-                    </div>
-                    <div>PIX</div>
-                </div>
-                <div class="payment-option" id="boletoOption">
-                    <div class="payment-icon">
-                        <i class="fas fa-barcode"></i>
-                    </div>
-                    <div>Boleto</div>
-                </div>
-            </div>
-            
-            <button class="btn btn-primary" id="processPayment" style="width: 100%; margin-top: 20px;">Processar Pagamento</button>
-            
-            <div class="payment-result payment-error" id="paymentResult">
-                <div class="error-icon">
-                    <i class="fas fa-times-circle"></i>
-                </div>
-                <h3 id="resultTitle">Opção Indisponível</h3>
-                <p id="resultMessage">Esta forma de pagamento não está disponível no momento.</p>
-            </div>
-        </div>
-    </div>
+/* ---------- Initial products ---------- */
+const defaultProducts = [
+  { id:'p1', name:'Pizza Margherita', price:28.50 },
+  { id:'p2', name:'X-Burger', price:18.00 },
+  { id:'p3', name:'Refrigerante 350ml', price:6.50 },
+  { id:'p4', name:'Porção de Batata', price:12.00 },
+  { id:'p5', name:'Açai 500ml', price:16.00 }
+];
 
-    <script>
-        // Elementos do DOM
-        const creatorBtn = document.getElementById('creatorBtn');
-        const adminAccessBtn = document.getElementById('adminAccessBtn');
-        const smallAdminBtn = document.getElementById('smallAdminBtn');
-        const adminModal = document.getElementById('adminModal');
-        const adminPanel = document.getElementById('adminPanel');
-        const adminLoginBtn = document.getElementById('adminLoginBtn');
-        const closeAdminBtn = document.getElementById('closeAdminBtn');
-        const keySection = document.getElementById('keySection');
-        const activateKeyBtn = document.getElementById('activateKeyBtn');
-        const keyInput = document.getElementById('keyInput');
-        const keySuccess = document.getElementById('keySuccess');
-        const keyError = document.getElementById('keyError');
-        const generateKeyBtn = document.getElementById('generateKeyBtn');
-        const generatedKey = document.getElementById('generatedKey');
-        const keyValue = document.getElementById('keyValue');
-        const selectPlanButtons = document.querySelectorAll('.select-plan');
-        const navLinks = document.querySelectorAll('.nav-links a');
-        const emailModal = document.getElementById('emailModal');
-        const emailForm = document.getElementById('emailForm');
-        const skipEmail = document.getElementById('skipEmail');
-        const userEmail = document.getElementById('userEmail');
-        const viewEmailsBtn = document.getElementById('viewEmailsBtn');
-        const emailsList = document.getElementById('emailsList');
-        const paymentModal = document.getElementById('paymentModal');
-        const closePaymentModal = document.getElementById('closePaymentModal');
-        const decreaseQty = document.getElementById('decreaseQty');
-        const increaseQty = document.getElementById('increaseQty');
-        const quantityElement = document.getElementById('quantity');
-        const totalPriceElement = document.getElementById('totalPrice');
-        const productName = document.getElementById('productName');
-        const productPrice = document.getElementById('productPrice');
-        const pixOption = document.getElementById('pixOption');
-        const boletoOption = document.getElementById('boletoOption');
-        const processPayment = document.getElementById('processPayment');
-        const paymentResult = document.getElementById('paymentResult');
-        const resultTitle = document.getElementById('resultTitle');
-        const resultMessage = document.getElementById('resultMessage');
+/* ---------- App state ---------- */
+let cart = [];
+let orders = loadOrders();
+let currentPlan = null;
 
-        // Credenciais de admin
-        const ADMIN_USER = "FCRJ";
-        const ADMIN_PASS = "JMFXP22";
+/* ---------- DOM ---------- */
+const view = {
+  landing: document.getElementById('view-landing'),
+  checkout: document.getElementById('view-checkout'),
+  success: document.getElementById('view-success'),
+  manager: document.getElementById('view-manager'),
+  create: document.getElementById('view-create')
+};
 
-        // Banco de dados local
-        let generatedKeys = [];
-        let collectedEmails = JSON.parse(localStorage.getItem('collectedEmails')) || [];
-        let siteSettings = JSON.parse(localStorage.getItem('siteSettings')) || {
-            title: "MalkDev0 - Tecnologia em Bots",
-            description: "Potencialize seu servidor com nossa tecnologia avançada",
-            pixKey: "jmsight1@gmail.com",
-            pixName: "JMFXP22",
-            pixCity: "Rio de Janeiro",
-            prices: {
-                basic: 0,
-                premium: 15,
-                vip: 30
-            }
-        };
+function showView(name){
+  Object.values(view).forEach(v=>v.style.display='none');
+  view[name].style.display = '';
+  if(name==='manager') renderOrders();
+  if(name==='checkout') renderCheckout();
+}
 
-        // Carregar configurações salvas
-        function loadSiteSettings() {function loadSiteSettings() {
-            document.getElementById('siteTitle').value = siteSettings.title;
-            document.getElementById('siteDescription').value = siteSettings.description;
-            document.getElementById('pixKey').value = siteSettings.pixKey;
-            document.getElementById('pixName').value = siteSettings.pixName;
-            document.getElementById('pixCity').value = siteSettings.pixCity;
-            document.getElementById('priceBasic').value = siteSettings.prices.basic;
-            document.getElementById('pricePremium').value = siteSettings.prices.premium;
-            document.getElementById('priceVIP').value = siteSettings.prices.vip;
-            
-            // Atualizar site com configurações
-            document.title = siteSettings.title;
-            document.querySelector('.hero h1').textContent = siteSettings.title.split(' - ')[0];
-            document.querySelector('.hero p').textContent = siteSettings.description;
-        }
+document.getElementById('nav-home').addEventListener('click', ()=>showView('landing'));
+document.getElementById('nav-manager').addEventListener('click', ()=>showView('manager'));
+document.getElementById('nav-create').addEventListener('click', ()=>showView('create'));
 
-        // Efeito de partículas
-        function createParticles() {
-            const particlesContainer = document.getElementById('particles');
-            for (let i = 0; i < 50; i++) {
-                const particle = document.createElement('div');
-                particle.className = 'particle';
-                particle.style.width = Math.random() * 5 + 2 + 'px';
-                particle.style.height = particle.style.width;
-                particle.style.left = Math.random() * 100 + 'vw';
-                particle.style.top = Math.random() * 100 + 'vh';
-                particle.style.animationDuration = Math.random() * 20 + 10 + 's';
-                particle.style.animationDelay = Math.random() * 5 + 's';
-                particlesContainer.appendChild(particle);
-            }
-        }
+/* ---------- Render products ---------- */
+function renderProducts(){
+  const root = document.getElementById('products');
+  root.innerHTML = '';
+  defaultProducts.forEach(p=>{
+    const el = document.createElement('div');
+    el.className = 'product';
+    el.innerHTML = `
+      <div>
+        <div style="font-weight:700">${p.name}</div>
+        <div class="small muted">R$ ${p.price.toFixed(2)}</div>
+      </div>
+      <div style="display:flex;align-items:center;gap:8px">
+        <button class="btn" data-action="dec" data-id="${p.id}">-</button>
+        <div class="small" id="qty-${p.id}">${(cart.find(x=>x.id===p.id)||{qty:0}).qty}</div>
+        <button class="btn btn-primary" data-action="add" data-id="${p.id}">+</button>
+      </div>
+    `;
+    root.appendChild(el);
+  });
+}
+document.getElementById('products').addEventListener('click', (ev)=>{
+  const btn = ev.target.closest('button');
+  if(!btn) return;
+  const action = btn.dataset.action;
+  const id = btn.dataset.id;
+  const prod = defaultProducts.find(p=>p.id===id);
+  if(action==='add'){ addToCart(prod) }
+  if(action==='dec'){ changeQty(id, -1) }
+});
 
-        // Sistema de coleta de email
-        function hasCollectedEmail() {
-            return localStorage.getItem('emailCollected') === 'true';
-        }
+function addToCart(product){
+  const found = cart.find(x=>x.id===product.id);
+  if(found) found.qty++;
+  else cart.push({ ...product, qty:1 });
+  renderCart();
+  renderProducts();
+}
+function changeQty(id, delta){
+  cart = cart.map(x=> x.id===id ? {...x, qty: Math.max(0, x.qty + delta)} : x).filter(x=>x.qty>0);
+  renderCart();
+  renderProducts();
+}
+function renderCart(){
+  const el = document.getElementById('cart');
+  if(cart.length===0){ el.innerHTML = '<div class="muted">Carrinho vazio</div>'; document.getElementById('btn-checkout').disabled=false; return; }
+  el.innerHTML = '';
+  cart.forEach(item=>{
+    const row = document.createElement('div');
+    row.style.display='flex';row.style.justifyContent='space-between';row.style.alignItems='center';row.style.padding='6px 0';
+    row.innerHTML = `<div>${item.name} x ${item.qty}</div>
+      <div style="display:flex;gap:6px;align-items:center">
+        <div>R$ ${(item.price*item.qty).toFixed(2)}</div>
+        <button class="btn" data-action="dec" data-id="${item.id}">-</button>
+        <button class="btn" data-action="inc" data-id="${item.id}">+</button>
+      </div>`;
+    el.appendChild(row);
+  });
+  const total = document.createElement('div'); total.style.marginTop='10px'; total.style.fontWeight='800';
+  total.textContent = 'Total: R$ ' + cart.reduce((s,i)=>s + i.price*i.qty,0).toFixed(2);
+  el.appendChild(total);
+}
+document.getElementById('cart').addEventListener('click', (ev)=>{
+  const btn = ev.target.closest('button');
+  if(!btn) return;
+  const id = btn.dataset.id; const act = btn.dataset.action;
+  if(act==='dec') changeQty(id, -1);
+  if(act==='inc') changeQty(id, +1);
+});
 
-        // Mostrar modal de email após 3 segundos
-        setTimeout(() => {
-            if (!hasCollectedEmail()) {
-                emailModal.style.display = 'flex';
-            }
-        }, 3000);
+/* ---------- Cart controls ---------- */
+document.getElementById('btn-clear-cart').addEventListener('click', ()=>{ cart=[]; renderCart(); renderProducts(); });
+document.getElementById('btn-checkout').addEventListener('click', ()=>{ showView('checkout'); });
 
-        // Processar formulário de email
-        emailForm.addEventListener('submit', function(e) {
-            e.preventDefault();
-            
-            const email = userEmail.value.trim();
-            
-            if (email && isValidEmail(email)) {
-                // Salvar email no banco de dados
-                collectedEmails.push({
-                    email: email,
-                    date: new Date().toLocaleDateString('pt-BR'),
-                    time: new Date().toLocaleTimeString('pt-BR')
-                });
-                localStorage.setItem('collectedEmails', JSON.stringify(collectedEmails));
-                
-                // Salvar no localStorage que já coletou o email
-                localStorage.setItem('emailCollected', 'true');
-                
-                // Fechar modal
-                emailModal.style.display = 'none';
-                alert('Obrigado! Você receberá nossas novidades em breve!');
-            } else {
-                alert('Por favor, insira um email válido.');
-            }
-        });
+/* ---------- Plan buttons (assinar) ---------- */
+document.querySelectorAll('.card .btn-primary').forEach(b=>{
+  const plan = b.dataset.plan ? JSON.parse(b.dataset.plan) : null;
+  if(!plan) return;
+  b.addEventListener('click', ()=> {
+    currentPlan = plan;
+    // add a "virtual product" to cart representing plan if user wants
+    cart = [{ id: 'plan-' + plan.name.toLowerCase(), name: 'Plano ' + plan.name, price: plan.price, qty: 1}];
+    renderCart(); renderProducts();
+    showView('checkout');
+  });
+});
 
-        // Pular coleta de email
-        skipEmail.addEventListener('click', function() {
-            localStorage.setItem('emailCollected', 'true');
-            emailModal.style.display = 'none';
-        });
+/* ---------- Checkout render & validate ---------- */
+function renderCheckout(){
+  const itemsRoot = document.getElementById('checkout-items');
+  itemsRoot.innerHTML = '';
+  const list = cart.length ? cart : [{ id:'none', name: currentPlan ? 'Plano '+currentPlan.name : 'Pedido vazio', qty:1, price: currentPlan ? currentPlan.price : 0 }];
+  list.forEach(i=>{
+    const el = document.createElement('div');
+    el.style.display='flex';el.style.justifyContent='space-between';el.style.padding='6px 0';el.innerText = `${i.name} x${i.qty}`;
+    const price = document.createElement('div'); price.innerText = 'R$ ' + (i.price * i.qty).toFixed(2);
+    el.appendChild(price);
+    itemsRoot.appendChild(el);
+  });
+  const total = list.reduce((s,i)=>s + (i.price*i.qty), 0);
+  document.getElementById('checkout-total').innerText = total.toFixed(2);
+}
 
-        // Validar email
-        function isValidEmail(email) {
-            const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-            return emailRegex.test(email);
-        }
+document.getElementById('back-to-home').addEventListener('click', ()=>{ showView('landing'); });
 
-        // Navegação suave
-        navLinks.forEach(link => {
-            link.addEventListener('click', function(e) {
-                e.preventDefault();
-                const targetId = this.getAttribute('href');
-                const targetSection = document.querySelector(targetId);
-                
-                if (targetSection) {
-                    window.scrollTo({
-                        top: targetSection.offsetTop - 80,
-                        behavior: 'smooth'
-                    });
-                }
-            });
-        });
-
-        // Botões de seleção de planos - Abrir modal de pagamento
-        selectPlanButtons.forEach(button => {
-            button.addEventListener('click', function() {
-                const plan = this.getAttribute('data-plan');
-                const price = parseInt(this.getAttribute('data-price'));
-                
-                productName.textContent = `Plano ${plan}`;
-                productPrice.textContent = `R$ ${price}/mês`;
-                quantityElement.textContent = '1';
-                totalPriceElement.textContent = `Total: R$ ${price}`;
-                
-                paymentModal.style.display = 'flex';
-                paymentResult.style.display = 'none';
-                pixOption.classList.remove('selected');
-                boletoOption.classList.remove('selected');
-            });
-        });
-
-        // Botão do criador - Mostrar modal de admin
-        creatorBtn.addEventListener('click', function() {
-            adminModal.style.display = 'flex';
-        });
-
-        // Botão de acesso ao admin no header
-        adminAccessBtn.addEventListener('click', function() {
-            keySection.style.display = 'block';
-            window.scrollTo({
-                top: keySection.offsetTop - 80,
-                behavior: 'smooth'
-            });
-        });
-
-        // Botão admin pequeno
-        smallAdminBtn.addEventListener('click', function() {
-            adminModal.style.display = 'flex';
-        });
-
-        // Login no painel administrativo
-        adminLoginBtn.addEventListener('click', function() {
-            const user = document.getElementById('adminUser').value;
-            const pass = document.getElementById('adminPass').value;
-            
-            if (user === ADMIN_USER && pass === ADMIN_PASS) {
-                adminModal.style.display = 'none';
-                adminPanel.style.display = 'block';
-                loadSiteSettings();
-            } else {
-                alert('Credenciais inválidas!');
-            }
-        });
-
-        // Fechar painel administrativo
-        closeAdminBtn.addEventListener('click', function() {
-            adminPanel.style.display = 'none';
-        });
-
-        // Ativar key - Só funciona com keys geradas
-        activateKeyBtn.addEventListener('click', function() {
-            const key = keyInput.value.trim();
-            
-            if (key === '') {
-                alert('Por favor, digite uma key!');
-                return;
-            }
-            
-            // Verificar se a key foi gerada no sistema
-            if (generatedKeys.includes(key)) {
-                keySuccess.style.display = 'block';
-                keyError.style.display = 'none';
-            } else {
-                keyError.style.display = 'block';
-                keySuccess.style.display = 'none';
-            }
-        });
-
-        // Gerar key aleatória (4 letras + 1 número)
-        function generateRandomKey() {
-            const letters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
-            const numbers = '0123456789';
-            let key = '';
-            
-            // Gerar 4 letras aleatórias
-            for (let i = 0; i < 4; i++) {
-                key += letters.charAt(Math.floor(Math.random() * letters.length));
-            }
-            
-            // Adicionar 1 número aleatório
-            key += numbers.charAt(Math.floor(Math.random() * numbers.length));
-            
-            return key;
-        }
-
-        // Gerar key
-        generateKeyBtn.addEventListener('click', function() {
-            const days = document.getElementById('keyDays').value || '30';
-            const plan = document.getElementById('keyPlan').value || 'Premium';
-            
-            // Gerar key aleatória
-            const key = generateRandomKey();
-            generatedKeys.push(key);
-            
-            keyValue.textContent = key;
-            generatedKey.style.display = 'block';
-            
-            alert(`Key gerada com sucesso!\n\nKey: ${key}\nPlano: ${plan}\nDuração: ${days} dias`);
-        });
-
-        // Ver emails coletados
-        viewEmailsBtn.addEventListener('click', function() {
-            if (collectedEmails.length === 0) {
-                emailsList.innerHTML = '<p style="text-align: center; padding: 10px;">Nenhum email coletado ainda.</p>';
-            } else {
-                let emailsHTML = '<h4 style="margin-bottom: 10px;">Emails Coletados:</h4>';
-                collectedEmails.forEach((item, index) => {
-                    emailsHTML += `<div style="padding: 8px; border-bottom: 1px solid rgba(255,255,255,0.1);">
-                        <strong>${item.email}</strong><br>
-                        <small>${item.date} às ${item.time}</small>
-                    </div>`;
-                });
-                emailsList.innerHTML = emailsHTML;
-            }
-            emailsList.style.display = 'block';
-        });
-
-        // Salvar configurações PIX
-        document.getElementById('savePixBtn').addEventListener('click', function() {
-            siteSettings.pixKey = document.getElementById('pixKey').value;
-            siteSettings.pixName = document.getElementById('pixName').value;
-            siteSettings.pixCity = document.getElementById('pixCity').value;
-            localStorage.setItem('siteSettings', JSON.stringify(siteSettings));
-            alert('Configurações PIX salvas com sucesso!');
-        });
-
-        // Salvar preços
-        document.getElementById('savePricesBtn').addEventListener('click', function() {
-            siteSettings.prices.basic = parseInt(document.getElementById('priceBasic').value);
-            siteSettings.prices.premium = parseInt(document.getElementById('pricePremium').value);
-            siteSettings.prices.vip = parseInt(document.getElementById('priceVIP').value);
-            localStorage.setItem('siteSettings', JSON.stringify(siteSettings));
-            
-            // Atualizar preços no site
-            document.querySelectorAll('.plan-card')[0].querySelector('.plan-price').innerHTML = `R$ ${siteSettings.prices.basic}<span>/mês</span>`;
-            document.querySelectorAll('.plan-card')[1].querySelector('.plan-price').innerHTML = `R$ ${siteSettings.prices.premium}<span>/mês</span>`;
-            document.querySelectorAll('.plan-card')[2].querySelector('.plan-price').innerHTML = `R$ ${siteSettings.prices.vip}<span>/mês</span>`;
-            
-            alert(`Preços atualizados com sucesso!`);
-        });
-
-        // Salvar configurações do site
-        document.getElementById('saveSiteSettingsBtn').addEventListener('click', function() {
-            siteSettings.title = document.getElementById('siteTitle').value;
-            siteSettings.description = document.getElementById('siteDescription').value;
-            localStorage.setItem('siteSettings', JSON.stringify(siteSettings));
-            
-            // Atualizar site
-            document.title = siteSettings.title;
-            document.querySelector('.hero h1').textContent = siteSettings.title.split(' - ')[0];
-            document.querySelector('.hero p').textContent = siteSettings.description;
-            
-            alert('Configurações do site salvas com sucesso!');
-        });
-
-        // Sistema de pagamento - Controles de quantidade
-        let quantity = 1;
-        let currentPrice = 0;
-
-        decreaseQty.addEventListener('click', function() {
-            if (quantity > 1) {
-                quantity--;
-                quantityElement.textContent = quantity;
-                updateTotalPrice();
-            }
-        });
-
-        increaseQty.addEventListener('click', function() {
-            quantity++;
-            quantityElement.textContent = quantity;
-            updateTotalPrice();
-        });
-
-        function updateTotalPrice() {
-            const priceText = productPrice.textContent;
-            const price = parseInt(priceText.replace('R$ ', '').replace('/mês', ''));
-            currentPrice = price;
-            const total = price * quantity;
-            totalPriceElement.textContent = `Total: R$ ${total}`;
-        }
-
-        // Seleção de método de pagamento
-        pixOption.addEventListener('click', function() {
-            pixOption.classList.add('selected');
-            boletoOption.classList.remove('selected');
-        });
-
-        boletoOption.addEventListener('click', function() {
-            boletoOption.classList.add('selected');
-            pixOption.classList.remove('selected');
-        });
-
-        // Processar pagamento
-        processPayment.addEventListener('click', function() {
-            if (!pixOption.classList.contains('selected') && !boletoOption.classList.contains('selected')) {
-                alert('Por favor, selecione uma forma de pagamento.');
-                return;
-            }
-            
-            paymentResult.style.display = 'block';
-            
-            if (boletoOption.classList.contains('selected')) {
-                resultTitle.textContent = 'Boleto Indisponível';
-                resultMessage.textContent = 'A opção de pagamento por boleto não está disponível no momento.';
-            } else if (pixOption.classList.contains('selected')) {
-                if (siteSettings.pixKey && siteSettings.pixKey !== 'jmsight1@gmail.com') {
-                    resultTitle.textContent = 'PIX Configurado';
-                    resultMessage.textContent = `Chave PIX: ${siteSettings.pixKey}\nEnvie o valor de R$ ${currentPrice * quantity} para esta chave.`;
-                } else {
-                    resultTitle.textContent = 'PIX Não Configurado';
-                    resultMessage.textContent = 'O pagamento por PIX ainda não foi configurado. Entre em contato com o administrador.';
-                }
-            }
-        });
-
-        // Fechar modais ao clicar fora
-        window.addEventListener('click', function(e) {
-            if (e.target === adminModal) {
-                adminModal.style.display = 'none';
-            }
-            if (e.target === paymentModal) {
-                paymentModal.style.display = 'none';
-            }
-            if (e.target === emailModal) {
-                emailModal.style.display = 'none';
-            }
-        });
-
-        // Fechar modal de pagamento
-        closePaymentModal.addEventListener('click', function() {
-            paymentModal.style.display = 'none';
-        });
-
-        // Botão de login
-        document.getElementById('loginBtn').addEventListener('click', function() {
-            alert('Sistema de login em desenvolvimento...');
-        });
-
-        // Botão de demonstração
-        document.getElementById('demoBtn').addEventListener('click', function() {
-            alert('Demonstração dos recursos avançados em breve...');
-        });
-
-        // Inicializar
-        createParticles();
-        loadSiteSettings();
-    </script>
-</body>
-</html>
+/* ---------- Payment simulation ---------- */
+document.getElementById('confirm-pay').addEventListener('click', ()=>{
+  // validations
+  const name = document.getElementById('c-name').value.trim();
+  const street = document.getElementById('c-street').value.trim();
+  const number = document.getElementById('c-number').value.trim();
+  const city = document.getElementById('c-city').value.trim();
+  const phone = document.getElementById('c-phone').value.trim();
+  const ref = document.getElementById('c-ref').value.trim();
+  const payment 

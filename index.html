@@ -448,4 +448,129 @@ document.getElementById('confirm-pay').addEventListener('click', ()=>{
   const city = document.getElementById('c-city').value.trim();
   const phone = document.getElementById('c-phone').value.trim();
   const ref = document.getElementById('c-ref').value.trim();
-  const payment 
+  const payment = document.getElementById('c-payment').value;
+
+  if(!name||!street||!number||!city||!phone){
+    return alert('Preencha os campos obrigatórios: nome, rua, número, cidade e telefone.');
+  }
+
+  const items = cart.length ? cart : [{ id:'plan', name: currentPlan ? 'Plano '+currentPlan.name : 'Pedido', qty:1, price: currentPlan ? currentPlan.price : 0 }];
+  const total = items.reduce((s,i)=>s + i.price*i.qty,0);
+
+  const order = {
+    id: genId(),
+    createdAt: new Date().toISOString(),
+    items,
+    total,
+    customer: { customerName: name, street, number, reference: ref, city, phone },
+    paymentMethod: payment,
+    paid: true
+  };
+
+  orders.unshift(order);
+  saveOrders(orders);
+  localStorage.setItem('anotai_last_order', order.id);
+
+  // clear cart/plan
+  cart = [];
+  currentPlan = null;
+  renderCart(); renderProducts();
+
+  // show success screen and set WhatsApp link
+  const waLink = document.getElementById('wa-proof');
+  const text = `Olá, quero enviar comprovante da minha compra. ID: ${order.id}`;
+  waLink.href = `https://wa.me/${SUPPORT_PHONE}?text=${encodeURIComponent(text)}`;
+  showView('success');
+});
+
+/* ---------- Success screen controls ---------- */
+document.getElementById('go-manager').addEventListener('click', ()=> showView('manager'));
+document.getElementById('back-home-2').addEventListener('click', ()=> showView('landing'));
+
+/* ---------- Create store ---------- */
+document.getElementById('create-store').addEventListener('click', ()=>{
+  const slug = document.getElementById('store-slug').value.trim();
+  const out = document.getElementById('store-created');
+  if(!slug){ alert('Escolha um slug (ex: minha-lanchonete)'); return; }
+  const example = `${window.location.origin}/store/${encodeURIComponent(slug)}`;
+  out.style.display = ''; out.innerHTML = `<div class="small">Loja criada (exemplo): <a target="_blank" class="link" href="${example}">${example}</a></div>`;
+});
+
+/* ---------- Manager: render orders ---------- */
+function renderOrders(){
+  orders = loadOrders();
+  const tbody = document.querySelector('#orders-table tbody');
+  tbody.innerHTML = '';
+  orders.forEach(o=>{
+    const tr = document.createElement('tr');
+    tr.innerHTML = `<td style="font-weight:700">${o.id}</td>
+      <td>${o.customer.customerName}</td>
+      <td>${o.customer.city}</td>
+      <td class="text-right">R$ ${o.total.toFixed(2)}</td>
+      <td class="text-right"><button class="btn" data-open="${o.id}">Ver</button></td>`;
+    tbody.appendChild(tr);
+  });
+
+  document.querySelectorAll('#orders-table button[data-open]').forEach(b=>{
+    b.addEventListener('click', ()=> {
+      const id = b.getAttribute('data-open');
+      const ord = orders.find(x=>x.id===id);
+      if(!ord) return alert('Pedido não encontrado');
+      const items = ord.items.map(it => `${it.name} x${it.qty} R$ ${(it.price*it.qty).toFixed(2)}`).join('\\n');
+      alert(`Pedido ${ord.id}\\nCliente: ${ord.customer.customerName}\\nTelefone: ${ord.customer.phone}\\nEndereço: ${ord.customer.street}, ${ord.customer.number}\\nCidade: ${ord.customer.city}\\n\\nItens:\\n${items}\\n\\nTotal: R$ ${ord.total.toFixed(2)}`);
+    });
+  });
+
+  // reports
+  const totalSales = orders.reduce((s,o)=>s + o.total, 0);
+  document.getElementById('total-orders').innerText = orders.length;
+  document.getElementById('total-sales').innerText = totalSales.toFixed(2);
+  document.getElementById('report-sales').innerText = totalSales.toFixed(2);
+  document.getElementById('report-count').innerText = orders.length;
+}
+
+/* ---------- Manager: search, export, open, NF ---------- */
+document.getElementById('btn-export').addEventListener('click', ()=>{
+  const json = JSON.stringify(loadOrders(), null, 2);
+  // copy to clipboard
+  navigator.clipboard.writeText(json).then(()=> alert('JSON copiado para área de transferência.'));
+});
+
+document.getElementById('btn-search').addEventListener('click', ()=>{
+  const id = document.getElementById('search-id').value.trim();
+  if(!id) return alert('Digite um ID');
+  const o = orders.find(x=>x.id===id);
+  if(!o) return alert('ID não encontrado');
+  alert('Pedido: ' + id + '\\nCliente: ' + o.customer.customerName);
+});
+
+document.getElementById('btn-open').addEventListener('click', ()=>{
+  const id = document.getElementById('detail-id').value.trim();
+  if(!id) return alert('Digite um ID');
+  const o = orders.find(x=>x.id===id);
+  if(!o) return alert('ID não encontrado');
+  const items = o.items.map(it => `${it.name} x${it.qty} R$ ${(it.price*it.qty).toFixed(2)}`).join('\\n');
+  alert(`Pedido ${o.id}\\nCliente: ${o.customer.customerName}\\nTelefone: ${o.customer.phone}\\nEndereço: ${o.customer.street}, ${o.customer.number}\\n\\nItens:\\n${items}\\nTotal: R$ ${o.total.toFixed(2)}`);
+});
+
+document.getElementById('btn-nf').addEventListener('click', ()=>{
+  const id = document.getElementById('detail-id').value.trim();
+  if(!id) return alert('Digite um ID');
+  const o = orders.find(x=>x.id===id);
+  if(!o) return alert('ID não encontrado');
+  // simple mock NF
+  let nf = `--- NOTA FISCAL (MOCK) ---\\nID: ${o.id}\\nCliente: ${o.customer.customerName}\\nCPF/CNPJ: (cliente)\\nTotal: R$ ${o.total.toFixed(2)}\\nItens:\\n`;
+  nf += o.items.map(i=>`- ${i.name} x${i.qty} R$ ${(i.price*i.qty).toFixed(2)}`).join('\\n');
+  alert(nf);
+});
+
+/* ---------- Init ---------- */
+renderProducts();
+renderCart();
+renderOrders();
+showView('landing');
+
+</script>
+</body>
+</html>
+

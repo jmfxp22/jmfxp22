@@ -938,3 +938,188 @@
                 <div id="lua-lesson-2" class="lesson-content">
                     <div class="lesson-title">
                         <div class="lesson-icon lua-icon">2</div>
+/div>
+                        <h2>Variáveis e Tipos</h2>
+                    </div>
+                    
+                    <div class="user-info">
+                        <div class="name">Malkdev0</div>
+                        <div class="code">JMFXP22</div>
+                    </div>
+                    
+                    <div class="progress-bar">
+                        <div class="progress" style="width: 50%"></div>
+                    </div>
+                    
+                    <p>Lua é uma linguagem dinamicamente tipada, o que significa que as variáveis não têm tipos; os valores têm.</p>
+                    
+                    <h3>Declarando Variáveis</h3>
+                    <p>Em Lua, você não precisa declarar variáveis com um tipo específico. Basta atribuir um valor:</p>
+                    <div class="code-example">
+                        nome = "Maria"  -- string<br>
+                        idade = 25     -- number<br>
+                        ativo = true   -- boolean
+                    </div>
+                    
+                    <h3>Tipos de Dados em Lua</h3>
+                    <ul>
+                        <li><strong>nil</strong> - Representa a ausência de um valor útil</li>
+                        <li><strong>boolean</strong> - true ou false</li>
+                        <li><strong>number</strong> - Representa números reais (doubles)</li>
+                        <li><strong>string</strong> - Sequência de caracteres</li>
+                        <li><strong>function</strong> - Funções</li>
+                        <li><strong>table</strong> - Estrutura de dados principal (arrays, dicionários, etc.)</li>
+                    </ul>
+                    
+                    <h3>Verificando Tipos</h3>
+                    <p>Use a função type() para verificar o tipo de um valor:</p>
+                    <div class="code-example">
+                        print(type("Hello"))  -- string<br>
+                        print(type(10.4))    -- number<br>
+                        print(type(print))   -- function<br>
+                        print(type(true))    -- boolean<br>
+                        print(type(nil))     -- nil
+                    </div>
+                    
+                    <div class="recommendation">
+                        <strong>Para fixar na mente:</strong> Crie uma tabela no caderno com todos os tipos de dados em Lua e exemplos de cada um. Pratique usando a função type().
+                    </div>
+                    
+                    <div class="navigation">
+                        <button class="nav-btn prev-btn" onclick="showLesson('lua', 1)">
+                            <i class="fas fa-arrow-left"></i> Aula Anterior
+                        </button>
+                        <button class="nav-btn next-btn" onclick="showLesson('lua', 3)">
+                            Próxima Aula <i class="fas fa-arrow-right"></i>
+                        </button>
+                    </div>
+                </div>
+                
+                <div id="lua-lesson-3" class="lesson-content">
+                    <div class="lesson-title">
+                        <div class="lesson-icon lua-icon">3</div>
+                        <h2>Estruturas de Controle</h2>
+                    </div>
+                    
+                    <div class="user-info">
+                        <div class="name">Malkdev0</div>
+                        <div class="code">JMFXP22</div>
+                    </div>
+                    
+                    <div class="progress-bar">
+                        <div class="progress" style="width: 75%"></div>
+                    </div>
+                    
+                    <p>Lua oferece estruturas de controle familiares para gerenciar o fluxo de execução do programa.</p>
+                    
+                    <h3>Condicionais: if, elseif, else</h3>
+                    <div class="code-example">
+                        if condição then<br>
+                        &nbsp;&nbsp;-- código se a condição for verdadeira<br>
+                        elseif outra_condição then<br>
+                        &nbsp;&nbsp;-- código se a outra condição for verdadeira<br>
+                        else<br>
+                        &nbsp;&nbsp;-- código se nenhuma condição for verdadeira<br>
+                        end
+                    </div>
+                    
+                    <h3>Loops</h3>
+                    <p><strong>while loop:</strong></p>
+                    <div class="code-example">
+                        while condição do<br>
+                        &nbsp;&nbsp;-- código a ser repetido<br>
+                        end
+                    </div>
+                    
+                    <p><strong>repeat-until loop:</strong></p>
+                    <div class="code-example">
+                        repeat<br>
+                        &nbsp;&nbsp;-- código a ser repetido<br>
+                        until condição
+                    </div>
+                    
+                    <p><strong>for loop:</strong></p>
+                    <div class="code-example">
+                        for variável = início, fim, incremento do<br>
+                        &nbsp;&nbsp;-- código a ser repetido<br>
+                        end
+                    </div>
+                    
+                    <h3>Exemplo Prático</h3>
+                    <div class="code-example">
+                        -- Imprimir números de 1 a 5<br>
+                        for i = 1, 5 do<br>
+                        &nbsp;&nbsp;print(i)<br>
+                        end<br>
+                        <br>
+                        -- Contar até 10 com while<br>
+                        contador = 1<br>
+                        while contador <= 10 do<br>
+                        &nbsp;&nbsp;print(contador)<br>
+                        &nbsp;&nbsp;contador = contador + 1<br>
+                        end
+                    </div>
+                    
+                    <div class="recommendation">
+                        <strong>Para fixar na mente:</strong> Escreva exemplos de cada estrutura de controle no caderno. Crie pequenos programas que usem essas estruturas para resolver problemas simples.
+                    </div>
+                    
+                    <div class="navigation">
+                        <button class="nav-btn prev-btn" onclick="showLesson('lua', 2)">
+                            <i class="fas fa-arrow-left"></i> Aula Anterior
+                        </button>
+                        <button class="nav-btn next-btn" onclick="showTab('lua-tab')">
+                            Finalizar <i class="fas fa-check"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <footer>
+            <p>CodeMaster - Aprenda Programação de Forma Interativa</p>
+            <div class="user-info">
+                <div class="name">Malkdev0</div>
+                <div class="code">JMFXP22</div>
+            </div>
+        </footer>
+    </div>
+
+    <script>
+        // Função para mostrar a aba selecionada
+        function showTab(tabId) {
+            // Esconder todas as abas
+            const tabs = document.querySelectorAll('.tab-container');
+            tabs.forEach(tab => {
+                tab.classList.remove('active');
+            });
+            
+            // Esconder todo o conteúdo das aulas
+            const lessons = document.querySelectorAll('.lesson-content');
+            lessons.forEach(lesson => {
+                lesson.classList.remove('active');
+            });
+            
+            // Mostrar a aba selecionada
+            document.getElementById(tabId).classList.add('active');
+        }
+        
+        // Função para mostrar uma aula específica
+        function showLesson(language, lessonNumber) {
+            // Esconder todo o conteúdo das aulas
+            const lessons = document.querySelectorAll('.lesson-content');
+            lessons.forEach(lesson => {
+                lesson.classList.remove('active');
+            });
+            
+            // Mostrar a aula selecionada
+            document.getElementById(`${language}-lesson-${lessonNumber}`).classList.add('active');
+        }
+        
+        // Inicializar com a aba HTML ativa
+        document.addEventListener('DOMContentLoaded', function() {
+            showTab('html-tab');
+        });
+    </script>
+</body>
+</html>

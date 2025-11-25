@@ -1,1125 +1,160 @@
 <!DOCTYPE html>
-<html lang="pt-BR">
+<html lang="pt-br">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>MalkCodes - Aprenda Programação</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <title>MALKDEV0</title>
     <style>
-        :root {
-            --primary: #4e54c8;
-            --secondary: #8f94fb;
-            --dark: #2c3e50;
-            --light: #f8f9fa;
-            --success: #28a745;
-            --warning: #ffc107;
-            --danger: #dc3545;
-            --html-color: #e34c26;
-            --java-color: #f89820;
-            --lua-color: #000080;
-        }
-        
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
         }
-        
+
         body {
-            background: linear-gradient(135deg, var(--primary), var(--secondary));
-            color: var(--dark);
+            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%);
+            color: #fff;
             min-height: 100vh;
-            line-height: 1.6;
-        }
-        
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 20px;
-        }
-        
-        .user-info {
-            position: fixed;
-            top: 10px;
-            left: 10px;
-            background: rgba(255, 255, 255, 0.9);
-            padding: 10px 15px;
-            border-radius: 10px;
-            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-            z-index: 1000;
-        }
-        
-        .user-info .name {
-            font-size: 1.2rem;
-            font-weight: bold;
-            color: var(--dark);
-        }
-        
-        .user-info .code {
-            font-size: 0.8rem;
-            color: black;
-            text-align: center;
-        }
-        
-        header {
-            text-align: center;
-            padding: 50px 0 30px;
-            color: white;
-        }
-        
-        header h1 {
-            font-size: 2.8rem;
-            margin-bottom: 10px;
-            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
-        }
-        
-        header p {
-            font-size: 1.2rem;
-            max-width: 600px;
-            margin: 0 auto;
-        }
-        
-        .language-selector {
             display: flex;
+            flex-direction: column;
             justify-content: center;
-            gap: 20px;
-            margin: 30px 0;
-        }
-        
-        .lang-btn {
-            padding: 15px 30px;
-            font-size: 1.2rem;
-            border: none;
-            border-radius: 50px;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            font-weight: bold;
-            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
-            display: flex;
             align-items: center;
-            gap: 10px;
+            overflow-x: hidden;
+            position: relative;
         }
-        
-        .lang-btn:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
-        }
-        
-        .html-btn {
-            background-color: var(--html-color);
-            color: white;
-        }
-        
-        .java-btn {
-            background-color: var(--java-color);
-            color: white;
-        }
-        
-        .lua-btn {
-            background-color: var(--lua-color);
-            color: white;
-        }
-        
-        .content-area {
-            background-color: white;
-            border-radius: 20px;
-            padding: 30px;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
-            min-height: 500px;
-            margin-bottom: 30px;
-        }
-        
-        .tab-container {
-            display: none;
-        }
-        
-        .tab-container.active {
-            display: block;
-            animation: fadeIn 0.5s ease;
-        }
-        
-        @keyframes fadeIn {
-            from { opacity: 0; }
-            to { opacity: 1; }
-        }
-        
-        .tab-header {
-            text-align: center;
-            margin-bottom: 30px;
-            padding-bottom: 15px;
-            border-bottom: 2px solid #eee;
-        }
-        
-        .tab-header h2 {
-            font-size: 2.2rem;
-            margin-bottom: 10px;
-        }
-        
-        .html-header h2 {
-            color: var(--html-color);
-        }
-        
-        .java-header h2 {
-            color: var(--java-color);
-        }
-        
-        .lua-header h2 {
-            color: var(--lua-color);
-        }
-        
-        .lessons-container {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 20px;
-            margin-bottom: 30px;
-        }
-        
-        .lesson-card {
-            flex: 1 1 300px;
-            background: #f8f9fa;
-            border-radius: 15px;
-            padding: 20px;
-            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
-            transition: transform 0.3s ease;
-        }
-        
-        .lesson-card:hover {
-            transform: translateY(-5px);
-        }
-        
-        .lesson-card h3 {
-            font-size: 1.4rem;
-            margin-bottom: 15px;
-            display: flex;
-            align-items: center;
-            gap: 10px;
-        }
-        
-        .lesson-card p {
-            margin-bottom: 15px;
-        }
-        
-        .code-example {
-            background: #2c3e50;
-            color: white;
-            padding: 15px;
-            border-radius: 10px;
-            font-family: 'Courier New', monospace;
-            margin: 15px 0;
-            overflow-x: auto;
-        }
-        
-        .recommendation {
-            background: #e8f4fd;
-            border-left: 4px solid #4e54c8;
-            padding: 15px;
-            margin: 20px 0;
-            border-radius: 0 10px 10px 0;
-        }
-        
-        .navigation {
-            display: flex;
-            justify-content: space-between;
-            margin-top: 30px;
-        }
-        
-        .nav-btn {
-            padding: 12px 25px;
-            border: none;
-            border-radius: 50px;
-            cursor: pointer;
-            font-weight: bold;
-            transition: all 0.3s ease;
-            display: flex;
-            align-items: center;
-            gap: 10px;
-        }
-        
-        .prev-btn {
-            background-color: #e9ecef;
-            color: var(--dark);
-        }
-        
-        .next-btn {
-            background-color: var(--primary);
-            color: white;
-        }
-        
-        .nav-btn:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
-        }
-        
-        .lesson-content {
-            display: none;
-        }
-        
-        .lesson-content.active {
-            display: block;
-            animation: slideIn 0.5s ease;
-        }
-        
-        @keyframes slideIn {
-            from { transform: translateX(20px); opacity: 0; }
-            to { transform: translateX(0); opacity: 1; }
-        }
-        
-        .progress-bar {
-            height: 8px;
-            background: #e9ecef;
-            border-radius: 10px;
-            margin: 20px 0;
-            overflow: hidden;
-        }
-        
-        .progress {
+
+        /* Efeito de partículas no fundo */
+        body::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
             height: 100%;
-            background: var(--success);
-            border-radius: 10px;
-            transition: width 0.5s ease;
+            background-image: 
+                radial-gradient(circle at 20% 30%, rgba(120, 119, 198, 0.1) 0%, transparent 50%),
+                radial-gradient(circle at 80% 70%, rgba(255, 119, 198, 0.1) 0%, transparent 50%),
+                radial-gradient(circle at 40% 80%, rgba(120, 219, 255, 0.1) 0%, transparent 50%);
+            z-index: -1;
         }
-        
-        .lesson-title {
-            display: flex;
-            align-items: center;
-            gap: 15px;
-            margin-bottom: 20px;
-        }
-        
-        .lesson-icon {
-            width: 50px;
-            height: 50px;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: white;
-            font-size: 1.5rem;
-        }
-        
-        .html-icon {
-            background: var(--html-color);
-        }
-        
-        .java-icon {
-            background: var(--java-color);
-        }
-        
-        .lua-icon {
-            background: var(--lua-color);
-        }
-        
-        footer {
+
+        .container {
             text-align: center;
-            padding: 20px;
-            color: white;
-            font-size: 0.9rem;
+            max-width: 800px;
+            padding: 2rem;
+            z-index: 1;
         }
-        
+
+        .logo {
+            font-size: 5rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            background: linear-gradient(45deg, #ff7eb3, #65c7f7, #9cecfb);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            text-shadow: 0 0 30px rgba(101, 199, 247, 0.3);
+            letter-spacing: 2px;
+        }
+
+        .subtitle {
+            font-size: 1.5rem;
+            margin-bottom: 3rem;
+            color: #a0aec0;
+            font-weight: 300;
+        }
+
+        .coming-soon {
+            font-size: 1.2rem;
+            margin: 2rem 0;
+            padding: 1rem 2rem;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 10px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            display: inline-block;
+            backdrop-filter: blur(10px);
+        }
+
+        .footer {
+            position: absolute;
+            bottom: 2rem;
+            text-align: center;
+            width: 100%;
+        }
+
+        .code {
+            font-size: 0.8rem;
+            color: #718096;
+            letter-spacing: 1px;
+            font-family: 'Courier New', monospace;
+        }
+
+        /* Animações sutis */
+        @keyframes float {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
+        }
+
+        .logo {
+            animation: float 6s ease-in-out infinite;
+        }
+
+        /* Efeitos de brilho */
+        .glow {
+            position: absolute;
+            width: 300px;
+            height: 300px;
+            border-radius: 50%;
+            background: radial-gradient(circle, rgba(101, 199, 247, 0.2) 0%, transparent 70%);
+            filter: blur(40px);
+            z-index: -1;
+            top: 20%;
+            left: 10%;
+        }
+
+        .glow-2 {
+            position: absolute;
+            width: 400px;
+            height: 400px;
+            border-radius: 50%;
+            background: radial-gradient(circle, rgba(255, 126, 179, 0.15) 0%, transparent 70%);
+            filter: blur(50px);
+            z-index: -1;
+            bottom: 10%;
+            right: 10%;
+        }
+
+        /* Responsividade */
         @media (max-width: 768px) {
-            .language-selector {
-                flex-direction: column;
-                align-items: center;
+            .logo {
+                font-size: 3.5rem;
             }
             
-            .lang-btn {
-                width: 100%;
-                max-width: 300px;
+            .subtitle {
+                font-size: 1.2rem;
             }
             
-            .user-info {
-                position: relative;
-                top: 0;
-                left: 0;
-                margin-bottom: 20px;
-                text-align: center;
+            .coming-soon {
+                font-size: 1rem;
             }
         }
     </style>
 </head>
 <body>
-    <div class="user-info">
-        <div class="name">Malkdev0</div>
-        <div class="code">JMFXP22</div>
-    </div>
+    <div class="glow"></div>
+    <div class="glow-2"></div>
     
     <div class="container">
-        <header>
-            <h1>MalkCodes</h1>
-            <p>Aprenda programação de forma interativa e eficiente</p>
-        </header>
-        
-        <div class="language-selector">
-            <button class="lang-btn html-btn" onclick="showTab('html-tab')">
-                <i class="fab fa-html5"></i> Aprender HTML
-            </button>
-            <button class="lang-btn java-btn" onclick="showTab('java-tab')">
-                <i class="fab fa-java"></i> Aprender Java
-            </button>
-            <button class="lang-btn lua-btn" onclick="showTab('lua-tab')">
-                <i class="fas fa-code"></i> Aprender Lua
-            </button>
+        <h1 class="logo">MALKDEV0</h1>
+        <p class="subtitle">Desenvolvimento & Inovação</p>
+        <div class="coming-soon">
+            Em breve: Soluções digitais de alta performance
         </div>
-        
-        <div class="content-area">
-            <!-- HTML Tab -->
-            <div id="html-tab" class="tab-container active">
-                <div class="tab-header html-header">
-                    <h2><i class="fab fa-html5"></i> Curso de HTML</h2>
-                    <p>Aprenda a estruturar páginas web com HTML</p>
-                </div>
-                
-                <div class="user-info">
-                    <div class="name">Malkdev0</div>
-                    <div class="code">JMFXP22</div>
-                </div>
-                
-                <div class="lessons-container">
-                    <div class="lesson-card">
-                        <h3><span class="lesson-icon html-icon">1</span> Introdução ao HTML</h3>
-                        <p>HTML (HyperText Markup Language) é a linguagem de marcação padrão para criar páginas web.</p>
-                        <div class="code-example">
-                            &lt;!DOCTYPE html&gt;<br>
-                            &lt;html&gt;<br>
-                            &lt;head&gt;<br>
-                            &nbsp;&nbsp;&lt;title&gt;Minha Página&lt;/title&gt;<br>
-                            &lt;/head&gt;<br>
-                            &lt;body&gt;<br>
-                            &nbsp;&nbsp;&lt;h1&gt;Olá, Mundo!&lt;/h1&gt;<br>
-                            &lt;/body&gt;<br>
-                            &lt;/html&gt;
-                        </div>
-                        <div class="recommendation">
-                            <strong>Recomendação:</strong> Escreva este código em um caderno e pratique criando uma página simples.
-                        </div>
-                        <button class="nav-btn next-btn" onclick="showLesson('html', 1)">
-                            Começar Aula <i class="fas fa-arrow-right"></i>
-                        </button>
-                    </div>
-                    
-                    <div class="lesson-card">
-                        <h3><span class="lesson-icon html-icon">2</span> Estrutura Básica</h3>
-                        <p>Entenda os elementos fundamentais de uma página HTML: cabeçalho, corpo e rodapé.</p>
-                        <div class="recommendation">
-                            <strong>Recomendação:</strong> Desenhe a estrutura de uma página HTML no caderno para memorizar.
-                        </div>
-                        <button class="nav-btn next-btn" onclick="showLesson('html', 2)">
-                            Continuar <i class="fas fa-arrow-right"></i>
-                        </button>
-                    </div>
-                    
-                    <div class="lesson-card">
-                        <h3><span class="lesson-icon html-icon">3</span> Formatação de Texto</h3>
-                        <p>Aprenda a usar tags para formatar texto: títulos, parágrafos, negrito, itálico e listas.</p>
-                        <div class="recommendation">
-                            <strong>Recomendação:</strong> Crie uma página com diferentes formatações de texto para praticar.
-                        </div>
-                        <button class="nav-btn next-btn" onclick="showLesson('html', 3)">
-                            Continuar <i class="fas fa-arrow-right"></i>
-                        </button>
-                    </div>
-                </div>
-                
-                <!-- HTML Lesson Content -->
-                <div id="html-lesson-1" class="lesson-content">
-                    <div class="lesson-title">
-                        <div class="lesson-icon html-icon">1</div>
-                        <h2>Introdução ao HTML</h2>
-                    </div>
-                    
-                    <div class="user-info">
-                        <div class="name">Malkdev0</div>
-                        <div class="code">JMFXP22</div>
-                    </div>
-                    
-                    <div class="progress-bar">
-                        <div class="progress" style="width: 25%"></div>
-                    </div>
-                    
-                    <p>HTML é a espinha dorsal de qualquer página web. Ele define a estrutura e o conteúdo da página.</p>
-                    
-                    <h3>O que é HTML?</h3>
-                    <p>HTML significa HyperText Markup Language (Linguagem de Marcação de Hipertexto).</p>
-                    <p>Não é uma linguagem de programação, mas sim uma linguagem de marcação que define a estrutura do seu conteúdo.</p>
-                    
-                    <h3>Elementos HTML</h3>
-                    <p>Os elementos HTML são os blocos de construção de uma página HTML. Eles são representados por tags.</p>
-                    
-                    <div class="code-example">
-                        &lt;tagname&gt;Conteúdo&lt;/tagname&gt;
-                    </div>
-                    
-                    <p>Exemplo de elementos HTML comuns:</p>
-                    <ul>
-                        <li>&lt;h1&gt; a &lt;h6&gt; para títulos</li>
-                        <li>&lt;p&gt; para parágrafos</li>
-                        <li>&lt;a&gt; para links</li>
-                        <li>&lt;img&gt; para imagens</li>
-                    </ul>
-                    
-                    <div class="recommendation">
-                        <strong>Para fixar na mente:</strong> Escreva as tags mais importantes em seu caderno e revise diariamente por uma semana.
-                    </div>
-                    
-                    <div class="navigation">
-                        <button class="nav-btn prev-btn" onclick="showTab('html-tab')">
-                            <i class="fas fa-arrow-left"></i> Voltar
-                        </button>
-                        <button class="nav-btn next-btn" onclick="showLesson('html', 2)">
-                            Próxima Aula <i class="fas fa-arrow-right"></i>
-                        </button>
-                    </div>
-                </div>
-                
-                <div id="html-lesson-2" class="lesson-content">
-                    <div class="lesson-title">
-                        <div class="lesson-icon html-icon">2</div>
-                        <h2>Estrutura Básica</h2>
-                    </div>
-                    
-                    <div class="user-info">
-                        <div class="name">Malkdev0</div>
-                        <div class="code">JMFXP22</div>
-                    </div>
-                    
-                    <div class="progress-bar">
-                        <div class="progress" style="width: 50%"></div>
-                    </div>
-                    
-                    <p>Toda página HTML possui uma estrutura básica que inclui declaração DOCTYPE, html, head e body.</p>
-                    
-                    <h3>Estrutura Completa</h3>
-                    <div class="code-example">
-                        &lt;!DOCTYPE html&gt;<br>
-                        &lt;html lang="pt-BR"&gt;<br>
-                        &lt;head&gt;<br>
-                        &nbsp;&nbsp;&lt;meta charset="UTF-8"&gt;<br>
-                        &nbsp;&nbsp;&lt;meta name="viewport" content="width=device-width, initial-scale=1.0"&gt;<br>
-                        &nbsp;&nbsp;&lt;title&gt;Título da Página&lt;/title&gt;<br>
-                        &lt;/head&gt;<br>
-                        &lt;body&gt;<br>
-                        &nbsp;&nbsp;&lt;h1&gt;Meu Primeiro Cabeçalho&lt;/h1&gt;<br>
-                        &nbsp;&nbsp;&lt;p&gt;Meu primeiro parágrafo.&lt;/p&gt;<br>
-                        &lt;/body&gt;<br>
-                        &lt;/html&gt;
-                    </div>
-                    
-                    <h3>Partes da Estrutura</h3>
-                    <ul>
-                        <li><strong>&lt;!DOCTYPE html&gt;</strong> - Define que este documento é HTML5</li>
-                        <li><strong>&lt;html&gt;</strong> - O elemento raiz de uma página HTML</li>
-                        <li><strong>&lt;head&gt;</strong> - Contém metainformações sobre o documento</li>
-                        <li><strong>&lt;title&gt;</strong> - Especifica um título para o documento</li>
-                        <li><strong>&lt;body&gt;</strong> - Contém o conteúdo visível da página</li>
-                    </ul>
-                    
-                    <div class="recommendation">
-                        <strong>Para fixar na mente:</strong> Crie pelo menos 5 páginas HTML com esta estrutura básica. A prática constante é essencial!
-                    </div>
-                    
-                    <div class="navigation">
-                        <button class="nav-btn prev-btn" onclick="showLesson('html', 1)">
-                            <i class="fas fa-arrow-left"></i> Aula Anterior
-                        </button>
-                        <button class="nav-btn next-btn" onclick="showLesson('html', 3)">
-                            Próxima Aula <i class="fas fa-arrow-right"></i>
-                        </button>
-                    </div>
-                </div>
-                
-                <div id="html-lesson-3" class="lesson-content">
-                    <div class="lesson-title">
-                        <div class="lesson-icon html-icon">3</div>
-                        <h2>Formatação de Texto</h2>
-                    </div>
-                    
-                    <div class="user-info">
-                        <div class="name">Malkdev0</div>
-                        <div class="code">JMFXP22</div>
-                    </div>
-                    
-                    <div class="progress-bar">
-                        <div class="progress" style="width: 75%"></div>
-                    </div>
-                    
-                    <p>HTML oferece várias tags para formatar texto e melhorar a legibilidade do conteúdo.</p>
-                    
-                    <h3>Tags de Formatação</h3>
-                    <div class="code-example">
-                        &lt;h1&gt;Título Principal&lt;/h1&gt;<br>
-                        &lt;h2&gt;Subtítulo&lt;/h2&gt;<br>
-                        &lt;p&gt;Este é um &lt;strong&gt;parágrafo&lt;/strong&gt; com &lt;em&gt;ênfase&lt;/em&gt;.&lt;/p&gt;<br>
-                        &lt;ul&gt;<br>
-                        &nbsp;&nbsp;&lt;li&gt;Item 1 da lista&lt;/li&gt;<br>
-                        &nbsp;&nbsp;&lt;li&gt;Item 2 da lista&lt;/li&gt;<br>
-                        &lt;/ul&gt;
-                    </div>
-                    
-                    <h3>Tags Comuns de Formatação</h3>
-                    <ul>
-                        <li><strong>&lt;strong&gt;</strong> - Texto importante (normalmente em negrito)</li>
-                        <li><strong>&lt;em&gt;</strong> - Texto enfatizado (normalmente em itálico)</li>
-                        <li><strong>&lt;mark&gt;</strong> - Texto marcado</li>
-                        <li><strong>&lt;small&gt;</strong> - Texto menor</li>
-                        <li><strong>&lt;del&gt;</strong> - Texto excluído</li>
-                        <li><strong>&lt;ins&gt;</strong> - Texto inserido</li>
-                    </ul>
-                    
-                    <div class="recommendation">
-                        <strong>Para fixar na mente:</strong> Crie uma página com exemplos de todas as tags de formatação. Revise esta página regularmente.
-                    </div>
-                    
-                    <div class="navigation">
-                        <button class="nav-btn prev-btn" onclick="showLesson('html', 2)">
-                            <i class="fas fa-arrow-left"></i> Aula Anterior
-                        </button>
-                        <button class="nav-btn next-btn" onclick="showTab('html-tab')">
-                            Finalizar <i class="fas fa-check"></i>
-                        </button>
-                    </div>
-                </div>
-            </div>
-            
-            <!-- Java Tab -->
-            <div id="java-tab" class="tab-container">
-                <div class="tab-header java-header">
-                    <h2><i class="fab fa-java"></i> Curso de Java</h2>
-                    <p>Aprenda a programar com Java, uma linguagem versátil e poderosa</p>
-                </div>
-                
-                <div class="user-info">
-                    <div class="name">Malkdev0</div>
-                    <div class="code">JMFXP22</div>
-                </div>
-                
-                <div class="lessons-container">
-                    <div class="lesson-card">
-                        <h3><span class="lesson-icon java-icon">1</span> Introdução ao Java</h3>
-                        <p>Java é uma linguagem de programação orientada a objetos, robusta e multiplataforma.</p>
-                        <div class="code-example">
-                            public class OlaMundo {<br>
-                            &nbsp;&nbsp;public static void main(String[] args) {<br>
-                            &nbsp;&nbsp;&nbsp;&nbsp;System.out.println("Olá, Mundo!");<br>
-                            &nbsp;&nbsp;}<br>
-                            }
-                        </div>
-                        <div class="recommendation">
-                            <strong>Recomendação:</strong> Anote a estrutura básica de um programa Java no caderno.
-                        </div>
-                        <button class="nav-btn next-btn" onclick="showLesson('java', 1)">
-                            Começar Aula <i class="fas fa-arrow-right"></i>
-                        </button>
-                    </div>
-                    
-                    <div class="lesson-card">
-                        <h3><span class="lesson-icon java-icon">2</span> Variáveis e Tipos de Dados</h3>
-                        <p>Aprenda a declarar variáveis e os diferentes tipos de dados em Java.</p>
-                        <div class="recommendation">
-                            <strong>Recomendação:</strong> Crie uma tabela com os tipos de dados Java no caderno.
-                        </div>
-                        <button class="nav-btn next-btn" onclick="showLesson('java', 2)">
-                            Continuar <i class="fas fa-arrow-right"></i>
-                        </button>
-                    </div>
-                    
-                    <div class="lesson-card">
-                        <h3><span class="lesson-icon java-icon">3</span> Estruturas de Controle</h3>
-                        <p>Domine if/else, loops e switch para controlar o fluxo do seu programa.</p>
-                        <div class="recommendation">
-                            <strong>Recomendação:</strong> Escreva exemplos de cada estrutura de controle no caderno.
-                        </div>
-                        <button class="nav-btn next-btn" onclick="showLesson('java', 3)">
-                            Continuar <i class="fas fa-arrow-right"></i>
-                        </button>
-                    </div>
-                </div>
-                
-                <!-- Java Lesson Content -->
-                <div id="java-lesson-1" class="lesson-content">
-                    <div class="lesson-title">
-                        <div class="lesson-icon java-icon">1</div>
-                        <h2>Introdução ao Java</h2>
-                    </div>
-                    
-                    <div class="user-info">
-                        <div class="name">Malkdev0</div>
-                        <div class="code">JMFXP22</div>
-                    </div>
-                    
-                    <div class="progress-bar">
-                        <div class="progress" style="width: 25%"></div>
-                    </div>
-                    
-                    <p>Java é uma das linguagens de programação mais populares do mundo, usada em bilhões de dispositivos.</p>
-                    
-                    <h3>Características do Java</h3>
-                    <ul>
-                        <li><strong>Orientada a objetos</strong> - Tudo em Java é um objeto</li>
-                        <li><strong>Plataforma independente</strong> - "Write once, run anywhere"</li>
-                        <li><strong>Robusta</strong> - Possui gerenciamento de memória e tratamento de exceções</li>
-                        <li><strong>Segura</strong> - Possui recursos de segurança integrados</li>
-                    </ul>
-                    
-                    <h3>Estrutura Básica</h3>
-                    <div class="code-example">
-                        public class NomeDaClasse {<br>
-                        &nbsp;&nbsp;public static void main(String[] args) {<br>
-                        &nbsp;&nbsp;&nbsp;&nbsp;// Seu código aqui<br>
-                        &nbsp;&nbsp;}<br>
-                        }
-                    </div>
-                    
-                    <p>Explicação:</p>
-                    <ul>
-                        <li><strong>public</strong> - Modificador de acesso que permite acesso de qualquer lugar</li>
-                        <li><strong>class</strong> - Palavra-chave para definir uma classe</li>
-                        <li><strong>NomeDaClasse</strong> - Nome da classe (deve corresponder ao nome do arquivo)</li>
-                        <li><strong>main</strong> - Método principal, ponto de entrada do programa</li>
-                    </ul>
-                    
-                    <div class="recommendation">
-                        <strong>Para fixar na mente:</strong> Escreva a estrutura básica de um programa Java várias vezes no caderno até memorizar.
-                    </div>
-                    
-                    <div class="navigation">
-                        <button class="nav-btn prev-btn" onclick="showTab('java-tab')">
-                            <i class="fas fa-arrow-left"></i> Voltar
-                        </button>
-                        <button class="nav-btn next-btn" onclick="showLesson('java', 2)">
-                            Próxima Aula <i class="fas fa-arrow-right"></i>
-                        </button>
-                    </div>
-                </div>
-                
-                <div id="java-lesson-2" class="lesson-content">
-                    <div class="lesson-title">
-                        <div class="lesson-icon java-icon">2</div>
-                        <h2>Variáveis e Tipos de Dados</h2>
-                    </div>
-                    
-                    <div class="user-info">
-                        <div class="name">Malkdev0</div>
-                        <div class="code">JMFXP22</div>
-                    </div>
-                    
-                    <div class="progress-bar">
-                        <div class="progress" style="width: 50%"></div>
-                    </div>
-                    
-                    <p>Variáveis são containers para armazenar dados. Java é uma linguagem fortemente tipada, o que significa que você deve declarar o tipo de cada variável.</p>
-                    
-                    <h3>Declarando Variáveis</h3>
-                    <div class="code-example">
-                        tipo nomeDaVariavel = valor;
-                    </div>
-                    
-                    <p>Exemplos:</p>
-                    <div class="code-example">
-                        int idade = 25;<br>
-                        double altura = 1.75;<br>
-                        char letra = 'A';<br>
-                        boolean ativo = true;<br>
-                        String nome = "João";
-                    </div>
-                    
-                    <h3>Tipos de Dados Primitivos</h3>
-                    <ul>
-                        <li><strong>byte</strong> - 8 bits (-128 a 127)</li>
-                        <li><strong>short</strong> - 16 bits (-32,768 a 32,767)</li>
-                        <li><strong>int</strong> - 32 bits (-2^31 a 2^31-1)</li>
-                        <li><strong>long</strong> - 64 bits (-2^63 a 2^63-1)</li>
-                        <li><strong>float</strong> - Ponto flutuante de 32 bits</li>
-                        <li><strong>double</strong> - Ponto flutuante de 64 bits</li>
-                        <li><strong>boolean</strong> - true ou false</li>
-                        <li><strong>char</strong> - Um único caractere Unicode (16 bits)</li>
-                    </ul>
-                    
-                    <div class="recommendation">
-                        <strong>Para fixar na mente:</strong> Crie uma tabela no caderno com todos os tipos de dados primitivos, seus tamanhos e exemplos de uso.
-                    </div>
-                    
-                    <div class="navigation">
-                        <button class="nav-btn prev-btn" onclick="showLesson('java', 1)">
-                            <i class="fas fa-arrow-left"></i> Aula Anterior
-                        </button>
-                        <button class="nav-btn next-btn" onclick="showLesson('java', 3)">
-                            Próxima Aula <i class="fas fa-arrow-right"></i>
-                        </button>
-                    </div>
-                </div>
-                
-                <div id="java-lesson-3" class="lesson-content">
-                    <div class="lesson-title">
-                        <div class="lesson-icon java-icon">3</div>
-                        <h2>Estruturas de Controle</h2>
-                    </div>
-                    
-                    <div class="user-info">
-                        <div class="name">Malkdev0</div>
-                        <div class="code">JMFXP22</div>
-                    </div>
-                    
-                    <div class="progress-bar">
-                        <div class="progress" style="width: 75%"></div>
-                    </div>
-                    
-                    <p>As estruturas de controle permitem que você tome decisões e repita ações em seu código Java.</p>
-                    
-                    <h3>Declaração if-else</h3>
-                    <div class="code-example">
-                        if (condição) {<br>
-                        &nbsp;&nbsp;// código executado se a condição for verdadeira<br>
-                        } else {<br>
-                        &nbsp;&nbsp;// código executado se a condição for falsa<br>
-                        }
-                    </div>
-                    
-                    <h3>Loops</h3>
-                    <p>Java oferece vários tipos de loops para repetir ações:</p>
-                    
-                    <p><strong>for loop:</strong></p>
-                    <div class="code-example">
-                        for (inicialização; condição; incremento) {<br>
-                        &nbsp;&nbsp;// código a ser repetido<br>
-                        }
-                    </div>
-                    
-                    <p><strong>while loop:</strong></p>
-                    <div class="code-example">
-                        while (condição) {<br>
-                        &nbsp;&nbsp;// código a ser repetido<br>
-                        }
-                    </div>
-                    
-                    <p><strong>do-while loop:</strong></p>
-                    <div class="code-example">
-                        do {<br>
-                        &nbsp;&nbsp;// código a ser repetido<br>
-                        } while (condição);
-                    </div>
-                    
-                    <h3>Declaração switch</h3>
-                    <div class="code-example">
-                        switch (expressão) {<br>
-                        &nbsp;&nbsp;case valor1:<br>
-                        &nbsp;&nbsp;&nbsp;&nbsp;// código para valor1<br>
-                        &nbsp;&nbsp;&nbsp;&nbsp;break;<br>
-                        &nbsp;&nbsp;case valor2:<br>
-                        &nbsp;&nbsp;&nbsp;&nbsp;// código para valor2<br>
-                        &nbsp;&nbsp;&nbsp;&nbsp;break;<br>
-                        &nbsp;&nbsp;default:<br>
-                        &nbsp;&nbsp;&nbsp;&nbsp;// código se nenhum caso corresponder<br>
-                        }
-                    </div>
-                    
-                    <div class="recommendation">
-                        <strong>Para fixar na mente:</strong> Escreva exemplos de cada estrutura de controle no caderno. Pratique criando pequenos programas que usem essas estruturas.
-                    </div>
-                    
-                    <div class="navigation">
-                        <button class="nav-btn prev-btn" onclick="showLesson('java', 2)">
-                            <i class="fas fa-arrow-left"></i> Aula Anterior
-                        </button>
-                        <button class="nav-btn next-btn" onclick="showTab('java-tab')">
-                            Finalizar <i class="fas fa-check"></i>
-                        </button>
-                    </div>
-                </div>
-            </div>
-            
-            <!-- Lua Tab -->
-            <div id="lua-tab" class="tab-container">
-                <div class="tab-header lua-header">
-                    <h2><i class="fas fa-code"></i> Curso de Lua</h2>
-                    <p>Aprenda Lua, uma linguagem de script leve e poderosa</p>
-                </div>
-                
-                <div class="user-info">
-                    <div class="name">Malkdev0</div>
-                    <div class="code">JMFXP22</div>
-                </div>
-                
-                <div class="lessons-container">
-                    <div class="lesson-card">
-                        <h3><span class="lesson-icon lua-icon">1</span> Introdução ao Lua</h3>
-                        <p>Lua é uma linguagem de script leve, embutível e rápida, muito usada em jogos e aplicações.</p>
-                        <div class="code-example">
-                            print("Olá, Mundo!")
-                        </div>
-                        <div class="recommendation">
-                            <strong>Recomendação:</strong> Anote os comandos básicos de Lua no caderno.
-                        </div>
-                        <button class="nav-btn next-btn" onclick="showLesson('lua', 1)">
-                            Começar Aula <i class="fas fa-arrow-right"></i>
-                        </button>
-                    </div>
-                    
-                    <div class="lesson-card">
-                        <h3><span class="lesson-icon lua-icon">2</span> Variáveis e Tipos</h3>
-                        <p>Aprenda sobre variáveis e os tipos de dados dinâmicos em Lua.</p>
-                        <div class="recommendation">
-                            <strong>Recomendação:</strong> Crie exemplos de cada tipo de dado no caderno.
-                        </div>
-                        <button class="nav-btn next-btn" onclick="showLesson('lua', 2)">
-                            Continuar <i class="fas fa-arrow-right"></i>
-                        </button>
-                    </div>
-                    
-                    <div class="lesson-card">
-                        <h3><span class="lesson-icon lua-icon">3</span> Estruturas de Controle</h3>
-                        <p>Domine if, for, while e outras estruturas para controlar o fluxo em Lua.</p>
-                        <div class="recommendation">
-                            <strong>Recomendação:</strong> Escreva exemplos de estruturas de controle no caderno.
-                        </div>
-                        <button class="nav-btn next-btn" onclick="showLesson('lua', 3)">
-                            Continuar <i class="fas fa-arrow-right"></i>
-                        </button>
-                    </div>
-                </div>
-                
-                <!-- Lua Lesson Content -->
-                <div id="lua-lesson-1" class="lesson-content">
-                    <div class="lesson-title">
-                        <div class="lesson-icon lua-icon">1</div>
-                        <h2>Introdução ao Lua</h2>
-                    </div>
-                    
-                    <div class="user-info">
-                        <div class="name">Malkdev0</div>
-                        <div class="code">JMFXP22</div>
-                    </div>
-                    
-                    <div class="progress-bar">
-                        <div class="progress" style="width: 25%"></div>
-                    </div>
-                    
-                    <p>Lua é uma linguagem de programação poderosa, eficiente e leve, projetada para extensão de aplicações.</p>
-                    
-                    <h3>Características do Lua</h3>
-                    <ul>
-                        <li><strong>Leve</strong> - O interpretador Lua completo tem apenas cerca de 247KB</li>
-                        <li><strong>Rápida</strong> - É uma das linguagens de script mais rápidas</li>
-                        <li><strong>Embarcável</strong> - Fácil de integrar em aplicações C/C++</li>
-                        <li><strong>Multiplataforma</strong> - Funciona em Windows, Linux, Mac, etc.</li>
-                    </ul>
-                    
-                    <h3>Primeiro Programa em Lua</h3>
-                    <div class="code-example">
-                        print("Olá, Mundo!")
-                    </div>
-                    
-                    <p>Para executar um script Lua, salve o código em um arquivo com extensão .lua e execute com o interpretador Lua.</p>
-                    
-                    <h3>Comentários</h3>
-                    <div class="code-example">
-                        -- Isto é um comentário de uma linha<br>
-                        <br>
-                        --[[<br>
-                        Isto é um comentário<br>
-                        de múltiplas linhas<br>
-                        ]]
-                    </div>
-                    
-                    <div class="recommendation">
-                        <strong>Para fixar na mente:</strong> Instale o interpretador Lua e pratique escrevendo pequenos scripts. Anote os comandos básicos no caderno.
-                    </div>
-                    
-                    <div class="navigation">
-                        <button class="nav-btn prev-btn" onclick="showTab('lua-tab')">
-                            <i class="fas fa-arrow-left"></i> Voltar
-                        </button>
-                        <button class="nav-btn next-btn" onclick="showLesson('lua', 2)">
-                            Próxima Aula <i class="fas fa-arrow-right"></i>
-                        </button>
-                    </div>
-                </div>
-                
-                <div id="lua-lesson-2" class="lesson-content">
-                    <div class="lesson-title">
-                        <div class="lesson-icon lua-icon">2</div>
-/div>
-                        <h2>Variáveis e Tipos</h2>
-                    </div>
-                    
-                    <div class="user-info">
-                        <div class="name">Malkdev0</div>
-                        <div class="code">JMFXP22</div>
-                    </div>
-                    
-                    <div class="progress-bar">
-                        <div class="progress" style="width: 50%"></div>
-                    </div>
-                    
-                    <p>Lua é uma linguagem dinamicamente tipada, o que significa que as variáveis não têm tipos; os valores têm.</p>
-                    
-                    <h3>Declarando Variáveis</h3>
-                    <p>Em Lua, você não precisa declarar variáveis com um tipo específico. Basta atribuir um valor:</p>
-                    <div class="code-example">
-                        nome = "Maria"  -- string<br>
-                        idade = 25     -- number<br>
-                        ativo = true   -- boolean
-                    </div>
-                    
-                    <h3>Tipos de Dados em Lua</h3>
-                    <ul>
-                        <li><strong>nil</strong> - Representa a ausência de um valor útil</li>
-                        <li><strong>boolean</strong> - true ou false</li>
-                        <li><strong>number</strong> - Representa números reais (doubles)</li>
-                        <li><strong>string</strong> - Sequência de caracteres</li>
-                        <li><strong>function</strong> - Funções</li>
-                        <li><strong>table</strong> - Estrutura de dados principal (arrays, dicionários, etc.)</li>
-                    </ul>
-                    
-                    <h3>Verificando Tipos</h3>
-                    <p>Use a função type() para verificar o tipo de um valor:</p>
-                    <div class="code-example">
-                        print(type("Hello"))  -- string<br>
-                        print(type(10.4))    -- number<br>
-                        print(type(print))   -- function<br>
-                        print(type(true))    -- boolean<br>
-                        print(type(nil))     -- nil
-                    </div>
-                    
-                    <div class="recommendation">
-                        <strong>Para fixar na mente:</strong> Crie uma tabela no caderno com todos os tipos de dados em Lua e exemplos de cada um. Pratique usando a função type().
-                    </div>
-                    
-                    <div class="navigation">
-                        <button class="nav-btn prev-btn" onclick="showLesson('lua', 1)">
-                            <i class="fas fa-arrow-left"></i> Aula Anterior
-                        </button>
-                        <button class="nav-btn next-btn" onclick="showLesson('lua', 3)">
-                            Próxima Aula <i class="fas fa-arrow-right"></i>
-                        </button>
-                    </div>
-                </div>
-                
-                <div id="lua-lesson-3" class="lesson-content">
-                    <div class="lesson-title">
-                        <div class="lesson-icon lua-icon">3</div>
-                        <h2>Estruturas de Controle</h2>
-                    </div>
-                    
-                    <div class="user-info">
-                        <div class="name">Malkdev0</div>
-                        <div class="code">JMFXP22</div>
-                    </div>
-                    
-                    <div class="progress-bar">
-                        <div class="progress" style="width: 75%"></div>
-                    </div>
-                    
-                    <p>Lua oferece estruturas de controle familiares para gerenciar o fluxo de execução do programa.</p>
-                    
-                    <h3>Condicionais: if, elseif, else</h3>
-                    <div class="code-example">
-                        if condição then<br>
-                        &nbsp;&nbsp;-- código se a condição for verdadeira<br>
-                        elseif outra_condição then<br>
-                        &nbsp;&nbsp;-- código se a outra condição for verdadeira<br>
-                        else<br>
-                        &nbsp;&nbsp;-- código se nenhuma condição for verdadeira<br>
-                        end
-                    </div>
-                    
-                    <h3>Loops</h3>
-                    <p><strong>while loop:</strong></p>
-                    <div class="code-example">
-                        while condição do<br>
-                        &nbsp;&nbsp;-- código a ser repetido<br>
-                        end
-                    </div>
-                    
-                    <p><strong>repeat-until loop:</strong></p>
-                    <div class="code-example">
-                        repeat<br>
-                        &nbsp;&nbsp;-- código a ser repetido<br>
-                        until condição
-                    </div>
-                    
-                    <p><strong>for loop:</strong></p>
-                    <div class="code-example">
-                        for variável = início, fim, incremento do<br>
-                        &nbsp;&nbsp;-- código a ser repetido<br>
-                        end
-                    </div>
-                    
-                    <h3>Exemplo Prático</h3>
-                    <div class="code-example">
-                        -- Imprimir números de 1 a 5<br>
-                        for i = 1, 5 do<br>
-                        &nbsp;&nbsp;print(i)<br>
-                        end<br>
-                        <br>
-                        -- Contar até 10 com while<br>
-                        contador = 1<br>
-                        while contador <= 10 do<br>
-                        &nbsp;&nbsp;print(contador)<br>
-                        &nbsp;&nbsp;contador = contador + 1<br>
-                        end
-                    </div>
-                    
-                    <div class="recommendation">
-                        <strong>Para fixar na mente:</strong> Escreva exemplos de cada estrutura de controle no caderno. Crie pequenos programas que usem essas estruturas para resolver problemas simples.
-                    </div>
-                    
-                    <div class="navigation">
-                        <button class="nav-btn prev-btn" onclick="showLesson('lua', 2)">
-                            <i class="fas fa-arrow-left"></i> Aula Anterior
-                        </button>
-                        <button class="nav-btn next-btn" onclick="showTab('lua-tab')">
-                            Finalizar <i class="fas fa-check"></i>
-                        </button>
-                    </div>
-                </div>
-            </div>
-        </div>
-        
-        <footer>
-            <p>CodeMaster - Aprenda Programação de Forma Interativa</p>
-            <div class="user-info">
-                <div class="name">Malkdev0</div>
-                <div class="code">JMFXP22</div>
-            </div>
-        </footer>
     </div>
-
-    <script>
-        // Função para mostrar a aba selecionada
-        function showTab(tabId) {
-            // Esconder todas as abas
-            const tabs = document.querySelectorAll('.tab-container');
-            tabs.forEach(tab => {
-                tab.classList.remove('active');
-            });
-            
-            // Esconder todo o conteúdo das aulas
-            const lessons = document.querySelectorAll('.lesson-content');
-            lessons.forEach(lesson => {
-                lesson.classList.remove('active');
-            });
-            
-            // Mostrar a aba selecionada
-            document.getElementById(tabId).classList.add('active');
-        }
-        
-        // Função para mostrar uma aula específica
-        function showLesson(language, lessonNumber) {
-            // Esconder todo o conteúdo das aulas
-            const lessons = document.querySelectorAll('.lesson-content');
-            lessons.forEach(lesson => {
-                lesson.classList.remove('active');
-            });
-            
-            // Mostrar a aula selecionada
-            document.getElementById(`${language}-lesson-${lessonNumber}`).classList.add('active');
-        }
-        
-        // Inicializar com a aba HTML ativa
-        document.addEventListener('DOMContentLoaded', function() {
-            showTab('html-tab');
-        });
-    </script>
+    
+    <div class="footer">
+        <p class="code">Jmfxp22</p>
+    </div>
 </body>
 </html>

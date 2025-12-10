@@ -1093,12 +1093,14 @@
                                         <span style="font-weight: 600;">Formulário aceitando respostas</span>
                                     </label>
                                 </div>
-          <div class="question">
+                            </div>
+                            
+                            <div class="question">
                                 <div class="question-text">Mensagem quando formulário fechado</div>
                                 <textarea class="answer-input" id="closedMessage">O formulário de inscrição para staff não está mais recebendo respostas no momento. Agradecemos seu interesse!</textarea>
                             </div>
                             
-                            <button class="submit-btn" style="margin: 20px 0 0; width: 100%;">Salvar Configurações</button>
+                            <button class="submit-btn" style="margin: 20px 0 0; width: 100%;" id="saveSettings">Salvar Configurações</button>
                         </div>
                     </div>
                 </div>
@@ -1177,21 +1179,32 @@
         const totalForms = document.getElementById('totalForms');
         const todayForms = document.getElementById('todayForms');
         const weekForms = document.getElementById('weekForms');
+        const saveSettings = document.getElementById('saveSettings');
         
         // Navegação entre abas
         const adminNavItems = document.querySelectorAll('.admin-nav-item');
         const adminTabContents = document.querySelectorAll('.admin-tab-content');
         const adminTabTitle = document.getElementById('adminTabTitle');
 
-        // Verificar status do formulário ao carregar
+        // Inicializar
         document.addEventListener('DOMContentLoaded', () => {
             checkFormStatus();
             updateStats();
+            loadFormsList();
+            loadRecentForms();
+            
+            // Carregar configurações salvas
+            if (localStorage.getItem('formSettings')) {
+                const savedSettings = JSON.parse(localStorage.getItem('formSettings'));
+                formSettings = savedSettings;
+                closedMessage.value = savedSettings.closedMessage;
+                formActiveToggle.checked = savedSettings.formActive;
+                formStatus.checked = savedSettings.formActive;
+            }
         });
 
         // Alternar entre formulário e painel admin
         adminToggle.addEventListener('click', () => {
-            // Verificar se já está logado
             const isLoggedIn = localStorage.getItem('adminLoggedIn') === 'true';
             
             if (isLoggedIn) {
@@ -1199,6 +1212,7 @@
                 adminPanel.style.display = 'block';
                 loadFormsList();
                 loadRecentForms();
+                updateStats();
             } else {
                 loginModal.style.display = 'flex';
             }
@@ -1236,13 +1250,14 @@
                 formClosed.style.display = 'none';
                 loadFormsList();
                 loadRecentForms();
+                updateStats();
                 showNotification('Login realizado com sucesso!', 'success');
             } else {
                 showNotification('E-mail ou senha incorretos!', 'error');
             }
         });
 
-        // Envio do formulário
+        // Envio do formulário (CORRIGIDO)
         staffForm.addEventListener('submit', (e) => {
             e.preventDefault();
             
@@ -1251,27 +1266,46 @@
                 return;
             }
             
-            // Coletar respostas
+            // Coletar TODAS as respostas corretamente
             const formData = new FormData(staffForm);
             const answers = {};
+            const formElements = staffForm.elements;
             
-            for (let [key, value] of formData.entries()) {
-                answers[key] = value;
+            // Coletar todos os campos
+            for (let element of formElements) {
+                if (element.name) {
+                    if (element.type === 'checkbox') {
+                        answers[element.name] = element.checked ? 'Sim' : 'Não';
+                    } else {
+                        answers[element.name] = element.value;
+                    }
+                }
             }
             
+            // Verificar se todas as respostas foram coletadas
+            console.log('Respostas coletadas:', answers);
+            
             // Criar objeto do formulário
+            const now = new Date();
             const formSubmission = {
                 id: Date.now(),
-                date: new Date().toLocaleString('pt-BR'),
-                timestamp: new Date().getTime(),
-                user: answers.q1,
-                discord: answers.q3,
+                date: now.toLocaleString('pt-BR'),
+                timestamp: now.getTime(),
+                user: answers.q1 || 'Não informado',
+                discord: answers.q3 || 'Não informado',
                 answers: answers
             };
             
-            // Adicionar à lista e salvar
+            // Adicionar à lista
             submittedForms.push(formSubmission);
-            localStorage.setItem('factualForms', JSON.stringify(submittedForms));
+            
+            // Salvar NO localStorage (CORRIGIDO)
+            try {
+                localStorage.setItem('factualForms', JSON.stringify(submittedForms));
+                console.log('Formulário salvo com sucesso! Total:', submittedForms.length);
+            } catch (error) {
+                console.error('Erro ao salvar no localStorage:', error);
+            }
             
             // Limpar formulário
             staffForm.reset();
@@ -1281,6 +1315,12 @@
             
             // Atualizar estatísticas
             updateStats();
+            
+            // Recarregar listas se o painel admin estiver visível
+            if (adminPanel.style.display === 'block') {
+                loadFormsList();
+                loadRecentForms();
+            }
         });
 
         // Navegação entre abas do admin
@@ -1288,25 +1328,22 @@
             item.addEventListener('click', () => {
                 const tab = item.getAttribute('data-tab');
                 
-                // Atualizar aba ativa
                 adminNavItems.forEach(navItem => navItem.classList.remove('active'));
                 item.classList.add('active');
                 
-                // Mostrar conteúdo da aba
                 adminTabContents.forEach(content => content.style.display = 'none');
                 document.getElementById(`${tab}Tab`).style.display = 'block';
                 
-                // Atualizar título
                 adminTabTitle.textContent = 
                     tab === 'dashboard' ? 'Dashboard' : 
                     tab === 'forms' ? 'Formulários Preenchidos' : 
                     'Configurações';
                 
-                // Carregar dados se necessário
                 if (tab === 'forms') {
                     loadFormsList();
                 } else if (tab === 'dashboard') {
                     loadRecentForms();
+                    updateStats();
                 }
             });
         });
@@ -1315,22 +1352,35 @@
         formActiveToggle.addEventListener('change', function() {
             formSettings.formActive = this.checked;
             formStatus.checked = this.checked;
-            localStorage.setItem('formSettings', JSON.stringify(formSettings));
+            saveSettingsToStorage();
             checkFormStatus();
             
-            if (this.checked) {
-                showNotification('Formulário ativado com sucesso!', 'success');
-            } else {
-                showNotification('Formulário desativado. Não aceitará mais respostas.', 'warning');
-            }
+            showNotification(
+                this.checked ? 
+                'Formulário ativado com sucesso!' : 
+                'Formulário desativado. Não aceitará mais respostas.',
+                this.checked ? 'success' : 'warning'
+            );
         });
 
         formStatus.addEventListener('change', function() {
             formSettings.formActive = this.checked;
             formActiveToggle.checked = this.checked;
-            localStorage.setItem('formSettings', JSON.stringify(formSettings));
+            saveSettingsToStorage();
             checkFormStatus();
         });
+
+        // Salvar configurações
+        saveSettings.addEventListener('click', () => {
+            formSettings.closedMessage = closedMessage.value;
+            formSettings.formActive = formStatus.checked;
+            saveSettingsToStorage();
+            showNotification('Configurações salvas com sucesso!', 'success');
+        });
+
+        function saveSettingsToStorage() {
+            localStorage.setItem('formSettings', JSON.stringify(formSettings));
+        }
 
         // Verificar status do formulário
         function checkFormStatus() {
@@ -1341,14 +1391,17 @@
                 formClosed.style.display = 'none';
                 formContainer.style.display = 'block';
             }
-            
-            formActiveToggle.checked = formSettings.formActive;
-            formStatus.checked = formSettings.formActive;
         }
 
-        // Carregar lista de formulários
+        // Carregar lista de formulários (CORRIGIDO)
         function loadFormsList() {
             formsList.innerHTML = '';
+            
+            // Carregar dados mais recentes do localStorage
+            const updatedForms = JSON.parse(localStorage.getItem('factualForms')) || [];
+            submittedForms = updatedForms;
+            
+            console.log('Formulários carregados:', submittedForms.length);
             
             if (submittedForms.length === 0) {
                 formsList.innerHTML = '<p style="text-align: center; color: var(--gray); grid-column: 1 / -1; padding: 40px;">Nenhum formulário enviado ainda.</p>';
@@ -1375,9 +1428,13 @@
             });
         }
 
-        // Carregar formulários recentes (dashboard)
+        // Carregar formulários recentes (CORRIGIDO)
         function loadRecentForms() {
             recentFormsList.innerHTML = '';
+            
+            // Carregar dados mais recentes do localStorage
+            const updatedForms = JSON.parse(localStorage.getItem('factualForms')) || [];
+            submittedForms = updatedForms;
             
             if (submittedForms.length === 0) {
                 recentFormsList.innerHTML = '<p style="text-align: center; color: var(--gray); grid-column: 1 / -1; padding: 40px;">Nenhum formulário enviado ainda.</p>';
@@ -1404,8 +1461,12 @@
             });
         }
 
-        // Atualizar estatísticas
+        // Atualizar estatísticas (CORRIGIDO)
         function updateStats() {
+            // Carregar dados mais recentes
+            const updatedForms = JSON.parse(localStorage.getItem('factualForms')) || [];
+            submittedForms = updatedForms;
+            
             totalForms.textContent = submittedForms.length;
             
             // Formulários de hoje
@@ -1422,9 +1483,12 @@
 
         // Mostrar respostas de um formulário
         function showFormResponses(form) {
+            console.log('Mostrando respostas para:', form.user);
+            console.log('Respostas:', form.answers);
+            
             userInfo.innerHTML = `
                 <strong>Nome:</strong> ${form.user}<br>
-                <strong>Idade:</strong> ${form.answers.q2}<br>
+                <strong>Idade:</strong> ${form.answers.q2 || 'Não informado'}<br>
                 <strong>Discord:</strong> ${form.discord}<br>
                 <strong>Data de envio:</strong> ${form.date}
             `;
@@ -1477,7 +1541,7 @@
                 
                 let answerText = form.answers[questionKey];
                 if (i === 32) {
-                    answerText = answerText ? 'Sim' : 'Não';
+                    answerText = answerText || 'Não';
                 }
                 
                 responseItem.innerHTML = `
@@ -1491,7 +1555,6 @@
             responsesModal.style.display = 'flex';
         }
 
-        
         // Mostrar notificação
         function showNotification(message, type) {
             notification.textContent = message;
@@ -1502,26 +1565,20 @@
             }, 4000);
         }
 
-        // Verificar se já está logado ao carregar a página
-        window.addEventListener('DOMContentLoaded', () => {
-            const isLoggedIn = localStorage.getItem('adminLoggedIn') === 'true';
-            
-            if (isLoggedIn && window.location.hash === '#admin') {
-                formContainer.style.display = 'none';
-                adminPanel.style.display = 'block';
+        // Teste: Limpar todos os dados se necessário
+        function clearAllData() {
+            if (confirm('Tem certeza que deseja limpar TODOS os dados?')) {
+                localStorage.clear();
+                submittedForms = [];
+                showNotification('Todos os dados foram limpos!', 'success');
                 loadFormsList();
                 loadRecentForms();
+                updateStats();
             }
-            
-            // Carregar configurações
-            if (localStorage.getItem('formSettings')) {
-                formSettings = JSON.parse(localStorage.getItem('formSettings'));
-                checkFormStatus();
-                closedMessage.value = formSettings.closedMessage;
-            }
-        });
+        }
+
+        // Botão de emergência (pode ser removido depois)
+        console.log('Para limpar todos os dados, execute clearAllData() no console');
     </script>
 </body>
 </html>
-```
-        

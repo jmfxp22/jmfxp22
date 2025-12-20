@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
@@ -6,19 +5,25 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Jmfxp22 - Comunidade & Contato</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap">
+    <link rel="icon" href="https://cdn.discordapp.com/attachments/1200574578964054268/1451805730356072529/file_000000003b8871f59e29e05af88ead3a_2.png?ex=694782f3&is=69463173&hm=f512db517984b45047a3ba1b8006d60a1a437250799c016a6d850b6979171fea&">
     <style>
         /* ===== VARIÁVEIS E RESET ===== */
         :root {
             --discord: #5865F2;
             --roblox: #00A2FF;
             --youtube: #FF0000;
+            --email: #EA4335;
             --primary: #7289DA;
             --secondary: #FF3366;
-            --dark: #23272A;
+            --dark: #0A0E17;
+            --darker: #070A12;
             --light: #FFFFFF;
             --gray: #99AAB5;
+            --card-bg: rgba(255, 255, 255, 0.03);
             --gradient: linear-gradient(135deg, #7289DA 0%, #5865F2 100%);
+            --gradient-glow: linear-gradient(90deg, #6C63FF, #FF6584, #6C63FF);
+            --gradient-dark: linear-gradient(135deg, #0f0c29 0%, #302b63 50%, #24243e 100%);
         }
 
         * {
@@ -33,28 +38,51 @@
         }
 
         body {
-            background: linear-gradient(135deg, #0f0c29, #302b63, #24243e);
+            background: var(--gradient-dark);
             color: var(--light);
             min-height: 100vh;
             line-height: 1.6;
+            overflow-x: hidden;
         }
 
-        /* ===== HEADER ===== */
+        /* ===== ANIMAÇÕES ===== */
+        @keyframes float {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
+        }
+
+        @keyframes glow {
+            0%, 100% { box-shadow: 0 0 20px rgba(88, 101, 242, 0.3); }
+            50% { box-shadow: 0 0 40px rgba(88, 101, 242, 0.6); }
+        }
+
+        @keyframes gradient-shift {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        /* ===== HEADER PREMIUM ===== */
         header {
-            background: rgba(35, 39, 42, 0.95);
-            backdrop-filter: blur(10px);
+            background: rgba(10, 14, 23, 0.85);
+            backdrop-filter: blur(15px) saturate(180%);
             position: fixed;
             width: 100%;
             top: 0;
             z-index: 1000;
-            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
-            border-bottom: 2px solid var(--discord);
+            border-bottom: 1px solid rgba(88, 101, 242, 0.2);
+            transition: all 0.3s ease;
+        }
+
+        header.scrolled {
+            background: rgba(10, 14, 23, 0.95);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
         }
 
         .nav-container {
-            max-width: 1200px;
+            max-width: 1400px;
             margin: 0 auto;
-            padding: 1rem 2rem;
+            padding: 1.2rem 2rem;
             display: flex;
             justify-content: space-between;
             align-items: center;
@@ -63,113 +91,215 @@
         .logo {
             display: flex;
             align-items: center;
-            gap: 10px;
+            gap: 15px;
             font-size: 1.8rem;
             font-weight: 700;
             color: var(--light);
+            text-decoration: none;
+            transition: transform 0.3s ease;
         }
 
-        .logo-icon {
-            color: var(--discord);
-            background: var(--gradient);
-            width: 40px;
-            height: 40px;
+        .logo:hover {
+            transform: scale(1.05);
+        }
+
+        .logo-img {
+            width: 50px;
+            height: 50px;
             border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
+            border: 3px solid var(--discord);
+            box-shadow: 0 0 25px rgba(88, 101, 242, 0.5);
+            object-fit: cover;
+            animation: glow 3s infinite;
+        }
+
+        .logo-text {
+            background: linear-gradient(45deg, #fff, var(--discord));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            font-weight: 800;
+            letter-spacing: 1px;
         }
 
         .nav-links {
             display: flex;
-            gap: 2rem;
+            gap: 2.5rem;
+            align-items: center;
         }
 
         .nav-links a {
             color: var(--gray);
             text-decoration: none;
             font-weight: 500;
+            font-size: 1.1rem;
             transition: all 0.3s ease;
-            padding: 0.5rem 1rem;
-            border-radius: 20px;
+            padding: 0.6rem 1.5rem;
+            border-radius: 30px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .nav-links a::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(88, 101, 242, 0.2), transparent);
+            transition: 0.5s;
+        }
+
+        .nav-links a:hover::before {
+            left: 100%;
         }
 
         .nav-links a:hover {
             color: var(--light);
-            background: rgba(88, 101, 242, 0.1);
+            background: rgba(88, 101, 242, 0.15);
+            transform: translateY(-2px);
         }
 
-        /* ===== HERO SECTION ===== */
+        .nav-links a.active {
+            color: var(--light);
+            background: rgba(88, 101, 242, 0.25);
+        }
+
+        /* ===== HERO SECTION PREMIUM ===== */
         .hero {
-            padding: 150px 2rem 100px;
-            max-width: 1200px;
+            padding: 180px 2rem 120px;
+            max-width: 1400px;
             margin: 0 auto;
             text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 800px;
+            height: 800px;
+            background: radial-gradient(circle, rgba(88, 101, 242, 0.1) 0%, transparent 70%);
+            z-index: -1;
         }
 
         .profile-container {
             display: flex;
             flex-direction: column;
             align-items: center;
-            gap: 2rem;
-            margin-bottom: 3rem;
+            gap: 3rem;
+            margin-bottom: 4rem;
         }
 
         .avatar {
-            width: 200px;
-            height: 200px;
+            width: 220px;
+            height: 220px;
             border-radius: 50%;
-            border: 5px solid var(--discord);
-            box-shadow: 0 0 30px rgba(88, 101, 242, 0.5);
-            background: linear-gradient(45deg, #667eea, #764ba2);
+            border: 4px solid transparent;
+            background: var(--gradient) border-box;
+            position: relative;
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 4rem;
-            color: white;
+            animation: float 4s ease-in-out infinite;
+            box-shadow: 0 20px 60px rgba(88, 101, 242, 0.4);
+        }
+
+        .avatar::after {
+            content: '';
+            position: absolute;
+            top: -8px;
+            left: -8px;
+            right: -8px;
+            bottom: -8px;
+            border-radius: 50%;
+            background: linear-gradient(45deg, #6C63FF, #FF6584, #6C63FF);
+            background-size: 200% 200%;
+            animation: gradient-shift 3s ease infinite;
+            z-index: -1;
+            opacity: 0.7;
+        }
+
+        .avatar-img {
+            width: 100%;
+            height: 100%;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 4px solid var(--darker);
+        }
+
+        .title-container {
+            position: relative;
         }
 
         .title {
-            font-size: 3.5rem;
-            font-weight: 700;
+            font-size: 4rem;
+            font-weight: 800;
             margin-bottom: 1rem;
-            background: linear-gradient(45deg, #fff, var(--discord));
+            background: linear-gradient(45deg, #fff, var(--discord), #fff);
+            background-size: 200% auto;
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
-            text-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+            animation: gradient-shift 3s ease infinite;
+            text-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+        }
+
+        .title-badge {
+            display: inline-block;
+            background: var(--gradient);
+            color: white;
+            padding: 0.5rem 1.5rem;
+            border-radius: 30px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            margin-top: 1rem;
+            box-shadow: 0 10px 20px rgba(88, 101, 242, 0.3);
+            animation: float 3s ease-in-out infinite;
+            animation-delay: 1s;
         }
 
         .subtitle {
-            font-size: 1.3rem;
+            font-size: 1.4rem;
             color: var(--gray);
-            max-width: 600px;
-            margin: 0 auto 2rem;
+            max-width: 700px;
+            margin: 0 auto 3rem;
+            line-height: 1.8;
         }
 
-        /* ===== BOTÕES PRINCIPAIS ===== */
+        .highlight {
+            color: var(--discord);
+            font-weight: 600;
+        }
+
+        /* ===== BOTÕES PREMIUM ===== */
         .buttons-container {
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: center;
-            gap: 1.5rem;
-            margin: 3rem 0;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+            margin: 4rem auto;
+            max-width: 1200px;
         }
 
         .btn {
-            padding: 1.2rem 2.5rem;
-            border-radius: 50px;
+            padding: 1.5rem 2.5rem;
+            border-radius: 20px;
             text-decoration: none;
             font-weight: 600;
-            font-size: 1.1rem;
+            font-size: 1.2rem;
             display: flex;
             align-items: center;
-            gap: 12px;
-            transition: all 0.3s ease;
-            min-width: 250px;
             justify-content: center;
-            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+            gap: 15px;
+            transition: all 0.4s ease;
             position: relative;
             overflow: hidden;
+            border: none;
+            backdrop-filter: blur(10px);
+            min-height: 80px;
         }
 
         .btn::before {
@@ -180,133 +310,272 @@
             width: 100%;
             height: 100%;
             background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
-            transition: 0.5s;
+            transition: 0.6s;
         }
 
         .btn:hover::before {
             left: 100%;
         }
 
+        .btn-content {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            z-index: 2;
+        }
+
+        .btn-icon {
+            font-size: 1.8rem;
+            transition: transform 0.3s ease;
+        }
+
+        .btn:hover .btn-icon {
+            transform: scale(1.2);
+        }
+
         .btn-discord {
-            background: var(--gradient);
+            background: linear-gradient(135deg, var(--discord), #4752C4);
             color: white;
-            border: 2px solid var(--discord);
+            border: 2px solid rgba(255, 255, 255, 0.1);
+            box-shadow: 0 15px 35px rgba(88, 101, 242, 0.3);
         }
 
         .btn-roblox {
-            background: linear-gradient(135deg, #00A2FF, #0080FF);
+            background: linear-gradient(135deg, var(--roblox), #0077CC);
             color: white;
-            border: 2px solid #00A2FF;
+            border: 2px solid rgba(255, 255, 255, 0.1);
+            box-shadow: 0 15px 35px rgba(0, 162, 255, 0.3);
         }
 
         .btn-email {
-            background: linear-gradient(135deg, #FF3366, #FF0066);
+            background: linear-gradient(135deg, var(--email), #D44638);
             color: white;
-            border: 2px solid #FF3366;
+            border: 2px solid rgba(255, 255, 255, 0.1);
+            box-shadow: 0 15px 35px rgba(234, 67, 53, 0.3);
         }
 
         .btn-youtube {
-            background: linear-gradient(135deg, #FF0000, #CC0000);
+            background: linear-gradient(135deg, var(--youtube), #CC0000);
             color: white;
-            border: 2px solid #FF0000;
+            border: 2px solid rgba(255, 255, 255, 0.1);
+            box-shadow: 0 15px 35px rgba(255, 0, 0, 0.3);
         }
 
         .btn:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.3);
+            transform: translateY(-8px) scale(1.03);
+            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.4);
         }
 
-        .btn i {
-            font-size: 1.4rem;
-        }
-
-        /* ===== SEÇÃO COMUNIDADE ===== */
+        /* ===== SEÇÃO COMUNIDADE PREMIUM ===== */
         .section {
-            padding: 80px 2rem;
-            max-width: 1200px;
+            padding: 120px 2rem;
+            max-width: 1400px;
             margin: 0 auto;
+            position: relative;
+        }
+
+        .section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 1px;
+            background: linear-gradient(90deg, transparent, var(--discord), transparent);
         }
 
         .section-title {
             text-align: center;
-            font-size: 2.5rem;
-            margin-bottom: 3rem;
+            font-size: 3.2rem;
+            margin-bottom: 4rem;
             color: var(--light);
+            position: relative;
+            display: inline-block;
+            left: 50%;
+            transform: translateX(-50%);
         }
 
         .section-title span {
-            color: var(--discord);
+            background: var(--gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            position: relative;
+        }
+
+        .section-title span::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 0;
+            width: 100%;
+            height: 3px;
+            background: var(--gradient);
+            border-radius: 2px;
         }
 
         .community-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 2rem;
-            margin-top: 2rem;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 3rem;
+            margin-top: 3rem;
         }
 
         .community-card {
-            background: rgba(255, 255, 255, 0.05);
-            backdrop-filter: blur(10px);
-            border-radius: 20px;
-            padding: 2rem;
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            transition: all 0.3s ease;
+            background: var(--card-bg);
+            backdrop-filter: blur(15px);
+            border-radius: 25px;
+            padding: 2.5rem;
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            transition: all 0.4s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .community-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: var(--gradient);
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .community-card:hover::before {
+            opacity: 1;
         }
 
         .community-card:hover {
-            transform: translateY(-10px);
-            border-color: var(--discord);
-            box-shadow: 0 15px 30px rgba(88, 101, 242, 0.2);
+            transform: translateY(-15px);
+            border-color: rgba(88, 101, 242, 0.3);
+            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.3);
+            background: rgba(255, 255, 255, 0.05);
         }
 
         .card-icon {
-            font-size: 3rem;
-            margin-bottom: 1rem;
+            font-size: 3.5rem;
+            margin-bottom: 1.5rem;
             color: var(--discord);
+            transition: transform 0.3s ease;
         }
 
-        /* ===== FOOTER ===== */
+        .community-card:hover .card-icon {
+            transform: scale(1.1);
+        }
+
+        .community-card h3 {
+            font-size: 1.8rem;
+            margin-bottom: 1rem;
+            color: var(--light);
+        }
+
+        .community-card p {
+            color: var(--gray);
+            line-height: 1.7;
+        }
+
+        /* ===== FOOTER PREMIUM ===== */
         footer {
-            background: rgba(0, 0, 0, 0.8);
-            padding: 3rem 2rem;
-            margin-top: 4rem;
+            background: rgba(7, 10, 18, 0.95);
+            padding: 5rem 2rem 3rem;
+            margin-top: 6rem;
             text-align: center;
-            border-top: 2px solid var(--discord);
+            border-top: 1px solid rgba(88, 101, 242, 0.2);
+            position: relative;
+        }
+
+        footer::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 1px;
+            background: linear-gradient(90deg, transparent, var(--discord), transparent);
+        }
+
+        .footer-title {
+            font-size: 2.5rem;
+            margin-bottom: 3rem;
+            background: linear-gradient(45deg, #fff, var(--discord));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            font-weight: 700;
         }
 
         .social-links {
             display: flex;
             justify-content: center;
-            gap: 1.5rem;
-            margin: 2rem 0;
+            gap: 2rem;
+            margin: 3rem 0;
+            flex-wrap: wrap;
         }
 
         .social-link {
-            width: 50px;
-            height: 50px;
+            width: 70px;
+            height: 70px;
             border-radius: 50%;
-            background: rgba(255, 255, 255, 0.1);
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(10px);
             display: flex;
             align-items: center;
             justify-content: center;
             color: white;
-            font-size: 1.3rem;
-            transition: all 0.3s ease;
+            font-size: 1.8rem;
+            transition: all 0.4s ease;
+            position: relative;
+            overflow: hidden;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .social-link::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.1), transparent);
+            transition: 0.5s;
+        }
+
+        .social-link:hover::before {
+            left: 100%;
         }
 
         .social-link:hover {
+            transform: translateY(-8px) scale(1.1);
             background: var(--discord);
-            transform: translateY(-5px);
+            box-shadow: 0 15px 30px rgba(88, 101, 242, 0.4);
         }
 
         .copyright {
             color: var(--gray);
-            margin-top: 2rem;
-            font-size: 0.9rem;
+            margin-top: 4rem;
+            font-size: 1rem;
+            line-height: 1.8;
+            padding-top: 2rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        .copyright span {
+            color: var(--discord);
+            font-weight: 600;
         }
 
         /* ===== RESPONSIVO ===== */
+        @media (max-width: 1024px) {
+            .title {
+                font-size: 3.2rem;
+            }
+            
+            .buttons-container {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
         @media (max-width: 768px) {
             .nav-links {
                 display: none;
@@ -316,28 +585,80 @@
                 font-size: 2.5rem;
             }
             
-            .btn {
-                min-width: 100%;
+            .buttons-container {
+                grid-template-columns: 1fr;
             }
             
             .community-grid {
                 grid-template-columns: 1fr;
             }
+            
+            .btn {
+                min-height: 70px;
+                padding: 1.2rem 2rem;
+            }
+            
+            .social-link {
+                width: 60px;
+                height: 60px;
+                font-size: 1.5rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .hero {
+                padding: 150px 1rem 80px;
+            }
+            
+            .title {
+                font-size: 2.2rem;
+            }
+            
+            .subtitle {
+                font-size: 1.2rem;
+            }
+            
+            .section {
+                padding: 80px 1rem;
+            }
+            
+            .section-title {
+                font-size: 2.5rem;
+            }
+        }
+
+        /* ===== SCROLLBAR ===== */
+        ::-webkit-scrollbar {
+            width: 10px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: var(--darker);
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: var(--gradient);
+            border-radius: 5px;
+        }
+
+        ::-webkit-scrollbar-thumb:hover {
+            background: var(--primary);
         }
     </style>
 </head>
 <body>
-    <!-- HEADER -->
-    <header>
+    <!-- HEADER PREMIUM -->
+    <header id="header">
         <div class="nav-container">
-            <div class="logo">
-                <div class="logo-icon">
-                    <i class="fas fa-gamepad"></i>
-                </div>
-                Jmfxp22
-            </div>
+            <a href="#home" class="logo">
+                <img src="https://cdn.discordapp.com/attachments/1200574578964054268/1451805730356072529/file_000000003b8871f59e29e05af88ead3a_2.png?ex=694782f3&is=69463173&hm=f512db517984b45047a3ba1b8006d60a1a437250799c016a6d850b6979171fea&" 
+                     alt="Logo Jmfxp22" 
+                     class="logo-img">
+                <span class="logo-text">Jmfxp22</span>
+            </a>
+            
             <nav class="nav-links">
-                <a href="#home">Início</a>
+                <a href="#home" class="active">Início</a>
                 <a href="#community">Comunidade</a>
                 <a href="#contact">Contato</a>
                 <a href="#about">Sobre</a>
@@ -345,61 +666,70 @@
         </div>
     </header>
 
-    <!-- HERO SECTION -->
+    <!-- HERO SECTION PREMIUM -->
     <section class="hero" id="home">
         <div class="profile-container">
             <div class="avatar">
-                <i class="fas fa-crown"></i>
+                <img src="https://cdn.discordapp.com/attachments/1200574578964054268/1451805730356072529/file_000000003b8871f59e29e05af88ead3a_2.png?ex=694782f3&is=69463173&hm=f512db517984b45047a3ba1b8006d60a1a437250799c016a6d850b6979171fea&" 
+                     alt="Avatar Jmfxp22" 
+                     class="avatar-img">
             </div>
-            <div>
+            
+            <div class="title-container">
                 <h1 class="title">Jmfxp22</h1>
-                <p class="subtitle">
-                     Olá, seja bem vindo ao meu portfólio, abaixo terá as opções para se comunicar comigo.
-                    É um prazer ter você aqui comigo, assim eu vejo  que você é um fã de verdadeiro.
-                </p>
+                <div class="title-badge">Criador & Líder de Comunidade</div>
             </div>
         </div>
 
-        <!-- BOTÕES PRINCIPAIS -->
+        <p class="subtitle">
+            Olá, seja <span class="highlight">bem-vindo ao meu portfólio</span>. Abaixo terá as opções para se comunicar comigo.
+            É um prazer ter você aqui comigo, assim eu vejo que você é um fã de <span class="highlight">verdade</span>.
+        </p>
+
+        <!-- BOTÕES PREMIUM -->
         <div class="buttons-container">
             <!-- BOTÃO DISCORD -->
             <a href="https://discord.gg/7w6fh7mbA2" 
                target="_blank" 
-               class="btn btn-discord"
-               onclick="trackClick('discord')">
-                <i class="fab fa-discord"></i>
-                Comunidade Discord
+               class="btn btn-discord">
+                <div class="btn-content">
+                    <i class="fab fa-discord btn-icon"></i>
+                    Comunidade Discord
+                </div>
             </a>
 
             <!-- BOTÃO ROBLOX -->
             <a href="https://www.roblox.com/share?code=90743af672f73f4bbb4c69863717918a&type=Profile&source=ProfileShare&stamp=1766205110181" 
                target="_blank" 
-               class="btn btn-roblox"
-               onclick="trackClick('roblox')">
-                <i class="fas fa-gamepad"></i>
-                Perfil Roblox 
+               class="btn btn-roblox">
+                <div class="btn-content">
+                    <i class="fas fa-gamepad btn-icon"></i>
+                    Perfil Roblox
+                </div>
             </a>
 
             <!-- BOTÃO EMAIL -->
-            <a href="mailto: jmsight1@gmail.com" 
-               class="btn btn-email"
-               onclick="trackClick('email')">
-                <i class="fas fa-envelope"></i>
-                Contato Via email 📩 
+            <a href="mailto:jmsight1@gmail.com" 
+               class="btn btn-email">
+                <div class="btn-content">
+                    <i class="fas fa-envelope btn-icon"></i>
+                    Contato Via Email
+                </div>
             </a>
 
-            <!-- BOTÃO YOUTUBE (OPCIONAL) -->
+            <!-- BOTÃO YOUTUBE -->
             <a href="https://www.youtube.com/@Jm.Expert" 
                target="_blank" 
-               class="btn btn-youtube"
-               onclick="trackClick('youtube')">
-                <i class="fab fa-youtube"></i>
-                Canal no YouTube
+               class="btn btn-youtube">
+                <div class="btn-content">
+                    <i class="fab fa-youtube btn-icon"></i>
+                    Canal no YouTube
+                </div>
             </a>
         </div>
     </section>
 
-    <!-- SEÇÃO COMUNIDADE -->
+    <!-- SEÇÃO COMUNIDADE PREMIUM -->
     <section class="section" id="community">
         <h2 class="section-title">Nossa <span>Comunidade</span></h2>
         
@@ -409,30 +739,30 @@
                     <i class="fab fa-discord"></i>
                 </div>
                 <h3>Discord Ativo</h3>
-                <p>venha conhecer nossa comunidade, temos Eventos diários, jogos em grupo e muito mais!</p>
+                <p>Venha conhecer nossa comunidade vibrante! Temos eventos diários, jogos em grupo, bate-papo 24/7 e muito mais para você se divertir e fazer novas amizades.</p>
             </div>
             
             <div class="community-card">
                 <div class="card-icon">
                     <i class="fas fa-users"></i>
                 </div>
-                <h3>Amizades</h3>
-                <p>Faça novos amigos, crie grupos de jogo e participe de nossas atividades sociais.</p>
+                <h3>Amizades Verdadeiras</h3>
+                <p>Faça parte de um grupo onde as amizades são reais. Crie grupos de jogo, participe de nossas atividades sociais e construa conexões que vão além dos jogos.</p>
             </div>
             
             <div class="community-card">
                 <div class="card-icon">
                     <i class="fas fa-trophy"></i>
                 </div>
-                <h3>Torneios</h3>
-                <p>Participe de torneios semanais com prêmios especiais para os melhores jogadores.</p>
+                <h3>Torneios Épicos</h3>
+                <p>Participe de torneios semanais e mensais com prêmios exclusivos para os melhores jogadores. Mostre suas habilidades e leve para casa recompensas incríveis!</p>
             </div>
         </div>
     </section>
 
-    <!-- FOOTER -->
+    <!-- FOOTER PREMIUM -->
     <footer id="contact">
-        <h3>Conecte-se Comigo</h3>
+        <h3 class="footer-title">Conecte-se Comigo</h3>
         
         <div class="social-links">
             <a href="https://discord.gg/7w6fh7mbA2" target="_blank" class="social-link">
@@ -442,8 +772,11 @@
                target="_blank" class="social-link">
                 <i class="fas fa-gamepad"></i>
             </a>
-            <a href="mailto: jmsight1@gmail.com" class="social-link">
+            <a href="mailto:jmsight1@gmail.com" class="social-link">
                 <i class="fas fa-envelope"></i>
+            </a>
+            <a href="https://www.youtube.com/@Jm.Expert" target="_blank" class="social-link">
+                <i class="fab fa-youtube"></i>
             </a>
             <a href="#" class="social-link">
                 <i class="fab fa-twitter"></i>
@@ -455,18 +788,69 @@
         
         <p class="copyright">
             © 2025 Jmfxp22 Community. Todos os direitos reservados.<br>
-            Design criado por MalkDev0 - Jmfxp22
+            <span>Design criado por MalkDev0 - Jmfxp22</span><br>
+            Conectando jogadores, criando memórias.
         </p>
     </footer>
 
     <script>
-        // Função para rastrear cliques (opcional)
+        // ===== HEADER SCROLL EFFECT =====
+        window.addEventListener('scroll', function() {
+            const header = document.getElementById('header');
+            if (window.scrollY > 50) {
+                header.classList.add('scrolled');
+            } else {
+                header.classList.remove('scrolled');
+            }
+        });
+
+        // ===== ACTIVE NAV LINK =====
+        const sections = document.querySelectorAll('section');
+        const navLinks = document.querySelectorAll('.nav-links a');
+
+        window.addEventListener('scroll', function() {
+            let current = '';
+            sections.forEach(section => {
+                const sectionTop = section.offsetTop;
+                const sectionHeight = section.clientHeight;
+                if (scrollY >= (sectionTop - 150)) {
+                    current = section.getAttribute('id');
+                }
+            });
+
+            navLinks.forEach(link => {
+                link.classList.remove('active');
+                if (link.getAttribute('href').substring(1) === current) {
+                    link.classList.add('active');
+                }
+            });
+        });
+
+        // ===== SMOOTH SCROLL =====
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                const targetId = this.getAttribute('href');
+                if (targetId === '#') return;
+                
+                const targetElement = document.querySelector(targetId);
+                if (targetElement) {
+                    window.scrollTo({
+                        top: targetElement.offsetTop - 80,
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+
+        // ===== CLICK TRACKING =====
         function trackClick(buttonName) {
             console.log(`Botão ${buttonName} clicado!`);
-            // Aqui você pode adicionar Google Analytics ou outro tracking
+            // Aqui você pode adicionar Google Analytics
+            // gtag('event', 'click', { 'event_category': 'button', 'event_label': buttonName });
         }
 
-        // Efeito de digitação no título
+        // ===== TYPEWRITER EFFECT =====
         document.addEventListener('DOMContentLoaded', function() {
             const title = document.querySelector('.title');
             const originalText = title.textContent;
@@ -477,28 +861,44 @@
                 if (i < originalText.length) {
                     title.textContent += originalText.charAt(i);
                     i++;
-                    setTimeout(typeWriter, 100);
+                    setTimeout(typeWriter, 80);
                 }
             }
-            setTimeout(typeWriter, 1000);
+            setTimeout(typeWriter, 500);
         });
 
-        // Efeito de scroll suave
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
-                e.preventDefault();
-                const targetId = this.getAttribute('href');
-                if(targetId === '#') return;
-                
-                const targetElement = document.querySelector(targetId);
-                if(targetElement) {
-                    window.scrollTo({
-                        top: targetElement.offsetTop - 80,
-                        behavior: 'smooth'
-                    });
-                }
+        // ===== PARALLAX EFFECT =====
+        window.addEventListener('scroll', function() {
+            const scrolled = window.pageYOffset;
+            const hero = document.querySelector('.hero');
+            hero.style.transform = 'translateY(' + (scrolled * 0.1) + 'px)';
+        });
+
+        // ===== BUTTON ANIMATIONS =====
+        document.querySelectorAll('.btn').forEach(button => {
+            button.addEventListener('mouseenter', function() {
+                this.style.transform = 'translateY(-8px) scale(1.03)';
+            });
+            
+            button.addEventListener('mouseleave', function() {
+                this.style.transform = 'translateY(0) scale(1)';
             });
         });
+
+        // ===== PAGE LOAD ANIMATION =====
+        window.addEventListener('load', function() {
+            document.body.style.opacity = '0';
+            document.body.style.transition = 'opacity 0.5s ease';
+            
+            setTimeout(function() {
+                document.body.style.opacity = '1';
+            }, 100);
+        });
+
+        // ===== CONSOLE WELCOME MESSAGE =====
+        console.log('%c🎮 Bem-vindo ao Site do Jmfxp22!', 'color: #5865F2; font-size: 18px; font-weight: bold;');
+        console.log('%c✨ Design criado por MalkDev0', 'color: #FF3366; font-size: 14px;');
+        console.log('%c🌐 Junte-se à nossa comunidade em: https://discord.gg/7w6fh7mbA2', 'color: #00A2FF; font-size: 12px;');
     </script>
 </body>
 </html>

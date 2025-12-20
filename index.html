@@ -3,190 +3,74 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Factual RJ - Formulário de Staff</title>
+    <title>Jmfxp22 - Comunidade & Contato</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap">
     <style>
+        /* ===== VARIÁVEIS E RESET ===== */
+        :root {
+            --discord: #5865F2;
+            --roblox: #00A2FF;
+            --youtube: #FF0000;
+            --primary: #7289DA;
+            --secondary: #FF3366;
+            --dark: #23272A;
+            --light: #FFFFFF;
+            --gray: #99AAB5;
+            --gradient: linear-gradient(135deg, #7289DA 0%, #5865F2 100%);
+        }
+
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-            font-family: 'Poppins', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            font-family: 'Poppins', sans-serif;
         }
 
-        :root {
-            --primary: #8A2BE2;
-            --primary-dark: #6A1B9A;
-            --primary-light: #9C4DF4;
-            --secondary: #FFD700;
-            --accent: #00CED1;
-            --light: #f8f9fa;
-            --dark: #1A1A2E;
-            --gray: #5f6368;
-            --success: #34a853;
-            --danger: #EA4335;
-            --card-bg: rgba(255, 255, 255, 0.95);
+        html {
+            scroll-behavior: smooth;
         }
 
         body {
-            background: linear-gradient(135deg, var(--primary), var(--primary-dark), #1A1A2E);
+            background: linear-gradient(135deg, #0f0c29, #302b63, #24243e);
             color: var(--light);
             min-height: 100vh;
-            padding: 20px;
-            position: relative;
-            overflow-x: hidden;
+            line-height: 1.6;
         }
 
-        body::before {
-            content: "FACTUAL";
+        /* ===== HEADER ===== */
+        header {
+            background: rgba(35, 39, 42, 0.95);
+            backdrop-filter: blur(10px);
             position: fixed;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            font-size: 25vw;
-            font-weight: 900;
-            color: rgba(255, 255, 255, 0.03);
-            z-index: -1;
-            pointer-events: none;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+            border-bottom: 2px solid var(--discord);
         }
 
-        .container {
+        .nav-container {
             max-width: 1200px;
             margin: 0 auto;
-            background: var(--card-bg);
-            border-radius: 20px;
-            overflow: hidden;
-            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.4);
-            color: var(--dark);
-            position: relative;
-            z-index: 1;
-        }
-
-        header {
-            background: linear-gradient(135deg, var(--primary), var(--primary-dark));
-            padding: 40px 30px;
-            text-align: center;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .header-content {
-            position: relative;
-            z-index: 2;
+            padding: 1rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
         }
 
         .logo {
-            font-size: 4rem;
-            font-weight: 900;
-            margin-bottom: 15px;
-            background: linear-gradient(to right, var(--secondary), var(--accent));
-            -webkit-background-clip: text;
-            background-clip: text;
-            color: transparent;
-            text-shadow: 3px 3px 6px rgba(0, 0, 0, 0.3);
-            letter-spacing: 2px;
-            position: relative;
-            display: inline-block;
-        }
-
-        .logo::after {
-            content: "";
-            position: absolute;
-            bottom: -10px;
-            left: 10%;
-            width: 80%;
-            height: 4px;
-            background: linear-gradient(to right, transparent, var(--secondary), transparent);
-            border-radius: 2px;
-        }
-
-        .subtitle {
-            font-size: 1.3rem;
-            color: rgba(255, 255, 255, 0.9);
-            margin-bottom: 25px;
-            font-weight: 300;
-        }
-
-        .admin-access {
-            position: absolute;
-            top: 30px;
-            right: 30px;
-        }
-
-        .admin-btn {
-            background: rgba(255, 255, 255, 0.2);
-            backdrop-filter: blur(10px);
-            border: 2px solid rgba(255, 255, 255, 0.3);
-            color: white;
-            padding: 12px 20px;
-            border-radius: 50px;
-            cursor: pointer;
-            font-size: 1rem;
-            font-weight: 600;
-            transition: all 0.3s;
             display: flex;
             align-items: center;
             gap: 10px;
-            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
-        }
-
-        .admin-btn:hover {
-            background: rgba(255, 255, 255, 0.3);
-            transform: translateY(-3px);
-            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
-        }
-
-        .form-container {
-            padding: 40px;
-            background: url('https://cdn.discordapp.com/attachments/1200574578964054268/1444094452414288064/58e22929ab04ad6949dc9d0cd7ed36ce-1.png?ex=692b7543&is=692a23c3&hm=96ca53aeef15f900585ea3b58e18fb63c93ed45bffe569c3ce80b1b9de1ea485&');
-            background-size: cover;
-            background-position: center;
-            background-attachment: fixed;
-            position: relative;
-        }
-
-        .form-container::before {
-            content: "";
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(255, 255, 255, 0.92);
-            z-index: 0;
-        }
-
-        .form-content {
-            position: relative;
-            z-index: 1;
-        }
-
-        .form-section {
-            margin-bottom: 50px;
-            padding: 30px;
-            background: white;
-            border-radius: 15px;
-            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.08);
-            border-left: 5px solid var(--primary);
-            transition: transform 0.3s;
-        }
-
-        .form-section:hover {
-            transform: translateY(-5px);
-        }
-
-        .section-title {
-            display: flex;
-            align-items: center;
-            gap: 15px;
-            margin-bottom: 25px;
-            color: var(--primary);
-            font-size: 1.5rem;
+            font-size: 1.8rem;
             font-weight: 700;
+            color: var(--light);
         }
 
-        .section-title i {
-            background: var(--primary);
-            color: white;
+        .logo-icon {
+            color: var(--discord);
+            background: var(--gradient);
             width: 40px;
             height: 40px;
             border-radius: 50%;
@@ -195,67 +79,100 @@
             justify-content: center;
         }
 
-        .question {
-            margin-bottom: 30px;
-            padding: 20px;
-            background: #f8f9ff;
-            border-radius: 10px;
-            border: 1px solid #e6e9ff;
-            transition: all 0.3s;
+        .nav-links {
+            display: flex;
+            gap: 2rem;
         }
 
-        .question:hover {
-            background: #f0f2ff;
-            border-color: var(--primary-light);
+        .nav-links a {
+            color: var(--gray);
+            text-decoration: none;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
         }
 
-        .question-text {
-            font-weight: 600;
-            margin-bottom: 15px;
-            color: var(--dark);
-            font-size: 1.1rem;
-            line-height: 1.5;
+        .nav-links a:hover {
+            color: var(--light);
+            background: rgba(88, 101, 242, 0.1);
         }
 
-        .answer-input {
-            width: 100%;
-            padding: 15px;
-            border: 2px solid #e1e5e9;
-            border-radius: 10px;
-            font-size: 1rem;
-            transition: all 0.3s;
-            resize: vertical;
-            min-height: 60px;
-            background: white;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        /* ===== HERO SECTION ===== */
+        .hero {
+            padding: 150px 2rem 100px;
+            max-width: 1200px;
+            margin: 0 auto;
+            text-align: center;
         }
 
-        .answer-input:focus {
-            outline: none;
-            border-color: var(--primary);
-            box-shadow: 0 0 0 3px rgba(138, 43, 226, 0.2);
+        .profile-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 2rem;
+            margin-bottom: 3rem;
         }
 
-        .submit-btn {
-            background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+        .avatar {
+            width: 200px;
+            height: 200px;
+            border-radius: 50%;
+            border: 5px solid var(--discord);
+            box-shadow: 0 0 30px rgba(88, 101, 242, 0.5);
+            background: linear-gradient(45deg, #667eea, #764ba2);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 4rem;
             color: white;
-            border: none;
-            padding: 16px 40px;
-            border-radius: 50px;
-            font-size: 1.2rem;
+        }
+
+        .title {
+            font-size: 3.5rem;
             font-weight: 700;
-            cursor: pointer;
-            transition: all 0.3s;
-            display: block;
-            margin: 40px auto;
-            width: 250px;
-            box-shadow: 0 5px 15px rgba(138, 43, 226, 0.4);
+            margin-bottom: 1rem;
+            background: linear-gradient(45deg, #fff, var(--discord));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            text-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        .subtitle {
+            font-size: 1.3rem;
+            color: var(--gray);
+            max-width: 600px;
+            margin: 0 auto 2rem;
+        }
+
+        /* ===== BOTÕES PRINCIPAIS ===== */
+        .buttons-container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 1.5rem;
+            margin: 3rem 0;
+        }
+
+        .btn {
+            padding: 1.2rem 2.5rem;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 1.1rem;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            transition: all 0.3s ease;
+            min-width: 250px;
+            justify-content: center;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
             position: relative;
             overflow: hidden;
         }
 
-        .submit-btn::before {
-            content: "";
+        .btn::before {
+            content: '';
             position: absolute;
             top: 0;
             left: -100%;
@@ -265,1320 +182,322 @@
             transition: 0.5s;
         }
 
-        .submit-btn:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 8px 25px rgba(138, 43, 226, 0.6);
-        }
-
-        .submit-btn:hover::before {
+        .btn:hover::before {
             left: 100%;
         }
 
-        /* Modal Styles */
-        .modal {
-            display: none;
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(0, 0, 0, 0.8);
-            backdrop-filter: blur(5px);
-            z-index: 2000;
-            align-items: center;
-            justify-content: center;
-            padding: 20px;
-        }
-
-        .modal-content {
-            background: white;
-            border-radius: 20px;
-            width: 90%;
-            max-width: 900px;
-            max-height: 90vh;
-            overflow-y: auto;
-            padding: 40px;
-            position: relative;
-            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.4);
-            animation: modalAppear 0.4s ease-out;
-        }
-
-        @keyframes modalAppear {
-            from {
-                opacity: 0;
-                transform: translateY(-30px) scale(0.9);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0) scale(1);
-            }
-        }
-
-        .close-modal {
-            position: absolute;
-            top: 20px;
-            right: 25px;
-            font-size: 1.8rem;
-            cursor: pointer;
-            color: var(--gray);
-            transition: color 0.3s;
-        }
-
-        .close-modal:hover {
-            color: var(--danger);
-        }
-
-        .admin-panel {
-            display: none;
-        }
-
-        .admin-container {
-            display: flex;
-            min-height: 600px;
-        }
-
-        .admin-sidebar {
-            width: 300px;
-            background: linear-gradient(135deg, var(--primary), var(--primary-dark));
-            padding: 30px;
+        .btn-discord {
+            background: var(--gradient);
             color: white;
-            box-shadow: 5px 0 15px rgba(0, 0, 0, 0.1);
+            border: 2px solid var(--discord);
         }
 
-        .admin-main {
-            flex: 1;
-            padding: 30px;
-            background: #f5f7ff;
+        .btn-roblox {
+            background: linear-gradient(135deg, #00A2FF, #0080FF);
+            color: white;
+            border: 2px solid #00A2FF;
         }
 
-        .admin-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 30px;
-            padding-bottom: 20px;
-            border-bottom: 2px solid #e6e9ff;
+        .btn-email {
+            background: linear-gradient(135deg, #FF3366, #FF0066);
+            color: white;
+            border: 2px solid #FF3366;
         }
 
-        .admin-title {
-            font-size: 2rem;
-            color: var(--primary);
-            font-weight: 800;
+        .btn-youtube {
+            background: linear-gradient(135deg, #FF0000, #CC0000);
+            color: white;
+            border: 2px solid #FF0000;
         }
 
-        .admin-nav {
-            margin-top: 40px;
+        .btn:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.3);
         }
 
-        .admin-nav-item {
-            display: flex;
-            align-items: center;
-            gap: 15px;
-            padding: 15px 20px;
-            margin-bottom: 10px;
-            border-radius: 10px;
-            cursor: pointer;
-            transition: all 0.3s;
-            font-weight: 600;
+        .btn i {
+            font-size: 1.4rem;
         }
 
-        .admin-nav-item.active {
-            background: rgba(255, 255, 255, 0.2);
-        }
-
-        .admin-nav-item:hover {
-            background: rgba(255, 255, 255, 0.15);
-            transform: translateX(5px);
-        }
-
-        .admin-nav-item i {
-            font-size: 1.2rem;
-            width: 25px;
-            text-align: center;
-        }
-
-        .divider {
-            height: 2px;
-            background: rgba(255, 255, 255, 0.2);
-            margin: 25px 0;
-        }
-
-        .forms-list {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-            gap: 25px;
-            margin-top: 20px;
-        }
-
-        .form-card {
-            background: white;
-            border-radius: 15px;
-            padding: 25px;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
-            cursor: pointer;
-            transition: all 0.3s;
-            border: 2px solid transparent;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .form-card::before {
-            content: "";
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 5px;
-            height: 100%;
-            background: var(--primary);
-        }
-
-        .form-card:hover {
-            transform: translateY(-8px);
-            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
-            border-color: var(--primary-light);
-        }
-
-        .form-user {
-            font-weight: 700;
-            color: var(--primary);
-            margin-bottom: 10px;
-            font-size: 1.2rem;
-        }
-
-        .form-discord {
-            color: var(--gray);
-            margin-bottom: 15px;
-            font-size: 1rem;
-        }
-
-        .form-date {
-            color: var(--gray);
-            font-size: 0.9rem;
-            display: flex;
-            align-items: center;
-            gap: 5px;
-        }
-
-        .responses-container {
-            margin-top: 30px;
-            max-height: 500px;
-            overflow-y: auto;
-            padding-right: 10px;
-        }
-
-        .response-item {
-            margin-bottom: 25px;
-            padding: 20px;
-            background: white;
-            border-radius: 10px;
-            box-shadow: 0 3px 10px rgba(0, 0, 0, 0.05);
-            border-left: 4px solid var(--primary);
-        }
-
-        .response-question {
-            font-weight: 700;
-            margin-bottom: 10px;
-            color: var(--dark);
-            font-size: 1.1rem;
-        }
-
-        .response-answer {
-            color: var(--gray);
-            line-height: 1.6;
-            background: #f8f9ff;
-            padding: 15px;
-            border-radius: 8px;
-            border: 1px solid #e6e9ff;
-        }
-
-        .login-form {
-            max-width: 450px;
+        /* ===== SEÇÃO COMUNIDADE ===== */
+        .section {
+            padding: 80px 2rem;
+            max-width: 1200px;
             margin: 0 auto;
-            padding: 40px;
-            background: white;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 2.5rem;
+            margin-bottom: 3rem;
+            color: var(--light);
+        }
+
+        .section-title span {
+            color: var(--discord);
+        }
+
+        .community-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .community-card {
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(10px);
             border-radius: 20px;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            padding: 2rem;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            transition: all 0.3s ease;
         }
 
-        .form-group {
-            margin-bottom: 25px;
+        .community-card:hover {
+            transform: translateY(-10px);
+            border-color: var(--discord);
+            box-shadow: 0 15px 30px rgba(88, 101, 242, 0.2);
         }
 
-        .form-label {
-            display: block;
-            margin-bottom: 10px;
-            font-weight: 600;
-            color: var(--dark);
-            font-size: 1.1rem;
+        .card-icon {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            color: var(--discord);
         }
 
-        .form-control {
-            width: 100%;
-            padding: 15px 20px;
-            border: 2px solid #e1e5e9;
-            border-radius: 10px;
-            font-size: 1rem;
-            transition: all 0.3s;
+        /* ===== FOOTER ===== */
+        footer {
+            background: rgba(0, 0, 0, 0.8);
+            padding: 3rem 2rem;
+            margin-top: 4rem;
+            text-align: center;
+            border-top: 2px solid var(--discord);
         }
 
-        .form-control:focus {
-            outline: none;
-            border-color: var(--primary);
-            box-shadow: 0 0 0 3px rgba(138, 43, 226, 0.2);
-        }
-
-        .login-btn {
-            background: linear-gradient(135deg, var(--primary), var(--primary-dark));
-            color: white;
-            border: none;
-            padding: 15px 30px;
-            border-radius: 50px;
-            font-size: 1.1rem;
-            font-weight: 700;
-            cursor: pointer;
-            transition: all 0.3s;
-            width: 100%;
-            box-shadow: 0 5px 15px rgba(138, 43, 226, 0.4);
-        }
-
-        .login-btn:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 8px 20px rgba(138, 43, 226, 0.6);
-        }
-
-        .notification {
-            position: fixed;
-            top: 30px;
-            right: 30px;
-            padding: 18px 30px;
-            border-radius: 12px;
-            color: white;
-            font-weight: 600;
-            z-index: 3000;
-            transform: translateX(150%);
-            transition: transform 0.4s;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+        .social-links {
             display: flex;
-            align-items: center;
-            gap: 10px;
+            justify-content: center;
+            gap: 1.5rem;
+            margin: 2rem 0;
         }
 
-        .notification.success {
-            background: var(--success);
-        }
-
-        .notification.error {
-            background: var(--danger);
-        }
-
-        .notification.warning {
-            background: #f57c00;
-        }
-
-        .notification.show {
-            transform: translateX(0);
-        }
-
-        .form-closed {
-            display: none;
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(26, 26, 46, 0.95);
-            z-index: 4000;
+        .social-link {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.1);
+            display: flex;
             align-items: center;
             justify-content: center;
-            flex-direction: column;
-            text-align: center;
-            padding: 30px;
+            color: white;
+            font-size: 1.3rem;
+            transition: all 0.3s ease;
         }
 
-        .form-closed-content {
-            background: white;
-            border-radius: 20px;
-            padding: 50px;
-            max-width: 600px;
-            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.4);
+        .social-link:hover {
+            background: var(--discord);
+            transform: translateY(-5px);
         }
 
-        .form-closed-title {
-            font-size: 2.5rem;
-            color: var(--primary);
-            margin-bottom: 20px;
-            font-weight: 800;
-        }
-
-        .form-closed-message {
-            font-size: 1.2rem;
-            color: var(--dark);
-            margin-bottom: 30px;
-            line-height: 1.6;
-        }
-
-        .form-closed-img {
-            max-width: 300px;
-            border-radius: 15px;
-            margin: 0 auto 30px;
-            display: block;
-            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
-        }
-
-        .toggle-container {
-            display: flex;
-            align-items: center;
-            gap: 15px;
-            margin-bottom: 30px;
-            padding: 15px;
-            background: white;
-            border-radius: 10px;
-            box-shadow: 0 3px 10px rgba(0, 0, 0, 0.05);
-        }
-
-        .toggle-label {
-            font-weight: 600;
-            color: var(--dark);
-        }
-
-        .toggle-switch {
-            position: relative;
-            display: inline-block;
-            width: 60px;
-            height: 30px;
-        }
-
-        .toggle-switch input {
-            opacity: 0;
-            width: 0;
-            height: 0;
-        }
-
-        .toggle-slider {
-            position: absolute;
-            cursor: pointer;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background-color: #ccc;
-            transition: .4s;
-            border-radius: 34px;
-        }
-
-        .toggle-slider:before {
-            position: absolute;
-            content: "";
-            height: 22px;
-            width: 22px;
-            left: 4px;
-            bottom: 4px;
-            background-color: white;
-            transition: .4s;
-            border-radius: 50%;
-        }
-
-        input:checked + .toggle-slider {
-            background-color: var(--primary);
-        }
-
-        input:checked + .toggle-slider:before {
-            transform: translateX(30px);
-        }
-
-        .stats-container {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 20px;
-            margin-bottom: 30px;
-        }
-
-        .stat-card {
-            background: white;
-            border-radius: 15px;
-            padding: 25px;
-            text-align: center;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
-            border-top: 5px solid var(--primary);
-        }
-
-        .stat-value {
-            font-size: 2.5rem;
-            font-weight: 800;
-            color: var(--primary);
-            margin-bottom: 10px;
-        }
-
-        .stat-label {
+        .copyright {
             color: var(--gray);
-            font-weight: 600;
+            margin-top: 2rem;
+            font-size: 0.9rem;
         }
 
-        @media (max-width: 992px) {
-            .admin-container {
-                flex-direction: column;
-            }
-            
-            .admin-sidebar {
-                width: 100%;
-            }
-            
-            .forms-list {
-                grid-template-columns: 1fr;
-            }
-            
-            .logo {
-                font-size: 3rem;
-            }
-        }
-
+        /* ===== RESPONSIVO ===== */
         @media (max-width: 768px) {
-            .container {
-                margin: 10px;
+            .nav-links {
+                display: none;
             }
             
-            .form-container {
-                padding: 20px;
-            }
-            
-            .form-section {
-                padding: 20px;
-            }
-            
-            .admin-btn {
-                padding: 10px 15px;
-                font-size: 0.9rem;
-            }
-            
-            .logo {
+            .title {
                 font-size: 2.5rem;
+            }
+            
+            .btn {
+                min-width: 100%;
+            }
+            
+            .community-grid {
+                grid-template-columns: 1fr;
             }
         }
     </style>
 </head>
 <body>
-    <!-- Tela de formulário fechado -->
-    <div class="form-closed" id="formClosed">
-        <div class="form-closed-content">
-            <img src="https://cdn.discordapp.com/attachments/1200574578964054268/1444094452414288064/58e22929ab04ad6949dc9d0cd7ed36ce-1.png?ex=692b7543&is=692a23c3&hm=96ca53aeef15f900585ea3b58e18fb63c93ed45bffe569c3ce80b1b9de1ea485&" alt="Factual RJ" class="form-closed-img">
-            <h2 class="form-closed-title">Formulário Indisponível</h2>
-            <p class="form-closed-message">O formulário de inscrição para staff não está mais recebendo respostas no momento. Agradecemos seu interesse!</p>
-            <button class="admin-btn" id="adminAccessFromClosed">
-                <i class="fas fa-pencil-alt"></i> Acessar Painel Admin
-            </button>
-        </div>
-    </div>
-
-    <div class="container">
-        <header>
-            <div class="header-content">
-                <h1 class="logo">FACTUAL RJ</h1>
-                <p class="subtitle">Formulário de Teste para Staff - Processo Seletivo</p>
-            </div>
-            <div class="admin-access">
-                <button class="admin-btn" id="adminToggle">
-                    <i class="fas fa-pencil-alt"></i> Painel Admin
-                </button>
-            </div>
-        </header>
-
-        <div class="form-container" id="formContainer">
-            <div class="form-content">
-                <form id="staffForm">
-                    <!-- Seção 1: Informações Básicas -->
-                    <div class="form-section">
-                        <h2 class="section-title"><i class="fas fa-puzzle-piece"></i> 1. Informações Básicas</h2>
-                        
-                        <div class="question">
-                            <div class="question-text">1. Qual o seu nome completo?</div>
-                            <input type="text" class="answer-input" name="q1" required>
-                        </div>
-                        
-                        <div class="question">
-                            <div class="question-text">2. Qual a sua idade?</div>
-                            <input type="number" class="answer-input" name="q2" min="1" max="100" required>
-                        </div>
-                        
-                        <div class="question">
-                            <div class="question-text">3. Qual seu Discord (com tag completa)?</div>
-                            <input type="text" class="answer-input" name="q3" placeholder="ex: usuario#1234" required>
-                        </div>
-                        
-                        <div class="question">
-                            <div class="question-text">4. Qual seu horário disponível diariamente para atuar como staff?</div>
-                            <textarea class="answer-input" name="q4" required></textarea>
-                        </div>
-                        
-                        <div class="question">
-                            <div class="question-text">5. Possui experiência anterior como staff? Se sim, descreva onde e qual função desempenhava.</div>
-                            <textarea class="answer-input" name="q5" required></textarea>
-                        </div>
-                    </div>
-
-                    <!-- Seção 2: Conhecimentos Gerais -->
-                    <div class="form-section">
-                        <h2 class="section-title"><i class="fas fa-brain"></i> 2. Conhecimentos Gerais</h2>
-                        
-                        <div class="question">
-                            <div class="question-text">6. O que você entende por "comunidade Factual RJ" e como você descreve a proposta do servidor?</div>
-                            <textarea class="answer-input" name="q6" required></textarea>
-                        </div>
-                        
-                        <div class="question">
-                            <div class="question-text">7. Como você definiria um servidor factual e como isso influencia na abordagem da administração?</div>
-                            <textarea class="answer-input" name="q7" required></textarea>
-                        </div>
-                        
-                        <div class="question">
-                            <div class="question-text">8. Em sua opinião, quais habilidades um staff precisa ter para atuar com imparcialidade?</div>
-                            <textarea class="answer-input" name="q8" required></textarea>
-                        </div>
-                    </div>
-
-                    <!-- Seção 3: Conduta e Profissionalismo -->
-                    <div class="form-section">
-                        <h2 class="section-title"><i class="fas fa-tools"></i> 3. Conduta e Profissionalismo</h2>
-                        
-                        <div class="question">
-                            <div class="question-text">9. O que significa para você manter postura profissional dentro de uma equipe administrativa?</div>
-                            <textarea class="answer-input" name="q9" required></textarea>
-                        </div>
-                        
-                        <div class="question">
-                            <div class="question-text">10. Como você lida com críticas, pressão e cobranças da liderança?</div>
-                            <textarea class="answer-input" name="q10" required></textarea>
-                        </div>
-                        
-                        <div class="question">
-                            <div class="question-text">11. Em uma situação de conflito entre dois membros, como você age para manter a neutralidade?</div>
-                            <textarea class="answer-input" name="q11" required></textarea>
-                        </div>
-                        
-                        <div class="question">
-                            <div class="question-text">12. Como garantir que suas decisões sejam sempre justas e imparciais?</div>
-                            <textarea class="answer-input" name="q12" required></textarea>
-                        </div>
-                    </div>
-
-                    <!-- Seção 4: Ética e Responsabilidade -->
-                    <div class="form-section">
-                        <h2 class="section-title"><i class="fas fa-lock"></i> 4. Ética e Responsabilidade</h2>
-                        
-                        <div class="question">
-                            <div class="question-text">13. Por que é importante não usar IA, terceiros ou qualquer ajuda externa nos testes administrativos?</div>
-                            <textarea class="answer-input" name="q13" required></textarea>
-                        </div>
-                        
-                        <div class="question">
-                            <div class="question-text">14. Como você reage ao perceber que outro staff está quebrando regras internas?</div>
-                            <textarea class="answer-input" name="q14" required></textarea>
-                        </div>
-                        
-                        <div class="question">
-                            <div class="question-text">15. O que você faria se um amigo seu cometesse uma infração dentro do servidor?</div>
-                            <textarea class="answer-input" name="q15" required></textarea>
-                        </div>
-                    </div>
-
-                    <!-- Seção 5: Tomada de Decisão -->
-                    <div class="form-section">
-                        <h2 class="section-title"><i class="fas fa-balance-scale"></i> 5. Tomada de Decisão (Situações Práticas)</h2>
-                        <p style="margin-bottom: 20px; font-style: italic; color: var(--gray);">Responda explicando o raciocínio:</p>
-                        
-                        <div class="question">
-                            <div class="question-text">16. Dois jogadores estão discutindo e ambos afirmam estar com razão. Como você resolve?</div>
-                            <textarea class="answer-input" name="q16" required></textarea>
-                        </div>
-                        
-                        <div class="question">
-                            <div class="question-text">17. Um player acusa outro de abuso, mas não fornece provas. Como proceder?</div>
-                            <textarea class="answer-input" name="q17" required></textarea>
-                        </div>
-                        
-                        <div class="question">
-                            <div class="question-text">18. Você vê um staff agindo com hostilidade com um membro. O que faz?</div>
-                            <textarea class="answer-input" name="q18" required></textarea>
-                        </div>
-                        
-                        <div class="question">
-                            <div class="question-text">19. Um jogador está repetidamente cometendo infrações leves. Como você aplica advertências proporcionalmente?</div>
-                            <textarea class="answer-input" name="q19" required></textarea>
-                        </div>
-                        
-                        <div class="question">
-                            <div class="question-text">20. Você percebe uma falha grave na organização ou nos sistemas. Como comunica e como sugere melhorias?</div>
-                            <textarea class="answer-input" name="q20" required></textarea>
-                        </div>
-                    </div>
-
-                    <!-- Seção 6: Conhecimento sobre Regras -->
-                    <div class="form-section">
-                        <h2 class="section-title"><i class="fas fa-folder"></i> 6. Conhecimento sobre Regras</h2>
-                        
-                        <div class="question">
-                            <div class="question-text">21. Por que seguir regras é essencial em servidores factuais?</div>
-                            <textarea class="answer-input" name="q21" required></textarea>
-                        </div>
-                        
-                        <div class="question">
-                            <div class="question-text">22. Cite, com suas palavras, três situações que você considera quebra de conduta administrativa.</div>
-                            <textarea class="answer-input" name="q22" required></textarea>
-                        </div>
-                        
-                        <div class="question">
-                            <div class="question-text">23. Como garantir que os membros entendam e cumpram as regras do servidor?</div>
-                            <textarea class="answer-input" name="q23" required></textarea>
-                        </div>
-                    </div>
-
-                    <!-- Seção 7: Proatividade e Flexibilidade -->
-                    <div class="form-section">
-                        <h2 class="section-title"><i class="fas fa-globe"></i> 7. Proatividade e Flexibilidade</h2>
-                        
-                        <div class="question">
-                            <div class="question-text">24. O que te motiva a fazer parte da equipe administrativa?</div>
-                            <textarea class="answer-input" name="q24" required></textarea>
-                        </div>
-                        
-                        <div class="question">
-                            <div class="question-text">25. O que você acredita que pode agregar ao Factual RJ como staff?</div>
-                            <textarea class="answer-input" name="q25" required></textarea>
-                        </div>
-                        
-                        <div class="question">
-                            <div class="question-text">26. Você consegue trabalhar em equipe mesmo discordando de algumas decisões? Como?</div>
-                            <textarea class="answer-input" name="q26" required></textarea>
-                        </div>
-                    </div>
-
-                    <!-- Seção 8: Questões de Maturidade -->
-                    <div class="form-section">
-                        <h2 class="section-title"><i class="fas fa-landmark"></i> 8. Questões de Maturidade</h2>
-                        
-                        <div class="question">
-                            <div class="question-text">27. O que significa ser maduro administrativamente?</div>
-                            <textarea class="answer-input" name="q27" required></textarea>
-                        </div>
-                        
-                        <div class="question">
-                            <div class="question-text">28. Como você separa vida pessoal de tarefas administrativas dentro da equipe?</div>
-                            <textarea class="answer-input" name="q28" required></textarea>
-                        </div>
-                        
-                        <div class="question">
-                            <div class="question-text">29. Caso você esteja emocionalmente sobrecarregado, como evita que isso interfira nas suas ações como staff?</div>
-                            <textarea class="answer-input" name="q29" required></textarea>
-                        </div>
-                    </div>
-
-                    <!-- Seção 9: Finalização -->
-                    <div class="form-section">
-                        <h2 class="section-title"><i class="fas fa-clipboard-list"></i> 9. Finalização</h2>
-                        
-                        <div class="question">
-                            <div class="question-text">30. Por que devemos escolher você para fazer parte da nossa equipe administrativa?</div>
-                            <textarea class="answer-input" name="q30" required></textarea>
-                        </div>
-                        
-                        <div class="question">
-                            <div class="question-text">31. Deseja adicionar algo sobre você que possa ser relevante para a administração?</div>
-                            <textarea class="answer-input" name="q31"></textarea>
-                        </div>
-                        
-                        <div class="question">
-                            <div class="question-text">32. Declara que todas as respostas fornecidas são autorais e verdadeiras?</div>
-                            <div style="margin-top: 10px;">
-                                <label style="display: flex; align-items: center; gap: 10px;">
-                                    <input type="checkbox" name="q32" required style="width: 20px; height: 20px;">
-                                    <span style="font-weight: 600;">Sim, declaro que todas as respostas fornecidas são autorais e verdadeiras.</span>
-                                </label>
-                            </div>
-                        </div>
-                    </div>
-
-                    <button type="submit" class="submit-btn">Enviar Formulário</button>
-                </form>
-            </div>
-        </div>
-
-        <!-- Painel Admin -->
-        <div class="admin-panel" id="adminPanel">
-            <div class="admin-container">
-                <div class="admin-sidebar">
-                    <h2 style="font-size: 1.8rem; margin-bottom: 10px;">Painel Admin</h2>
-                    <p style="opacity: 0.8; margin-bottom: 30px;">Factual RJ Staff</p>
-                    
-                    <div class="admin-nav">
-                        <div class="admin-nav-item active" data-tab="dashboard">
-                            <i class="fas fa-tachometer-alt"></i>
-                            <span>Dashboard</span>
-                        </div>
-                        <div class="admin-nav-item" data-tab="forms">
-                            <i class="fas fa-file-alt"></i>
-                            <span>Formulários Preenchidos</span>
-                        </div>
-                        <div class="admin-nav-item" data-tab="settings">
-                            <i class="fas fa-cog"></i>
-                            <span>Configurações</span>
-                        </div>
-                    </div>
-                    
-                    <div class="divider"></div>
-                    
-                    <div class="admin-nav">
-                        <div class="admin-nav-item" id="backToForm">
-                            <i class="fas fa-arrow-left"></i>
-                            <span>Voltar ao Formulário</span>
-                        </div>
-                    </div>
+    <!-- HEADER -->
+    <header>
+        <div class="nav-container">
+            <div class="logo">
+                <div class="logo-icon">
+                    <i class="fas fa-gamepad"></i>
                 </div>
-                
-                <div class="admin-main">
-                    <div class="admin-header">
-                        <h2 class="admin-title" id="adminTabTitle">Dashboard</h2>
-                        <div class="toggle-container">
-                            <span class="toggle-label">Formulário Ativo</span>
-                            <label class="toggle-switch">
-                                <input type="checkbox" id="formActiveToggle" checked>
-                                <span class="toggle-slider"></span>
-                            </label>
-                        </div>
-                    </div>
-                    
-                    <!-- Conteúdo do Dashboard -->
-                    <div class="admin-tab-content" id="dashboardTab">
-                        <div class="stats-container">
-                            <div class="stat-card">
-                                <div class="stat-value" id="totalForms">0</div>
-                                <div class="stat-label">Total de Formulários</div>
-                            </div>
-                            <div class="stat-card">
-                                <div class="stat-value" id="todayForms">0</div>
-                                <div class="stat-label">Hoje</div>
-                            </div>
-                            <div class="stat-card">
-                                <div class="stat-value" id="weekForms">0</div>
-                                <div class="stat-label">Esta Semana</div>
-                            </div>
-                        </div>
-                        
-                        <h3 style="margin: 30px 0 20px; color: var(--primary);">Formulários Recentes</h3>
-                        <div class="forms-list" id="recentFormsList">
-                            <!-- Formulários recentes aparecerão aqui -->
-                        </div>
-                    </div>
-                    
-                    <!-- Conteúdo dos Formulários Preenchidos -->
-                    <div class="admin-tab-content" id="formsTab" style="display: none;">
-                        <div class="forms-list" id="formsList">
-                            <!-- Todos os formulários aparecerão aqui -->
-                        </div>
-                    </div>
-                    
-                    <!-- Conteúdo das Configurações -->
-                    <div class="admin-tab-content" id="settingsTab" style="display: none;">
-                        <div class="form-section" style="margin: 0;">
-                            <h3 style="margin-bottom: 20px; color: var(--primary);">Configurações do Sistema</h3>
-                            
-                            <div class="question">
-                                <div class="question-text">E-mail Administrativo</div>
-                                <input type="email" class="answer-input" value="jmsight1@gmail.com" readonly>
-                            </div>
-                            
-                            <div class="question">
-                                <div class="question-text">Status do Formulário</div>
-                                <div style="margin-top: 10px;">
-                                    <label style="display: flex; align-items: center; gap: 10px;">
-                                        <input type="checkbox" id="formStatus" checked style="width: 20px; height: 20px;">
-                                        <span style="font-weight: 600;">Formulário aceitando respostas</span>
-                                    </label>
-                                </div>
-                            </div>
-                            
-                            <div class="question">
-                                <div class="question-text">Mensagem quando formulário fechado</div>
-                                <textarea class="answer-input" id="closedMessage">O formulário de inscrição para staff não está mais recebendo respostas no momento. Agradecemos seu interesse!</textarea>
-                            </div>
-                            
-                            <button class="submit-btn" style="margin: 20px 0 0; width: 100%;" id="saveSettings">Salvar Configurações</button>
-                        </div>
-                    </div>
-                </div>
+                Jmfxp22
+            </div>
+            <nav class="nav-links">
+                <a href="#home">Início</a>
+                <a href="#community">Comunidade</a>
+                <a href="#contact">Contato</a>
+                <a href="#about">Sobre</a>
+            </nav>
+        </div>
+    </header>
+
+    <!-- HERO SECTION -->
+    <section class="hero" id="home">
+        <div class="profile-container">
+            <div class="avatar">
+                <i class="fas fa-crown"></i>
+            </div>
+            <div>
+                <h1 class="title">Jmfxp22</h1>
+                <p class="subtitle">
+                    Criador de conteúdo, líder de comunidade e entusiasta de jogos. 
+                    Junte-se à nossa comunidade no Discord e vamos jogar juntos!
+                </p>
             </div>
         </div>
-    </div>
 
-    <!-- Modal de Login -->
-    <div class="modal" id="loginModal">
-        <div class="modal-content">
-            <span class="close-modal" id="closeLogin">&times;</span>
-            <div class="login-form">
-                <h2 style="text-align: center; margin-bottom: 30px; color: var(--primary);">Acesso Administrativo</h2>
-                <div class="form-group">
-                    <label class="form-label">E-mail</label>
-                    <input type="email" class="form-control" id="adminEmail" placeholder="Digite seu e-mail">
+        <!-- BOTÕES PRINCIPAIS -->
+        <div class="buttons-container">
+            <!-- BOTÃO DISCORD -->
+            <a href="https://discord.gg/7w6fh7mbA2" 
+               target="_blank" 
+               class="btn btn-discord"
+               onclick="trackClick('discord')">
+                <i class="fab fa-discord"></i>
+                Entrar na Comunidade Discord
+            </a>
+
+            <!-- BOTÃO ROBLOX -->
+            <a href="https://www.roblox.com/share?code=90743af672f73f4bbb4c69863717918a&type=Profile&source=ProfileShare&stamp=1766205110181" 
+               target="_blank" 
+               class="btn btn-roblox"
+               onclick="trackClick('roblox')">
+                <i class="fas fa-gamepad"></i>
+                Ver Perfil do Roblox
+            </a>
+
+            <!-- BOTÃO EMAIL -->
+            <a href="mailto:seuemail@exemplo.com" 
+               class="btn btn-email"
+               onclick="trackClick('email')">
+                <i class="fas fa-envelope"></i>
+                Enviar E-mail
+            </a>
+
+            <!-- BOTÃO YOUTUBE (OPCIONAL) -->
+            <a href="https://youtube.com" 
+               target="_blank" 
+               class="btn btn-youtube"
+               onclick="trackClick('youtube')">
+                <i class="fab fa-youtube"></i>
+                Canal no YouTube
+            </a>
+        </div>
+    </section>
+
+    <!-- SEÇÃO COMUNIDADE -->
+    <section class="section" id="community">
+        <h2 class="section-title">Nossa <span>Comunidade</span></h2>
+        
+        <div class="community-grid">
+            <div class="community-card">
+                <div class="card-icon">
+                    <i class="fab fa-discord"></i>
                 </div>
-                <div class="form-group">
-                    <label class="form-label">Senha</label>
-                    <input type="password" class="form-control" id="adminPassword" placeholder="Digite sua senha">
+                <h3>Discord Ativo</h3>
+                <p>Comunidade vibrante com +500 membros. Eventos diários, jogos em grupo e muito mais!</p>
+            </div>
+            
+            <div class="community-card">
+                <div class="card-icon">
+                    <i class="fas fa-users"></i>
                 </div>
-                <button class="login-btn" id="loginBtn">Entrar no Painel</button>
+                <h3>Amizades</h3>
+                <p>Faça novos amigos, crie grupos de jogo e participe de nossas atividades sociais.</p>
+            </div>
+            
+            <div class="community-card">
+                <div class="card-icon">
+                    <i class="fas fa-trophy"></i>
+                </div>
+                <h3>Torneios</h3>
+                <p>Participe de torneios semanais com prêmios especiais para os melhores jogadores.</p>
             </div>
         </div>
-    </div>
+    </section>
 
-    <!-- Modal de Respostas -->
-    <div class="modal" id="responsesModal">
-        <div class="modal-content">
-            <span class="close-modal" id="closeResponses">&times;</span>
-            <h2 style="margin-bottom: 20px; color: var(--primary);">Respostas do Formulário</h2>
-            <div id="userInfo" style="margin-bottom: 20px; padding: 20px; background: #f5f7ff; border-radius: 10px; border-left: 4px solid var(--primary);"></div>
-            <div class="responses-container" id="responsesContainer">
-                <!-- As respostas aparecerão aqui -->
-            </div>
+    <!-- FOOTER -->
+    <footer id="contact">
+        <h3>Conecte-se Comigo</h3>
+        
+        <div class="social-links">
+            <a href="https://discord.gg/7w6fh7mbA2" target="_blank" class="social-link">
+                <i class="fab fa-discord"></i>
+            </a>
+            <a href="https://www.roblox.com/share?code=90743af672f73f4bbb4c69863717918a&type=Profile&source=ProfileShare&stamp=1766205110181" 
+               target="_blank" class="social-link">
+                <i class="fas fa-gamepad"></i>
+            </a>
+            <a href="mailto:seuemail@exemplo.com" class="social-link">
+                <i class="fas fa-envelope"></i>
+            </a>
+            <a href="#" class="social-link">
+                <i class="fab fa-twitter"></i>
+            </a>
+            <a href="#" class="social-link">
+                <i class="fab fa-instagram"></i>
+            </a>
         </div>
-    </div>
-
-    <!-- Notificação -->
-    <div class="notification" id="notification"></div>
+        
+        <p class="copyright">
+            © 2024 Jmfxp22 Community. Todos os direitos reservados.<br>
+            Design criado com ❤️ para a comunidade.
+        </p>
+    </footer>
 
     <script>
-        // Dados para armazenar os formulários
-        let submittedForms = JSON.parse(localStorage.getItem('factualForms')) || [];
-        const ADMIN_EMAIL = 'jmsight1@gmail.com';
-        
-        // Configurações
-        let formSettings = JSON.parse(localStorage.getItem('formSettings')) || {
-            formActive: true,
-            closedMessage: 'O formulário de inscrição para staff não está mais recebendo respostas no momento. Agradecemos seu interesse!'
-        };
+        // Função para rastrear cliques (opcional)
+        function trackClick(buttonName) {
+            console.log(`Botão ${buttonName} clicado!`);
+            // Aqui você pode adicionar Google Analytics ou outro tracking
+        }
 
-        // Elementos DOM
-        const formContainer = document.getElementById('formContainer');
-        const adminPanel = document.getElementById('adminPanel');
-        const adminToggle = document.getElementById('adminToggle');
-        const backToForm = document.getElementById('backToForm');
-        const loginModal = document.getElementById('loginModal');
-        const closeLogin = document.getElementById('closeLogin');
-        const loginBtn = document.getElementById('loginBtn');
-        const adminEmail = document.getElementById('adminEmail');
-        const adminPassword = document.getElementById('adminPassword');
-        const staffForm = document.getElementById('staffForm');
-        const formsList = document.getElementById('formsList');
-        const recentFormsList = document.getElementById('recentFormsList');
-        const responsesModal = document.getElementById('responsesModal');
-        const closeResponses = document.getElementById('closeResponses');
-        const responsesContainer = document.getElementById('responsesContainer');
-        const userInfo = document.getElementById('userInfo');
-        const notification = document.getElementById('notification');
-        const formClosed = document.getElementById('formClosed');
-        const adminAccessFromClosed = document.getElementById('adminAccessFromClosed');
-        const formActiveToggle = document.getElementById('formActiveToggle');
-        const formStatus = document.getElementById('formStatus');
-        const closedMessage = document.getElementById('closedMessage');
-        const totalForms = document.getElementById('totalForms');
-        const todayForms = document.getElementById('todayForms');
-        const weekForms = document.getElementById('weekForms');
-        const saveSettings = document.getElementById('saveSettings');
-        
-        // Navegação entre abas
-        const adminNavItems = document.querySelectorAll('.admin-nav-item');
-        const adminTabContents = document.querySelectorAll('.admin-tab-content');
-        const adminTabTitle = document.getElementById('adminTabTitle');
-
-        // Inicializar
-        document.addEventListener('DOMContentLoaded', () => {
-            checkFormStatus();
-            updateStats();
-            loadFormsList();
-            loadRecentForms();
+        // Efeito de digitação no título
+        document.addEventListener('DOMContentLoaded', function() {
+            const title = document.querySelector('.title');
+            const originalText = title.textContent;
+            title.textContent = '';
             
-            // Carregar configurações salvas
-            if (localStorage.getItem('formSettings')) {
-                const savedSettings = JSON.parse(localStorage.getItem('formSettings'));
-                formSettings = savedSettings;
-                closedMessage.value = savedSettings.closedMessage;
-                formActiveToggle.checked = savedSettings.formActive;
-                formStatus.checked = savedSettings.formActive;
-            }
-        });
-
-        // Alternar entre formulário e painel admin
-        adminToggle.addEventListener('click', () => {
-            const isLoggedIn = localStorage.getItem('adminLoggedIn') === 'true';
-            
-            if (isLoggedIn) {
-                formContainer.style.display = 'none';
-                adminPanel.style.display = 'block';
-                loadFormsList();
-                loadRecentForms();
-                updateStats();
-            } else {
-                loginModal.style.display = 'flex';
-            }
-        });
-
-        adminAccessFromClosed.addEventListener('click', () => {
-            loginModal.style.display = 'flex';
-        });
-
-        backToForm.addEventListener('click', () => {
-            adminPanel.style.display = 'none';
-            formContainer.style.display = 'block';
-        });
-
-        // Fechar modal de login
-        closeLogin.addEventListener('click', () => {
-            loginModal.style.display = 'none';
-        });
-
-        // Fechar modal de respostas
-        closeResponses.addEventListener('click', () => {
-            responsesModal.style.display = 'none';
-        });
-
-        // Login administrativo
-        loginBtn.addEventListener('click', () => {
-            const email = adminEmail.value.trim();
-            const password = adminPassword.value.trim();
-
-            if (email === ADMIN_EMAIL && password === 'admin123') {
-                localStorage.setItem('adminLoggedIn', 'true');
-                loginModal.style.display = 'none';
-                formContainer.style.display = 'none';
-                adminPanel.style.display = 'block';
-                formClosed.style.display = 'none';
-                loadFormsList();
-                loadRecentForms();
-                updateStats();
-                showNotification('Login realizado com sucesso!', 'success');
-            } else {
-                showNotification('E-mail ou senha incorretos!', 'error');
-            }
-        });
-
-        // Envio do formulário (CORRIGIDO)
-        staffForm.addEventListener('submit', (e) => {
-            e.preventDefault();
-            
-            if (!formSettings.formActive) {
-                showNotification('O formulário não está aceitando respostas no momento.', 'warning');
-                return;
-            }
-            
-            // Coletar TODAS as respostas corretamente
-            const formData = new FormData(staffForm);
-            const answers = {};
-            const formElements = staffForm.elements;
-            
-            // Coletar todos os campos
-            for (let element of formElements) {
-                if (element.name) {
-                    if (element.type === 'checkbox') {
-                        answers[element.name] = element.checked ? 'Sim' : 'Não';
-                    } else {
-                        answers[element.name] = element.value;
-                    }
+            let i = 0;
+            function typeWriter() {
+                if (i < originalText.length) {
+                    title.textContent += originalText.charAt(i);
+                    i++;
+                    setTimeout(typeWriter, 100);
                 }
             }
-            
-            // Verificar se todas as respostas foram coletadas
-            console.log('Respostas coletadas:', answers);
-            
-            // Criar objeto do formulário
-            const now = new Date();
-            const formSubmission = {
-                id: Date.now(),
-                date: now.toLocaleString('pt-BR'),
-                timestamp: now.getTime(),
-                user: answers.q1 || 'Não informado',
-                discord: answers.q3 || 'Não informado',
-                answers: answers
-            };
-            
-            // Adicionar à lista
-            submittedForms.push(formSubmission);
-            
-            // Salvar NO localStorage (CORRIGIDO)
-            try {
-                localStorage.setItem('factualForms', JSON.stringify(submittedForms));
-                console.log('Formulário salvo com sucesso! Total:', submittedForms.length);
-            } catch (error) {
-                console.error('Erro ao salvar no localStorage:', error);
-            }
-            
-            // Limpar formulário
-            staffForm.reset();
-            
-            // Mostrar notificação
-            showNotification('Formulário enviado com sucesso!', 'success');
-            
-            // Atualizar estatísticas
-            updateStats();
-            
-            // Recarregar listas se o painel admin estiver visível
-            if (adminPanel.style.display === 'block') {
-                loadFormsList();
-                loadRecentForms();
-            }
+            setTimeout(typeWriter, 1000);
         });
 
-        // Navegação entre abas do admin
-        adminNavItems.forEach(item => {
-            item.addEventListener('click', () => {
-                const tab = item.getAttribute('data-tab');
+        // Efeito de scroll suave
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const targetId = this.getAttribute('href');
+                if(targetId === '#') return;
                 
-                adminNavItems.forEach(navItem => navItem.classList.remove('active'));
-                item.classList.add('active');
-                
-                adminTabContents.forEach(content => content.style.display = 'none');
-                document.getElementById(`${tab}Tab`).style.display = 'block';
-                
-                adminTabTitle.textContent = 
-                    tab === 'dashboard' ? 'Dashboard' : 
-                    tab === 'forms' ? 'Formulários Preenchidos' : 
-                    'Configurações';
-                
-                if (tab === 'forms') {
-                    loadFormsList();
-                } else if (tab === 'dashboard') {
-                    loadRecentForms();
-                    updateStats();
+                const targetElement = document.querySelector(targetId);
+                if(targetElement) {
+                    window.scrollTo({
+                        top: targetElement.offsetTop - 80,
+                        behavior: 'smooth'
+                    });
                 }
             });
         });
-
-        // Alternar status do formulário
-        formActiveToggle.addEventListener('change', function() {
-            formSettings.formActive = this.checked;
-            formStatus.checked = this.checked;
-            saveSettingsToStorage();
-            checkFormStatus();
-            
-            showNotification(
-                this.checked ? 
-                'Formulário ativado com sucesso!' : 
-                'Formulário desativado. Não aceitará mais respostas.',
-                this.checked ? 'success' : 'warning'
-            );
-        });
-
-        formStatus.addEventListener('change', function() {
-            formSettings.formActive = this.checked;
-            formActiveToggle.checked = this.checked;
-            saveSettingsToStorage();
-            checkFormStatus();
-        });
-
-        // Salvar configurações
-        saveSettings.addEventListener('click', () => {
-            formSettings.closedMessage = closedMessage.value;
-            formSettings.formActive = formStatus.checked;
-            saveSettingsToStorage();
-            showNotification('Configurações salvas com sucesso!', 'success');
-        });
-
-        function saveSettingsToStorage() {
-            localStorage.setItem('formSettings', JSON.stringify(formSettings));
-        }
-
-        // Verificar status do formulário
-        function checkFormStatus() {
-            if (!formSettings.formActive) {
-                formClosed.style.display = 'flex';
-                formContainer.style.display = 'none';
-            } else {
-                formClosed.style.display = 'none';
-                formContainer.style.display = 'block';
-            }
-        }
-
-        // Carregar lista de formulários (CORRIGIDO)
-        function loadFormsList() {
-            formsList.innerHTML = '';
-            
-            // Carregar dados mais recentes do localStorage
-            const updatedForms = JSON.parse(localStorage.getItem('factualForms')) || [];
-            submittedForms = updatedForms;
-            
-            console.log('Formulários carregados:', submittedForms.length);
-            
-            if (submittedForms.length === 0) {
-                formsList.innerHTML = '<p style="text-align: center; color: var(--gray); grid-column: 1 / -1; padding: 40px;">Nenhum formulário enviado ainda.</p>';
-                return;
-            }
-            
-            // Ordenar por data (mais recente primeiro)
-            const sortedForms = [...submittedForms].sort((a, b) => b.timestamp - a.timestamp);
-            
-            sortedForms.forEach(form => {
-                const formCard = document.createElement('div');
-                formCard.className = 'form-card';
-                formCard.innerHTML = `
-                    <div class="form-user">${form.user}</div>
-                    <div class="form-discord">${form.discord}</div>
-                    <div class="form-date"><i class="far fa-calendar"></i> ${form.date}</div>
-                `;
-                
-                formCard.addEventListener('click', () => {
-                    showFormResponses(form);
-                });
-                
-                formsList.appendChild(formCard);
-            });
-        }
-
-        // Carregar formulários recentes (CORRIGIDO)
-        function loadRecentForms() {
-            recentFormsList.innerHTML = '';
-            
-            // Carregar dados mais recentes do localStorage
-            const updatedForms = JSON.parse(localStorage.getItem('factualForms')) || [];
-            submittedForms = updatedForms;
-            
-            if (submittedForms.length === 0) {
-                recentFormsList.innerHTML = '<p style="text-align: center; color: var(--gray); grid-column: 1 / -1; padding: 40px;">Nenhum formulário enviado ainda.</p>';
-                return;
-            }
-            
-            // Ordenar por data (mais recente primeiro) e pegar os 6 primeiros
-            const sortedForms = [...submittedForms].sort((a, b) => b.timestamp - a.timestamp).slice(0, 6);
-            
-            sortedForms.forEach(form => {
-                const formCard = document.createElement('div');
-                formCard.className = 'form-card';
-                formCard.innerHTML = `
-                    <div class="form-user">${form.user}</div>
-                    <div class="form-discord">${form.discord}</div>
-                    <div class="form-date"><i class="far fa-calendar"></i> ${form.date}</div>
-                `;
-                
-                formCard.addEventListener('click', () => {
-                    showFormResponses(form);
-                });
-                
-                recentFormsList.appendChild(formCard);
-            });
-        }
-
-        // Atualizar estatísticas (CORRIGIDO)
-        function updateStats() {
-            // Carregar dados mais recentes
-            const updatedForms = JSON.parse(localStorage.getItem('factualForms')) || [];
-            submittedForms = updatedForms;
-            
-            totalForms.textContent = submittedForms.length;
-            
-            // Formulários de hoje
-            const today = new Date();
-            const todayStart = new Date(today.getFullYear(), today.getMonth(), today.getDate()).getTime();
-            const todayCount = submittedForms.filter(form => form.timestamp >= todayStart).length;
-            todayForms.textContent = todayCount;
-            
-            // Formulários desta semana
-            const weekStart = new Date(today.getFullYear(), today.getMonth(), today.getDate() - today.getDay()).getTime();
-            const weekCount = submittedForms.filter(form => form.timestamp >= weekStart).length;
-            weekForms.textContent = weekCount;
-        }
-
-        // Mostrar respostas de um formulário
-        function showFormResponses(form) {
-            console.log('Mostrando respostas para:', form.user);
-            console.log('Respostas:', form.answers);
-            
-            userInfo.innerHTML = `
-                <strong>Nome:</strong> ${form.user}<br>
-                <strong>Idade:</strong> ${form.answers.q2 || 'Não informado'}<br>
-                <strong>Discord:</strong> ${form.discord}<br>
-                <strong>Data de envio:</strong> ${form.date}
-            `;
-            
-            responsesContainer.innerHTML = '';
-            
-            // Adicionar cada pergunta e resposta
-            for (let i = 1; i <= 32; i++) {
-                const questionKey = `q${i}`;
-                let questionText = '';
-                
-                // Definir o texto da pergunta com base no número
-                switch(i) {
-                    case 1: questionText = '1. Qual o seu nome completo?'; break;
-                    case 2: questionText = '2. Qual a sua idade?'; break;
-                    case 3: questionText = '3. Qual seu Discord (com tag completa)?'; break;
-                    case 4: questionText = '4. Qual seu horário disponível diariamente para atuar como staff?'; break;
-                    case 5: questionText = '5. Possui experiência anterior como staff? Se sim, descreva onde e qual função desempenhava.'; break;
-                    case 6: questionText = '6. O que você entende por "comunidade Factual RJ" e como você descreve a proposta do servidor?'; break;
-                    case 7: questionText = '7. Como você definiria um servidor factual e como isso influencia na abordagem da administração?'; break;
-                    case 8: questionText = '8. Em sua opinião, quais habilidades um staff precisa ter para atuar com imparcialidade?'; break;
-                    case 9: questionText = '9. O que significa para você manter postura profissional dentro de uma equipe administrativa?'; break;
-                    case 10: questionText = '10. Como você lida com críticas, pressão e cobranças da liderança?'; break;
-                    case 11: questionText = '11. Em uma situação de conflito entre dois membros, como você age para manter a neutralidade?'; break;
-                    case 12: questionText = '12. Como garantir que suas decisões sejam sempre justas e imparciais?'; break;
-                    case 13: questionText = '13. Por que é importante não usar IA, terceiros ou qualquer ajuda externa nos testes administrativos?'; break;
-                    case 14: questionText = '14. Como você reage ao perceber que outro staff está quebrando regras internas?'; break;
-                    case 15: questionText = '15. O que você faria se um amigo seu cometesse uma infração dentro do servidor?'; break;
-                    case 16: questionText = '16. Dois jogadores estão discutindo e ambos afirmam estar com razão. Como você resolve?'; break;
-                    case 17: questionText = '17. Um player acusa outro de abuso, mas não fornece provas. Como proceder?'; break;
-                    case 18: questionText = '18. Você vê um staff agindo com hostilidade com um membro. O que faz?'; break;
-                    case 19: questionText = '19. Um jogador está repetidamente cometendo infrações leves. Como você aplica advertências proporcionalmente?'; break;
-                    case 20: questionText = '20. Você percebe uma falha grave na organização ou nos sistemas. Como comunica e como sugere melhorias?'; break;
-                    case 21: questionText = '21. Por que seguir regras é essencial em servidores factuais?'; break;
-                    case 22: questionText = '22. Cite, com suas palavras, três situações que você considera quebra de conduta administrativa.'; break;
-                    case 23: questionText = '23. Como garantir que os membros entendam e cumpram as regras do servidor?'; break;
-                    case 24: questionText = '24. O que te motiva a fazer parte da equipe administrativa?'; break;
-                    case 25: questionText = '25. O que você acredita que pode agregar ao Factual RJ como staff?'; break;
-                    case 26: questionText = '26. Você consegue trabalhar em equipe mesmo discordando de algumas decisões? Como?'; break;
-                    case 27: questionText = '27. O que significa ser maduro administrativamente?'; break;
-                    case 28: questionText = '28. Como você separa vida pessoal de tarefas administrativas dentro da equipe?'; break;
-                    case 29: questionText = '29. Caso você esteja emocionalmente sobrecarregado, como evita que isso interfira nas suas ações como staff?'; break;
-                    case 30: questionText = '30. Por que devemos escolher você para fazer parte da nossa equipe administrativa?'; break;
-                    case 31: questionText = '31. Deseja adicionar algo sobre você que possa ser relevante para a administração?'; break;
-                    case 32: questionText = '32. Declara que todas as respostas fornecidas são autorais e verdadeiras?'; break;
-                }
-                
-                const responseItem = document.createElement('div');
-                responseItem.className = 'response-item';
-                
-                let answerText = form.answers[questionKey];
-                if (i === 32) {
-                    answerText = answerText || 'Não';
-                }
-                
-                responseItem.innerHTML = `
-                    <div class="response-question">${questionText}</div>
-                    <div class="response-answer">${answerText || 'Não respondida'}</div>
-                `;
-                
-                responsesContainer.appendChild(responseItem);
-            }
-            
-            responsesModal.style.display = 'flex';
-        }
-
-        // Mostrar notificação
-        function showNotification(message, type) {
-            notification.textContent = message;
-            notification.className = `notification ${type} show`;
-            
-            setTimeout(() => {
-                notification.classList.remove('show');
-            }, 4000);
-        }
-
-        // Teste: Limpar todos os dados se necessário
-        function clearAllData() {
-            if (confirm('Tem certeza que deseja limpar TODOS os dados?')) {
-                localStorage.clear();
-                submittedForms = [];
-                showNotification('Todos os dados foram limpos!', 'success');
-                loadFormsList();
-                loadRecentForms();
-                updateStats();
-            }
-        }
-
-        // Botão de emergência (pode ser removido depois)
-        console.log('Para limpar todos os dados, execute clearAllData() no console');
     </script>
 </body>
 </html>

@@ -1,58 +1,159 @@
-import React, { useEffect, useRef } from "react"; import { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom"; import { motion } from "framer-motion"; import Particles from "react-tsparticles"; import { loadFull } from "tsparticles";
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+<meta charset="UTF-8">
+<title>JM | Portfólio Profissional</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-const images = [ "/images/midia1.png", "/images/midia2.png", "/images/midia3.png", "/images/midia4.png", "/images/midia5.png", "/images/midia6.png", ];
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
 
-function Background() { return ( <Particles id="tsparticles" init={loadFull} options={{ background: { color: "#000" }, fpsLimit: 60, particles: { number: { value: 70 }, color: { value: "#00ffff" }, links: { enable: true, color: "#00ffff", distance: 150 }, move: { enable: true, speed: 1 }, size: { value: 2 }, }, }} className="absolute inset-0 -z-10" /> ); }
+<style>
+*{margin:0;padding:0;box-sizing:border-box;font-family:'Poppins',sans-serif}
+body{background:#050505;color:white;overflow-x:hidden}
 
-function Layout({ children }) { const audioRef = useRef(null);
+nav{
+ position:fixed;top:0;width:100%;
+ display:flex;justify-content:space-between;align-items:center;
+ padding:20px 8%;background:rgba(0,0,0,.6);backdrop-filter:blur(10px);z-index:10
+}
+nav a{color:white;text-decoration:none;margin-left:25px;font-weight:500}
 
-useEffect(() => { if (audioRef.current) { audioRef.current.volume = 0.2; audioRef.current.play().catch(() => {}); } }, []);
+section{display:none;min-height:100vh;padding:130px 8%}
+section.active{display:block}
 
-return ( <div className="min-h-screen bg-black text-white relative overflow-hidden"> <Background /> <audio ref={audioRef} src="/music.mp3" loop />
+.hero h1{font-size:64px;line-height:1.1}
+.hero p{margin-top:20px;color:#bbb;max-width:600px}
 
-<nav className="flex justify-between items-center p-6 backdrop-blur-md">
-    <h1 className="text-xl font-bold">JM Portfolio</h1>
-    <div className="flex gap-6">
-      <Link to="/">Home</Link>
-      <Link to="/sobre">Sobre</Link>
-      <Link to="/servicos">Serviços</Link>
-      <Link to="/midias">Mídias</Link>
-    </div>
-  </nav>
+.actions{margin-top:30px;display:flex;gap:15px;flex-wrap:wrap}
 
-  <div className="p-6 max-w-6xl mx-auto">{children}</div>
+.btn{
+ padding:14px 34px;background:#00ffff;color:black;
+ border-radius:40px;text-decoration:none;font-weight:600;
+ box-shadow:0 0 25px #00ffff;transition:.3s
+}
+.btn:hover{transform:scale(1.05)}
+
+.grid{
+ margin-top:30px;
+ display:grid;
+ grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
+ gap:25px
+}
+.grid img{
+ width:100%;border-radius:18px;
+ box-shadow:0 0 20px rgba(0,0,0,.6);
+ transition:.3s
+}
+.grid img:hover{transform:scale(1.05)}
+
+#particles-js{position:fixed;inset:0;z-index:-1}
+
+h2{font-size:42px;margin-bottom:20px}
+p{line-height:1.7;color:#ccc}
+</style>
+</head>
+
+<body>
+
+<div id="particles-js"></div>
+
+<nav>
+<b>JM Portfolio</b>
+<div>
+<a href="#" onclick="show('home')">Home</a>
+<a href="#" onclick="show('sobre')">Sobre</a>
+<a href="#" onclick="show('servicos')">Serviços</a>
+<a href="#" onclick="show('midias')">Mídias</a>
 </div>
+</nav>
 
-); }
+<section id="home" class="active">
+<div class="hero">
+<h1 id="typing"></h1>
+<p>
+Criador de sistemas para Roblox, bots para Discord, builds, mídias e conteúdo para TikTok.
+Transformo ideias em projetos modernos, organizados e profissionais.
+</p>
 
-function Home() { return ( <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }}> <motion.h2 animate={{ y: [0, -10, 0] }} transition={{ repeat: Infinity, duration: 3 }} className="text-4xl font-bold mb-4" > Bem-vindo ao meu Portfólio </motion.h2> <p className="text-zinc-400 mb-6">Crio cenas, sistemas e mídias no Roblox.</p>
+<div class="actions">
+<a class="btn" href="https://www.roblox.com/users/profile" target="_blank">Meu Roblox</a>
+<a class="btn" href="mailto:SEUEMAIL@gmail.com">Contato Email</a>
+<a class="btn" href="https://discord.gg/SEU_DISCORD" target="_blank">Comunidade Discord</a>
+</div>
+</div>
+</section>
 
-<a
-    href="https://discord.gg/SEU_DISCORD"
-    target="_blank"
-    className="px-6 py-3 bg-cyan-500 rounded-xl shadow-xl"
-  >
-    Falar comigo no Discord
-  </a>
-</motion.div>
+<section id="sobre">
+<h2>Sobre Mim</h2>
+<p>
+Sou JM, criador digital focado em sistemas para Roblox, bots para Discord, builds e criação de conteúdo.
+Também produzo mídias e projetos visuais para servidores, comunidades e redes sociais como TikTok.
+Meu objetivo é sempre entregar algo moderno, funcional e com visual profissional.
+</p>
+</section>
 
-); }
+<section id="servicos">
+<h2>Serviços</h2>
+<p>✔ Sistemas para Roblox</p>
+<p>✔ Bots personalizados para Discord</p>
+<p>✔ Builds e mapas</p>
+<p>✔ Criação de mídias</p>
+<p>✔ Conteúdo para TikTok</p>
 
-function Sobre() { return ( <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }}> <h2 className="text-3xl font-bold mb-4">Sobre Mim</h2> <p className="text-zinc-300 leading-relaxed"> Sou JM, criador de projetos no Roblox, focado em cenas realistas, sistemas, lojas, bots e mídias. Trabalho com estética moderna, performance e experiência do jogador. </p> </motion.div> ); }
+<div class="actions">
+<a class="btn" href="https://discord.gg/SEU_DISCORD" target="_blank">Contratar</a>
+</div>
+</section>
 
-function Servicos() { return ( <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }}> <h2 className="text-3xl font-bold mb-6">Serviços</h2> <ul className="space-y-4"> <li>✔ Criação de mapas Roblox</li> <li>✔ Sistemas e lojas</li> <li>✔ Bots para Discord</li> <li>✔ Cenas e mídias</li> <li>✔ Personalização de servidores</li> </ul>
+<section id="midias">
+<h2>Minhas Mídias</h2>
 
-<a
-    href="https://discord.gg/SEU_DISCORD"
-    target="_blank"
-    className="inline-block mt-6 px-6 py-3 bg-cyan-500 rounded-xl"
-  >
-    Comprar comigo
-  </a>
-</motion.div>
+<div class="grid">
+<img loading="lazy" src="https://cdn.discordapp.com/attachments/1450836778096267361/1469734193071259761/55c094ab68942a1b4c250620c1049c40.png">
+<img loading="lazy" src="https://cdn.discordapp.com/attachments/1450836778096267361/1469734166013677578/df79f364f7dc1cbb774ed65e7566d9a8.png">
+<img loading="lazy" src="https://cdn.discordapp.com/attachments/1450836778096267361/1469734175102861484/9442060cc91804d91fb9101a8f70e5aa.png">
+<img loading="lazy" src="https://cdn.discordapp.com/attachments/1450836778096267361/1469734179657744384/01756ad00cae9f671510b938234b8928.png">
+<img loading="lazy" src="https://cdn.discordapp.com/attachments/1450836778096267361/1469734184468873328/7137650e2726d8757620d95f61ee2d07.png">
+<img loading="lazy" src="https://cdn.discordapp.com/attachments/1450836778096267361/1469734203913535529/ed8c7ad832d4fbbfee356ffcb080ecff.png">
+<img loading="lazy" src="https://cdn.discordapp.com/attachments/1450836778096267361/1469734197357838490/bde68e2b902193733633b057246ea4c4.png">
+<img loading="lazy" src="https://cdn.discordapp.com/attachments/1450836778096267361/1469734160368275477/5abbc141518df5bce80cbbb7af9aa85e.png">
+<img loading="lazy" src="https://cdn.discordapp.com/attachments/1450836778096267361/1469734157390184458/f33d8bfa713fbe7609f7860edcbe7ba3.png">
+<img loading="lazy" src="https://cdn.discordapp.com/attachments/1450836778096267361/1469734154479599716/0636fe004e402a00605d6e89380a7cb6.png">
+<img loading="lazy" src="https://cdn.discordapp.com/attachments/1450836778096267361/1469734146036207667/df24b9be43275349cdcf4cc87fcd960b.png">
+<img loading="lazy" src="https://cdn.discordapp.com/attachments/1450836778096267361/1469734137320570921/b6605e064f6a78e9d36c44be8619f6f8.png">
+<img loading="lazy" src="https://cdn.discordapp.com/attachments/1450836778096267361/1469734126763638988/0f3372663baa55777764d2cf1511cd6d.png">
+<img loading="lazy" src="https://cdn.discordapp.com/attachments/1450836778096267361/1469734121533341888/bdc7ab0357c0584b7b14609b68431290.png">
+</div>
+</section>
 
-); }
+<script src="https://cdn.jsdelivr.net/npm/particles.js@2.0.0/particles.min.js"></script>
 
-function Midias() { return ( <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }}> <h2 className="text-3xl font-bold mb-6">Minhas Mídias</h2> <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6"> {images.map((img, i) => ( <motion.img whileHover={{ scale: 1.05 }} key={i} src={img} className="rounded-2xl shadow-xl" /> ))} </div> </motion.div> ); }
+<script>
+function show(id){
+ document.querySelectorAll('section').forEach(s=>s.classList.remove('active'));
+ document.getElementById(id).classList.add('active');
+}
 
-export default function App() { return ( <Router> <Layout> <Routes> <Route path="/" element={<Home />} /> <Route path="/sobre" element={<Sobre />} /> <Route path="/servicos" element={<Servicos />} /> <Route path="/midias" element={<Midias />} /> </Routes> </Layout> </Router> ); }
+particlesJS("particles-js",{
+ particles:{
+  number:{value:80},
+  color:{value:"#00ffff"},
+  size:{value:3},
+  move:{speed:1},
+  line_linked:{enable:true,color:"#00ffff"}
+ }
+});
+
+const text="JM — Portfólio Profissional";
+let i=0;
+function typing(){
+ if(i<text.length){
+  document.getElementById("typing").innerHTML+=text.charAt(i);
+  i++;setTimeout(typing,70);
+ }
+}
+typing();
+</script>
+
+</body>
+</html>
